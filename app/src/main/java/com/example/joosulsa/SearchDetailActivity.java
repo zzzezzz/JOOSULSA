@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.joosulsa.databinding.ActivitySearchDetailBinding;
+
 public class SearchDetailActivity extends AppCompatActivity {
+    private ActivitySearchDetailBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        binding=ActivitySearchDetailBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_detail);
+        setContentView(binding.getRoot());
     }
 }
