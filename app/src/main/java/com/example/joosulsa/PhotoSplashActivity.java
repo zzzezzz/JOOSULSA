@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class PhotoSplashActivity extends AppCompatActivity {
+import com.example.joosulsa.databinding.ActivityPhotoSplashBinding;
 
+public class PhotoSplashActivity extends AppCompatActivity {
+    private ActivityPhotoSplashBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_photo_splash);
+        binding = ActivityPhotoSplashBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 }

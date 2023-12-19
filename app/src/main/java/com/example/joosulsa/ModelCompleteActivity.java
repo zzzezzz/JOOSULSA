@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ModelCompleteActivity extends AppCompatActivity {
+import com.example.joosulsa.databinding.ActivityModelCompleteBinding;
 
+public class ModelCompleteActivity extends AppCompatActivity {
+    private ActivityModelCompleteBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_model_complete);
+        binding = ActivityModelCompleteBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 }

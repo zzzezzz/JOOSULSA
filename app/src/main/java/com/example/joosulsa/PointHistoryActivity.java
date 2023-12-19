@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class PointHistoryActivity extends AppCompatActivity {
+import com.example.joosulsa.databinding.ActivityPointHistoryBinding;
 
+public class PointHistoryActivity extends AppCompatActivity {
+    private ActivityPointHistoryBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_point_history);
+        binding = ActivityPointHistoryBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 }

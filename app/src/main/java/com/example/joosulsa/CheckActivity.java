@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class CheckActivity extends AppCompatActivity {
+import com.example.joosulsa.databinding.ActivityCheckBinding;
 
+public class CheckActivity extends AppCompatActivity {
+    private ActivityCheckBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check);
+        binding = ActivityCheckBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 }

@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class PersonRankActivity extends AppCompatActivity {
+import com.example.joosulsa.databinding.ActivityPersonRankBinding;
 
+public class PersonRankActivity extends AppCompatActivity {
+    private ActivityPersonRankBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_person_rank);
+        binding = ActivityPersonRankBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ
     }

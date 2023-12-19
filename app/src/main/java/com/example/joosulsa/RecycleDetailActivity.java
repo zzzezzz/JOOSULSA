@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class RecycleDetailActivity extends AppCompatActivity {
+import com.example.joosulsa.databinding.ActivityRecycleDetailBinding;
 
+public class RecycleDetailActivity extends AppCompatActivity {
+    private ActivityRecycleDetailBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycle_detail);
+        binding = ActivityRecycleDetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 }
