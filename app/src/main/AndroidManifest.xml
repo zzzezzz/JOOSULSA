@@ -13,10 +13,52 @@
         android:theme="@style/Theme.JOOSULSA"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
+            android:name=".MyPageInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PersonRankActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TownRankActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RankSelectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CheckActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ModelCompleteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PhotoSplashActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PhotoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuizActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecycleDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
