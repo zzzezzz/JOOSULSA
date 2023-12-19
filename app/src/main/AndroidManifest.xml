@@ -13,6 +13,33 @@
         android:theme="@style/Theme.JOOSULSA"
         tools:targetApi="31">
         <activity
+            android:name=".BuyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PointMarketActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PointHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PurchaseListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditEmailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EdtiNickActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyPageEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".MyPageInfoActivity"
             android:exported="false" />
         <activity
