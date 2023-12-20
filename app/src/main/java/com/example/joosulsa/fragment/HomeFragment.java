@@ -1,5 +1,6 @@
 package com.example.joosulsa.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,60 +8,49 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.example.joosulsa.R;
+import com.example.joosulsa.databinding.ActivitySearchBinding;
+import com.example.joosulsa.databinding.FragmentHomeBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class HomeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+
+        // binding으로 view내부 객체들 가져다 쓰려고 선언하는 코드임
+        FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
+
+        // homeFragment에 있는 요소 순서대로 이벤트 작성바람
+
+        // 검색창 이벤트
+        binding.search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            // 검색 완료시 작동하는 메소드
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // 검색시 넘어갈 화면 정의(우리는 검색화면으로 넘어가기로 했으므로 여기로 보내겠음)
+                Intent intent = new Intent(getActivity(), ActivitySearchBinding.class);
+                // 검색어가 매개변수인데 그게 query라 query를 보내는거임
+                intent.putExtra("search", query);
+                startActivity(intent);
+                return true;
+            }
+
+            // 검색창 내부 입력값이 변경될때 동작하는 메소드임 추후 실시간 연관검색 처리할때 사용할듯 일단 false로 비활성화
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+
+
+        return binding.getRoot();
     }
 }
