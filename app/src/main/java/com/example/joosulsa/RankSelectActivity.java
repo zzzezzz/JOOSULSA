@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class RankSelectActivity extends AppCompatActivity {
+import com.example.joosulsa.databinding.ActivityRankSelectBinding;
 
+public class RankSelectActivity extends AppCompatActivity {
+    private ActivityRankSelectBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rank_select);
+        binding = ActivityRankSelectBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 }

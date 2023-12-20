@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class PointMarketActivity extends AppCompatActivity {
+import com.example.joosulsa.databinding.ActivityPointMarketBinding;
 
+public class PointMarketActivity extends AppCompatActivity {
+    private ActivityPointMarketBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_point_market);
+        binding = ActivityPointMarketBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 }

@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MyPageInfoActivity extends AppCompatActivity {
+import com.example.joosulsa.databinding.ActivityMyPageInfoBinding;
+import com.example.joosulsa.databinding.ActivityPersonRankBinding;
 
+public class MyPageInfoActivity extends AppCompatActivity {
+    private ActivityMyPageInfoBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_page_info);
+        binding = ActivityMyPageInfoBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 }

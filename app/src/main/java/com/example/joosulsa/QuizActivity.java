@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class QuizActivity extends AppCompatActivity {
+import com.example.joosulsa.databinding.ActivityQuizBinding;
 
+public class QuizActivity extends AppCompatActivity {
+    private ActivityQuizBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
+        binding = ActivityQuizBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 }
