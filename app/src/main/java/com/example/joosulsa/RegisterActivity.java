@@ -56,6 +56,9 @@ public class RegisterActivity extends AppCompatActivity {
 
             registerRequest(userName, userID, userPw, userNick, userAddr);
 
+            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+            startActivity(intent);
+
         });
 
 
