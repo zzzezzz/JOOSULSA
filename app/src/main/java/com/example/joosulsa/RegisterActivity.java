@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // join_back(뒤로가기) 눌렀을대 메인으로 이동하기
-
+        // 됨?????
 
         // 회원가입시 입력 정보 보내는 로직 만들겠음
 
