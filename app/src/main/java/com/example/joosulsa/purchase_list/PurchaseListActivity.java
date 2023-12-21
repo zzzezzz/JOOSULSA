@@ -1,4 +1,4 @@
-package com.example.joosulsa;
+package com.example.joosulsa.purchase_list;
 
 import androidx.appcompat.app.AppCompatActivity;
 
