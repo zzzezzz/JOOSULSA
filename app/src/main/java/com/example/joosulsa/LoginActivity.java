@@ -15,5 +15,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         
         //코드테스트asd
+        binding.loginJoin.setOnClickListener(v->{
+
+        });
     }
 }
