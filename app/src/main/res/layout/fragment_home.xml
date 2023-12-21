@@ -229,7 +229,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/joinHoam"
+                            android:id="@+id/joinHome"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:src="@tools:sample/avatars"
