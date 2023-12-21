@@ -28,7 +28,7 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryViewHo
     @NonNull
     @Override
     public MainCategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item_view,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item_view,parent,true);
 
         MainCategoryViewHolder holder = new MainCategoryViewHolder(view);
 
