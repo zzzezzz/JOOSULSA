@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- 메인 컬러 -->
+    <color name="main">#B8E93F</color>
+    <color name="text">#393939</color>
+
+    <!-- hint 컬러 -->
+    <color name="hintBack">#F8F8F8</color>
+    <color name="hintText">#A9A9A9</color>
+
 </resources>
