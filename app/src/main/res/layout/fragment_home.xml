@@ -197,7 +197,7 @@
                             android:id="@+id/imageView2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:src="@tools:sample/avatars"
+                            android:src="@tools:sample/avatars"
                             app:srcCompat="@drawable/ic_launcher_background" />
 
                         <TextView
@@ -232,7 +232,7 @@
                             android:id="@+id/joinHome"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:src="@tools:sample/avatars"
+                            android:src="@tools:sample/avatars"
                             app:srcCompat="@drawable/ic_launcher_background" />
 
                         <TextView
@@ -367,7 +367,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        tools:src="@tools:sample/avatars"
+                        android:src="@tools:sample/avatars"
                         app:srcCompat="@drawable/quiz" />
 
                     <TextView
@@ -382,7 +382,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        tools:src="@tools:sample/avatars"
+                        android:src="@tools:sample/avatars"
                         app:srcCompat="@drawable/right" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -403,7 +403,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        tools:src="@tools:sample/avatars"
+                        android:src="@tools:sample/avatars"
                         app:srcCompat="@drawable/calender" />
 
                     <TextView
@@ -418,7 +418,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        tools:src="@tools:sample/avatars"
+                        android:src="@tools:sample/avatars"
                         app:srcCompat="@drawable/right" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
