@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // join_back(뒤로가기) 눌렀을대 메인으로 이동하기
-        // 됨?????
+
 
         // 회원가입시 입력 정보 보내는 로직 만들겠음
 
@@ -55,9 +55,6 @@ public class RegisterActivity extends AppCompatActivity {
             String userAddr = binding.joinAddress.getText().toString();
 
             registerRequest(userName, userID, userPw, userNick, userAddr);
-
-            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-            startActivity(intent);
 
         });
 
