@@ -25,7 +25,7 @@
             android:name=".PointHistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".PurchaseListActivity"
+            android:name=".purchase_list.PurchaseListActivity"
             android:exported="false" />
         <activity
             android:name=".EditAddressActivity"
