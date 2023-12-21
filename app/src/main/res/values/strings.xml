@@ -2,4 +2,20 @@
     <string name="app_name">JOOSULSA</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- fragment_home.xml -->
+    <string name="titHash">가장 많이 찾고 있어요</string>
+    <string name="tvCheck">촬영으로 편하게 분리수거 체크!</string>
+    <string name="tvRank">우리 동네 랭킹 확인</string>
+
+    <string name="titCategory">카테고리별 분리수거 방법</string>
+    <string name="categoryItem01">일반쓰레기</string>
+    <string name="categoryItem02">캔</string>
+    <string name="categoryItem03">배달용기</string>
+    <string name="categoryItem04">플라스틱</string>
+
+    <string name="tvQuiz">오늘의 퀴즈</string>
+    <string name="tvAttendance">오늘의 출석체크</string>
+
+    <string name="titUpcycling">오늘의 업사이클링</string>
 </resources>
