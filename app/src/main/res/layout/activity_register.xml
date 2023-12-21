@@ -7,7 +7,7 @@
     tools:context=".RegisterActivity">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/joinHoam"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
@@ -27,7 +27,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/joinBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -48,72 +48,114 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView4">
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/joinName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
             android:ems="10"
+            android:hint="이름을 입력해주세요."
             android:inputType="text"
             android:textColor="@color/hintText" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/hintBack"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView3"
         app:layout_constraintStart_toStartOf="@+id/cardView3"
         app:layout_constraintTop_toBottomOf="@+id/cardView3">
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/joinId"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:background="@null"
             android:ems="10"
+            android:hint="아이디를 입력해주세요."
             android:inputType="text"
-            android:text="Name" />
+            android:textColor="@color/hintBack" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="409dp"
+        android:id="@+id/cardView5"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="508dp" >
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/hintBack"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView4"
+        app:layout_constraintStart_toStartOf="@+id/cardView4"
+        app:layout_constraintTop_toBottomOf="@+id/cardView4">
 
         <EditText
-            android:id="@+id/editTextTextPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/JoinPw"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@null"
             android:ems="10"
-            android:inputType="textPassword" />
+            android:hint="비밀번호를 입력해주세요."
+            android:inputType="textPassword"
+            android:textColor="@color/hintBack" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="409dp"
+        android:id="@+id/cardView6"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="573dp" >
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/hintBack"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView5"
+        app:layout_constraintStart_toStartOf="@+id/cardView5"
+        app:layout_constraintTop_toBottomOf="@+id/cardView5">
 
         <EditText
-            android:id="@+id/editTextText3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/joinNick"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@null"
             android:ems="10"
+            android:hint="이름을 입력해주세요."
             android:inputType="text"
-            android:text="Name" />
+            android:textColor="@color/hintBack" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="409dp"
+        android:id="@+id/cardView7"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="619dp" >
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/hintBack"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView6"
+        app:layout_constraintStart_toStartOf="@+id/cardView6"
+        app:layout_constraintTop_toBottomOf="@+id/cardView6">
 
         <EditText
-            android:id="@+id/editTextText4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/joinAddress"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@null"
             android:ems="10"
+            android:hint="주소를 입력해주세요."
             android:inputType="text"
-            android:text="Name" />
+            android:textColor="@color/hintBack" />
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btnJoin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/main"
+        android:text="회원가입"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/cardView7"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/cardView7"
+        app:layout_constraintTop_toBottomOf="@+id/cardView7" />
 </androidx.constraintlayout.widget.ConstraintLayout>
