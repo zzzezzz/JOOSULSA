@@ -24,12 +24,14 @@ public class PurchaseListActivity extends AppCompatActivity {
 
         dataset = new ArrayList<>();
 
-        dataset.add(new PurchaseListVO(R.id.correctBtn,"test","test"));
-        dataset.add(new PurchaseListVO(R.id.correctBtn,"test","test"));
-        dataset.add(new PurchaseListVO(R.id.correctBtn,"test","test"));
-        dataset.add(new PurchaseListVO(R.id.correctBtn,"test","test"));
-        dataset.add(new PurchaseListVO(R.id.correctBtn,"test","test"));
-        dataset.add(new PurchaseListVO(R.id.correctBtn,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
 
         // 레이아웃 보여주기
         LinearLayoutManager manager = new LinearLayoutManager(this);
