@@ -22,4 +22,18 @@
     <string name="tvAttendance">오늘의 출석체크</string>
 
     <string name="titUpcycling">오늘의 업사이클링</string>
+
+
+    <!-- activity_point_history.xml -->
+    <string name="titPoint">포인트 조회</string>
+    <string name="pointHistoryMainTitle">000님의 포인트 지갑</string>
+    <string name="pointHistorySubTitle">환경을 생각하는 한 걸음!</string>
+
+    <string name="titCountPoint">누적 포인트</string>
+    <string name="CountPointUnit">POINT</string>
+
+    <string name="innerTitlePoint">포인트 전체 내역</string>
+
+
+
 </resources>

@@ -17,41 +17,37 @@
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53"
-        app:srcCompat="@drawable/right" />
+        app:srcCompat="@drawable/backbtn"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="25dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="구매 내역"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="171dp" />
+        tools:layout_editor_absoluteX="178dp"
+        tools:layout_editor_absoluteY="26dp" />
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="681dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tab1_home" />
+        app:srcCompat="@drawable/tab1_home"
+        tools:layout_editor_absoluteX="310dp"
+        tools:layout_editor_absoluteY="25dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/purchaseList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        android:layout_width="411dp"
+        android:layout_height="622dp"
+        tools:layout_editor_absoluteY="73dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
