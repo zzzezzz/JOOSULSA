@@ -38,6 +38,8 @@ public class PurchaseListActivity extends AppCompatActivity {
         binding.purchaseList.setLayoutManager(manager);
 
         // 어댑터를 연결해주기
+        adapter = new PurchaseListAdapter(dataset);
+        binding.purchaseList.setAdapter(adapter);
 
 
     }
