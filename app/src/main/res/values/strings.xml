@@ -6,7 +6,7 @@
     <!-- fragment_home.xml -->
     <string name="titHash">가장 많이 찾고 있어요</string>
     <string name="tvCheck">촬영으로 편하게 분리수거 체크!</string>
-    <string name="tvRank">우리 동네 랭킹 확인</string>
+    <string name="tvRank">우리 동네 랭킹 확인하기</string>
 
     <string name="tvLogin">로그인을 해주세요.</string>
     <string name="tvLogintext">로그인을 하면 이곳에 회원정보가 출력됩니다.</string>
@@ -33,7 +33,6 @@
     <string name="CountPointUnit">POINT</string>
 
     <string name="innerTitlePoint">포인트 전체 내역</string>
-
 
 
 </resources>
