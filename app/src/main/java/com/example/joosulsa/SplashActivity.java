@@ -28,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
-        // 일정 시간 후에 메인 액티비티로 이동
+        // 일정 시간 후에 메인 액티비티로 이동(추후 추가 로직 추가 필요할 수 있음)
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
