@@ -18,7 +18,7 @@
             android:name=".BuyActivity"
             android:exported="false" />
         <activity
-            android:name=".ProductInfoActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".PointMarketActivity"
@@ -78,7 +78,7 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ProductInfoActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
