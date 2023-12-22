@@ -37,9 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // join_back(뒤로가기) 눌렀을대 메인으로 이동하기
-
-
         // 회원가입시 입력 정보 보내는 로직 만들겠음
 
         if (requestQueue == null){
@@ -84,13 +81,22 @@ public class RegisterActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("LoginActivity", response);
+                        // 응답 처리
+                        if ("success".equals(response)) {
+                            // 성공 시 원하는 동작 수행
+                            // 예: 회원가입 성공 메시지 표시
+                            // Toast.makeText(RegisterActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // 실패 시 원하는 동작 수행
+                            // 예: 회원가입 실패 메시지 표시
+                            // Toast.makeText(RegisterActivity.this, "회원가입 실패", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("LoginActivity", error.toString());
+                        Log.d("RegisterActivity", error.toString());
                     }
                 }
         ){
@@ -111,5 +117,9 @@ public class RegisterActivity extends AppCompatActivity {
                 return params;
             }
         };
+
+        // 요청을 큐에 추가
+        requestQueue.add(request);
+
     }
 }
