@@ -7,6 +7,11 @@
     <color name="main">#B8E93F</color>
     <color name="text">#393939</color>
 
+    <!-- fragment_home 컬러-->
+    <color name="checkColor">#489BFC</color>
+    <color name="subYellow">#EDFFA4</color>
+    <color name="subBlue">#CCEDFF</color>
+
     <!-- hint 컬러 -->
     <color name="hintBack">#F8F8F8</color>
     <color name="hintText">#A9A9A9</color>
