@@ -59,6 +59,21 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
+        // 뒤로가기 버튼 누르면 로그인으로
+        binding.joinBack.setOnClickListener(v -> {
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+        // 홈 버튼 누르면 MainActivity로
+        binding.joinHome.setOnClickListener(v -> {
+            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+
     }
 
     // 회원가입 데이터 보내는 메소드
