@@ -83,7 +83,7 @@
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_marginLeft="50dp"
-                android:src="@tools:sample/avatars" />
+                tools:src="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/prodctName"
@@ -142,7 +142,7 @@
                         android:layout_width="30dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:src="@tools:sample/avatars" />
+                        tools:src="@drawable/minus" />
 
                     <TextView
                         android:id="@+id/productCount"
@@ -158,7 +158,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        android:src="@tools:sample/avatars" />
+                        tools:src="@drawable/plus" />
 
                 </LinearLayout>
 
