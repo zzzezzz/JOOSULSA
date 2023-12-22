@@ -59,7 +59,8 @@ public class HomeFragment extends Fragment {
 
         // 레이아웃 보여주기
         // manager : 레이아웃 정보를 갖고있음..
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        //LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false); // 가로로 배열해주기
 
         // 뿌려줄 xml파일에 recycleview 넣어주고 id 값을 꼭 지정해주기
         // 레이아웃을 설정해주기
