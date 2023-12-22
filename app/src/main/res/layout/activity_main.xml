@@ -30,7 +30,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline"
         app:menu="@menu/item_list"
-        app:itemIconSize="40sp" />
+        app:itemIconSize="40sp"
+        app:itemTextAppearanceActive="@dimen/design_bottom_navigation_active_text_size"/>
 
     <FrameLayout
         android:id="@+id/fl"

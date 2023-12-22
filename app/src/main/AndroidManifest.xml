@@ -27,7 +27,7 @@
             android:name=".PointHistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".purchase_list.PurchaseListActivity"
             android:exported="false" />
         <activity
             android:name=".MyPageEditActivity"
@@ -78,7 +78,7 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".purchase_list.PurchaseListActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
