@@ -7,7 +7,7 @@
     tools:context=".MyPageInfoActivity">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/myInfoBack"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/right" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnMyChange"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="35dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnMyPurchaseCheck"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="15dp"
@@ -41,12 +41,12 @@
         android:text="구매 내역 조회"
         android:textColor="@color/black"
         app:cornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintEnd_toEndOf="@+id/btnMyChange"
+        app:layout_constraintStart_toStartOf="@+id/btnMyChange"
+        app:layout_constraintTop_toBottomOf="@+id/btnMyChange" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnMyPointCheck"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="15dp"
@@ -54,9 +54,9 @@
         android:text="포인트 조회"
         android:textColor="@color/black"
         app:cornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/button3"
-        app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintEnd_toEndOf="@+id/btnMyPurchaseCheck"
+        app:layout_constraintStart_toStartOf="@+id/btnMyPurchaseCheck"
+        app:layout_constraintTop_toBottomOf="@+id/btnMyPurchaseCheck" />
 
     <TextView
         android:id="@+id/textView"
@@ -112,7 +112,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/myInfoName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -120,7 +120,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/myInfoId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -148,7 +148,7 @@
                     android:background="@color/hintText" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/myInfopoint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
