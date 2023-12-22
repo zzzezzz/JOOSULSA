@@ -17,7 +17,7 @@
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/backBtn"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
@@ -43,9 +43,9 @@
         android:layout_marginTop="16dp"
         app:cardBackgroundColor="@color/hintBack"
         app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4">
+        app:layout_constraintEnd_toEndOf="@+id/backBtn"
+        app:layout_constraintStart_toStartOf="@+id/backBtn"
+        app:layout_constraintTop_toBottomOf="@+id/backBtn">
 
         <EditText
             android:id="@+id/joinName"

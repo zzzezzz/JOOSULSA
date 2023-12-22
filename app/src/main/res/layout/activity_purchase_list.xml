@@ -14,7 +14,7 @@
         app:layout_constraintGuide_percent="0.1" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -22,10 +22,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.53"
-        app:srcCompat="@drawable/right" />
+        app:srcCompat="@drawable/backbtn" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/titPurchase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="구매 내역"
@@ -34,7 +34,7 @@
         tools:layout_editor_absoluteX="171dp" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/homeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
@@ -46,11 +46,14 @@
         app:srcCompat="@drawable/tab1_home" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/purchaseList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
