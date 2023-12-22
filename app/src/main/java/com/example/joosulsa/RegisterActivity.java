@@ -26,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
 
     // 우리 스프링 주소 넣어둘 변수
-    private String springUrl = "나중에 스프링 켜지면 여기다 스프링 주소 넣으면 됨";
+    private String springUrl = "https://192.168.219.44:8089/register";
 
     // 회원가입이라 post로 했는데 아니면 바꾸죠 뭐
     int postMethod = Request.Method.POST;
