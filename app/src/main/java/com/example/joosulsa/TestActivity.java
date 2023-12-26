@@ -25,13 +25,13 @@ public class TestActivity extends AppCompatActivity {
 
     }
 
-    public void ClickButton1(View view){
-        sendServer();
-    }
-    public void sendServer(){
-        class sendData extends AsyncTask<Void,Void,String>{
-
-
-        }
-    }
+//    public void ClickButton1(View view){
+//        sendServer();
+//    }
+//    public void sendServer(){
+//        class sendData extends AsyncTask<Void,Void,String>{
+//
+//
+//        }
+//    }
 }

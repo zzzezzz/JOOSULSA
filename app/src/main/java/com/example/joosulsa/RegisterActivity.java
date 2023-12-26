@@ -17,6 +17,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.databinding.ActivityRegisterBinding;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
 
     // 우리 스프링 주소 넣어둘 변수
-    private String springUrl = "https://192.168.219.44:8089/register";
+    private String springUrl = "http://192.168.219.44:8089/register";
 
     // 회원가입이라 post로 했는데 아니면 바꾸죠 뭐
     int postMethod = Request.Method.POST;
@@ -40,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         // 회원가입시 입력 정보 보내는 로직 만들겠음
 
         if (requestQueue == null){
-            requestQueue = Volley.newRequestQueue(this);
+            requestQueue = Volley.newRequestQueue(RegisterActivity.this);
         }
 
         // 회원가입 버튼 클릭 이벤트
@@ -113,7 +115,12 @@ public class RegisterActivity extends AppCompatActivity {
                 params.put("pw", userPw);
                 params.put("nick", userNick);
                 params.put("address", userAddr);
-
+                long now =System.currentTimeMillis();
+                Date today =new Date(now);
+                SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+                String time = format.format(today);
+                params.put("jointime", time);
+                Log.d("name",params.toString());
                 return params;
             }
         };
