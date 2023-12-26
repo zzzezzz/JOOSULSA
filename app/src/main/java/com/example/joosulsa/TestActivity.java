@@ -29,9 +29,9 @@ public class TestActivity extends AppCompatActivity {
         sendServer();
     }
     public void sendServer(){
-        //class sendData extends AsyncTask<Void,Void,String>{
+        // class sendData extends AsyncTask<Void,Void,String>{
 
 
-        //}
+
     }
 }
