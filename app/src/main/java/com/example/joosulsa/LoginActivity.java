@@ -42,12 +42,13 @@ public class LoginActivity extends AppCompatActivity {
             queue = Volley.newRequestQueue(this);
         }
 
-        // 유저 입력 아이디 패스워드 받아오기
-        String userID = binding.loginId.getText().toString();
-        String userPw = binding.loginPw.getText().toString();
-
         // 로그인 버튼 클릭시 발생 이벤트
         binding.btnLogin.setOnClickListener(v -> {
+
+            // 유저 입력 아이디 패스워드 받아오기
+            String userID = binding.loginId.getText().toString();
+            String userPw = binding.loginPw.getText().toString();
+
             StringRequest request = new StringRequest(
                     postMethod,
                     springUrl,
@@ -73,9 +74,9 @@ public class LoginActivity extends AppCompatActivity {
                     // 전송방식을 POST로 지정했을 때 사용하는 메소드
                     // 데이터를 전송할 때 Map 형태로 구성하여 리턴해줘야 한다.
                     Map<String, String> params = new HashMap<>();
-                    params.put("id", userID);
-                    params.put("pw", userPw);
-
+                    params.put("userId", userID);
+                    params.put("userPw", userPw);
+                    Log.d("LoginParams", params.toString());
                     return params;
                 }
             };
