@@ -28,7 +28,7 @@ public class RecycleDetailActivity extends AppCompatActivity {
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(YouTubePlayer youTubePlayer) {
-                String videoId = "YtBcxKwZg-w"; //재생을 원하는 YouTube 비디오의 videoID
+                String videoId = "W8ZUHMd-MmQ"; //재생을 원하는 YouTube 비디오의 videoID
                 youTubePlayer.loadVideo(videoId, 0);
             }
         });
