@@ -22,6 +22,9 @@
         android:theme="@style/Theme.JOOSULSA"
         tools:targetApi="31">
         <activity
+            android:name=".Quiz_Popup_Activity"
+            android:theme="@style/TransparentTheme" />
+        <activity
             android:name=".TestActivity"
             android:exported="false" />
         <activity
@@ -70,10 +73,10 @@
             android:name=".PhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".QuizActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".RecycleDetailActivity"
+            android:name=".QuizActivity"
             android:exported="false" />
         <activity
             android:name=".SearchDetailActivity"
@@ -88,7 +91,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".RecycleDetailActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
