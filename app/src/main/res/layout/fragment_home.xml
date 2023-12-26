@@ -8,7 +8,6 @@
     android:elevation="10dp"
     tools:context=".fragment.HomeFragment">
 
-    <!-- test -->
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"

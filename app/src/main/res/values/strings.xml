@@ -35,4 +35,11 @@
     <string name="innerTitlePoint">포인트 전체 내역</string>
 
 
+    <!-- activity_search.xml -->
+    <string name="fvrSearches">인기검색어</string>
+
+    <!-- activity_search_detail.xml -->
+    <string name="searchError">검색한 내용을 찾을 수 없습니다.</string>
+    <string name="suggestContent">추천 컨텐츠</string>
+
 </resources>
