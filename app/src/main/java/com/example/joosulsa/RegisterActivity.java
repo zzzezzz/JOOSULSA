@@ -167,7 +167,7 @@ public class RegisterActivity extends AppCompatActivity {
         String checkUrl = "http://192.168.219.44:8089/check/" + userId;
 
         StringRequest request = new StringRequest(
-                Request.Method.GET,
+                Request.Method.POST,
                 checkUrl,
                 new Response.Listener<String>() {
                     @Override
@@ -176,10 +176,12 @@ public class RegisterActivity extends AppCompatActivity {
                             // 이미 존재하는 아이디인 경우
                             // 사용자에게 메시지 표시 또는 다른 작업 수행
                             Toast.makeText(RegisterActivity.this, "이미 사용 중인 아이디입니다.", Toast.LENGTH_SHORT).show();
+                            binding.checkDuplication.setText("이미 사용 중인 아이디입니다.");
                         } else if ("AVAILABLE".equals(response)) {
                             // 존재하지 않는 아이디인 경우
                             // 사용자에게 메시지 표시 또는 다른 작업 수행
                             Toast.makeText(RegisterActivity.this, "사용 가능한 아이디입니다.", Toast.LENGTH_SHORT).show();
+                            binding.checkDuplication.setText("사용 가능한 아이디입니다.");
                         }
                     }
                 },

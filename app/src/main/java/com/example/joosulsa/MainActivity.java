@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
                 R.id.fl, new HomeFragment()
         ).commit();
 
-
         binding.bnv.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

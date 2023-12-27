@@ -15,6 +15,9 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityQuizBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Intent intent = new Intent();
+        String quizContent = intent.getStringExtra("quizContent");
+        binding.titQuiz.setText(intent.getStringExtra("quizContent"));
 
     binding.correctBtn.setOnClickListener(new View.OnClickListener() {
         @Override

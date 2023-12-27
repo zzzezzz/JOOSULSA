@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onResponse(String response) {
                             Log.d("LoginActivity", response);
                             handleLoginResponse(response);
+
                         }
                     },
                     new Response.ErrorListener() {
@@ -110,6 +111,14 @@ public class LoginActivity extends AppCompatActivity {
             JSONObject jsonResponse = new JSONObject(response);
             String loginName = jsonResponse.getString("userName");
             String loginId = jsonResponse.getString("userId");
+            String loginAddr = jsonResponse.getString("userAddr");
+            Log.d("LogInDataCheck", loginName + loginId);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("userName", loginName);
+            intent.putExtra("userId", loginId);
+            intent.putExtra("userAddr", loginAddr);
+            startActivity(intent);
+            finish();
         } catch (JSONException e) {
             e.printStackTrace();
         }
