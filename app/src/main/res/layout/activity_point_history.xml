@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.10123119" />
+        app:layout_constraintGuide_percent="0.10259918" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView13"
@@ -92,6 +92,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_bold"
+                        android:gravity="center"
                         android:text="@string/pointHistoryMainTitle"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -101,6 +102,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_medium"
+                        android:gravity="center"
                         android:text="@string/pointHistorySubTitle" />
                 </LinearLayout>
 
@@ -172,14 +174,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.048661802" />
+        app:layout_constraintGuide_percent="0.05109489" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.9537713" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
