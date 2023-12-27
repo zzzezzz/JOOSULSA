@@ -42,7 +42,7 @@
     <string name="searchError">검색한 내용을 찾을 수 없습니다.</string>
     <string name="suggestContent">추천 컨텐츠</string>
 
-
-
+    <!-- activity_town_rank.xml -->
+    <string name="units">PT</string>
 
 </resources>

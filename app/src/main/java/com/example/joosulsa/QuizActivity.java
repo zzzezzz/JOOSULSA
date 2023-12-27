@@ -16,13 +16,15 @@ public class QuizActivity extends AppCompatActivity {
         binding = ActivityQuizBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-    binding.correctBtn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-                Intent intent = new Intent(QuizActivity.this, Quiz_Popup_Activity.class);
-                startActivity(intent);
-        }
-    });
+
+        // 퀴즈 버튼을 클릭 시 팝업창 뜨는 코드
+        binding.correctBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent intent = new Intent(QuizActivity.this,QuizPopupActivity.class);
+                    startActivity(intent);
+            }
+        });
 
     }
 
