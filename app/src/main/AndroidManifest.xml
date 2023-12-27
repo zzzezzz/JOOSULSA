@@ -22,13 +22,16 @@
         android:theme="@style/Theme.JOOSULSA"
         tools:targetApi="31">
         <activity
+            android:name=".Quiz_Popup_Activity"
+            android:theme="@style/TransparentTheme" />
+        <activity
             android:name=".TestActivity"
             android:exported="false" />
         <activity
             android:name=".BuyActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ProductInfoActivity"
             android:exported="false" />
         <activity
             android:name=".PointMarketActivity"
@@ -70,7 +73,7 @@
             android:name=".PhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".QuizActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".RecycleDetailActivity"
@@ -85,10 +88,10 @@
             android:name=".SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ProductInfoActivity"
+            android:name=".QuizActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

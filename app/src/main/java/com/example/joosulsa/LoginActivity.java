@@ -16,6 +16,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.databinding.ActivityLoginBinding;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     // 서버에 요청 보내려면 필요함
     private RequestQueue queue;
 
-    private String springUrl = "나중에 스프링 주소 넣어야함";
+    private String springUrl = "http://192.168.219.44:8089/login";
 
     int postMethod = Request.Method.POST;
 
@@ -39,12 +42,13 @@ public class LoginActivity extends AppCompatActivity {
             queue = Volley.newRequestQueue(this);
         }
 
-        // 유저 입력 아이디 패스워드 받아오기
-        String userID = binding.loginId.getText().toString();
-        String userPw = binding.loginPw.getText().toString();
-
         // 로그인 버튼 클릭시 발생 이벤트
         binding.btnLogin.setOnClickListener(v -> {
+
+            // 유저 입력 아이디 패스워드 받아오기
+            String userID = binding.loginId.getText().toString();
+            String userPw = binding.loginPw.getText().toString();
+
             StringRequest request = new StringRequest(
                     postMethod,
                     springUrl,
@@ -52,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             Log.d("LoginActivity", response);
+                            handleLoginResponse(response);
                         }
                     },
                     new Response.ErrorListener() {
@@ -69,9 +74,9 @@ public class LoginActivity extends AppCompatActivity {
                     // 전송방식을 POST로 지정했을 때 사용하는 메소드
                     // 데이터를 전송할 때 Map 형태로 구성하여 리턴해줘야 한다.
                     Map<String, String> params = new HashMap<>();
-                    params.put("id", userID);
-                    params.put("pw", userPw);
-
+                    params.put("userId", userID);
+                    params.put("userPw", userPw);
+                    Log.d("LoginParams", params.toString());
                     return params;
                 }
             };
@@ -96,5 +101,17 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent= new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void handleLoginResponse(String response) {
+        // 서버에서 받아온 응답을 처리하는 로직을 작성
+        // response는 서버에서 보낸 JSON 형태의 데이터일 것이므로, 필요에 따라 파싱하여 사용
+        try {
+            JSONObject jsonResponse = new JSONObject(response);
+            String loginName = jsonResponse.getString("userName");
+            String loginId = jsonResponse.getString("userId");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
