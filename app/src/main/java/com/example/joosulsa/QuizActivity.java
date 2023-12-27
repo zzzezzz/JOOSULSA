@@ -15,8 +15,11 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityQuizBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Intent intent = new Intent();
+        Intent intent = getIntent();
         String quizContent = intent.getStringExtra("quizContent");
+        String quizAnswer = intent.getStringExtra("quizAnswer");
+        String quizInfo = intent.getStringExtra("quizInfo");
+        int quizPoint = intent.getIntExtra("quizPoint", 100);
         binding.titQuiz.setText(intent.getStringExtra("quizContent"));
 
 
@@ -25,6 +28,9 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                     Intent intent = new Intent(QuizActivity.this,QuizPopupActivity.class);
+                    intent.putExtra("quizAnswer", quizAnswer);
+                    intent.putExtra("quizInfo", quizInfo);
+                    intent.putExtra("quizPoint", quizPoint);
                     startActivity(intent);
             }
         });
