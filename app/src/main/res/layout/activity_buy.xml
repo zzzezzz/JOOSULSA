@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buyName" />
 
     <TextView
-        android:id="@+id/buyCount"
+        android:id="@+id/buyCount1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -80,9 +80,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="개"
-        app:layout_constraintBottom_toBottomOf="@+id/buyCount"
-        app:layout_constraintStart_toEndOf="@+id/buyCount"
-        app:layout_constraintTop_toTopOf="@+id/buyCount" />
+        app:layout_constraintBottom_toBottomOf="@+id/buyCount1"
+        app:layout_constraintStart_toEndOf="@+id/buyCount1"
+        app:layout_constraintTop_toTopOf="@+id/buyCount1" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -150,12 +150,12 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="개"
-            app:layout_constraintBottom_toBottomOf="@+id/buyCount"
+            app:layout_constraintBottom_toBottomOf="@+id/buyCount2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/buyCount" />
+            app:layout_constraintTop_toTopOf="@+id/buyCount2" />
 
         <TextView
-            android:id="@+id/buyCount"
+            android:id="@+id/buyCount2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
