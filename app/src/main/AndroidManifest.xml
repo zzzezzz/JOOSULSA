@@ -52,7 +52,7 @@
             android:name=".PersonRankActivity"
             android:exported="false" />
         <activity
-            android:name=".TownRankActivity"
+            android:name=".QuizActivity"
             android:exported="false" />
         <activity
             android:name=".RankSelectActivity"
@@ -91,7 +91,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".QuizActivity"
+            android:name=".TownRankActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
