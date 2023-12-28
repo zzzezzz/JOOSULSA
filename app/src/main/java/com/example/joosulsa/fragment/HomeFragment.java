@@ -185,12 +185,14 @@ public class HomeFragment extends Fragment {
             String quizAnswer = jsonResponse.getString("quizAnswer");
             String quizInfo = jsonResponse.getString("quizInfo");
             int quizPoint = jsonResponse.getInt("quizPoint");
-            Log.d("QuizDataCheck", quizContent + "/" + quizAnswer + "/" + quizInfo + "/" + quizPoint);
+            int quizNum = jsonResponse.getInt("quizNum");
+            Log.d("QuizDataCheck", quizContent + "/" + quizAnswer + "/" + quizInfo + "/" + quizPoint + "/" + quizNum);
             Intent intent = new Intent(getActivity(), QuizActivity.class);
             intent.putExtra("quizContent", quizContent);
             intent.putExtra("quizAnswer", quizAnswer);
             intent.putExtra("quizInfo", quizInfo);
             intent.putExtra("quizPoint", quizPoint);
+            intent.putExtra("quizNum", quizNum);
             startActivity(intent);
         } catch (JSONException e) {
             e.printStackTrace();

@@ -20,21 +20,35 @@ public class QuizActivity extends AppCompatActivity {
         String quizAnswer = intent.getStringExtra("quizAnswer");
         String quizInfo = intent.getStringExtra("quizInfo");
         int quizPoint = intent.getIntExtra("quizPoint", 100);
-        binding.titQuiz.setText(intent.getStringExtra("quizContent"));
+        int quizNum = intent.getIntExtra("quizNum", 0);
+        binding.titQuiz.setText(quizContent);
 
+        String correct = "O";
+        String wrong = "X";
 
-        // 퀴즈 버튼을 클릭 시 팝업창 뜨는 코드
-        binding.correctBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),QuizPopupActivity.class);
-                intent.putExtra("quizAnswer", quizAnswer);
-                intent.putExtra("quizInfo", quizInfo);
-                intent.putExtra("quizPoint", quizPoint);
-                startActivity(intent);
+        // O 버튼을 클릭 시 팝업창 뜨는 코드
+        binding.correctBtn.setOnClickListener(v -> {
+            if(quizAnswer.equals(correct)){
+                Intent intent1 = new Intent();
+                intent1.putExtra("quizPoint", quizPoint);
+                intent1.putExtra("quizNum", quizNum);
+            }else {
+                Intent intent2 = new Intent();
+                intent2.putExtra("quizInfo", quizInfo);
             }
         });
 
+        // X 버튼을 클릭 시 팝업창 뜨는 코드
+        binding.errorBtn.setOnClickListener(v -> {
+            if (quizAnswer.equals(wrong)){
+                Intent intent3 = new Intent();
+                intent3.putExtra("quizPoint", quizPoint);
+                intent3.putExtra("quizNum", quizNum);
+            }else {
+                Intent intent4 = new Intent();
+                intent4.putExtra("quizInfo", quizInfo);
+            }
+        });
     }
 
 }
