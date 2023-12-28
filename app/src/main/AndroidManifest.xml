@@ -43,7 +43,7 @@
             android:name=".purchase_list.PurchaseListActivity"
             android:exported="false" />
         <activity
-            android:name=".MyPageEditActivity"
+            android:name=".QuizActivity"
             android:exported="false" />
         <activity
             android:name=".MyPageInfoActivity"
@@ -73,7 +73,7 @@
             android:name=".PhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".MyPageEditActivity"
             android:exported="false" />
         <activity
             android:name=".RecycleDetailActivity"
@@ -85,13 +85,13 @@
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".QuizActivity"
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

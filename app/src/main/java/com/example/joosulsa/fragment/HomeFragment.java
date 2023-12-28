@@ -63,6 +63,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // 자동 로그인 부분
+        // 데이터 가져오기
         preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
         String autoId = preferences.getString("autoId", null);
         String autoPw = preferences.getString("autoPw", null);
