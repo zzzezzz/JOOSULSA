@@ -39,7 +39,7 @@ public class MyPageEditActivity extends AppCompatActivity {
     }
 
     // 새로운 비밀번호 일치 여부 확인 메소드
-    private void newPwCheck(String newPw, String newPwCheck){
+    private void newPwCheck(){
         String newpw = binding.newPw.getText().toString();
         String newpwcheck = binding.newPwCheck.getText().toString();
 
