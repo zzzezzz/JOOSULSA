@@ -31,11 +31,8 @@ public class MypageFragment extends Fragment {
             Intent intent = new Intent(getActivity(), MyPageEditActivity.class);
             startActivity(intent);
         });
-        // 뒤로가기 페이지 이동
-        binding.imageView4.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            startActivity(intent);
-        });
+
+
         // 구매내역 페이지 이동
         binding.purchaseHistoryInquiry.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), PurchaseListActivity.class);
