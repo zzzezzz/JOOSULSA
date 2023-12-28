@@ -1,6 +1,8 @@
 package com.example.joosulsa.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -41,6 +43,9 @@ import java.util.Random;
 
 public class HomeFragment extends Fragment {
 
+    // sharedPreference 선언
+    private SharedPreferences preferences;
+
     // 카테고리 데이터 연결
     private ArrayList<MainCategoryVO> dataset;
     // 카테고리 어댑터 연결
@@ -56,6 +61,17 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // SharedPreferences 객체 생성
+        preferences = getActivity().getSharedPreferences("user_info", Context.MODE_PRIVATE);
+
+        // 자동 로그인 여부 확인
+        boolean isAutoLogin = preferences.getBoolean("auto_login", false);
+
+        if (isAutoLogin) {
+            // 자동 로그인이 설정되어 있으면 사용자 정보를 화면에 표시
+            displayUserInfo();
+        }
 
         // binding으로 view내부 객체들 가져다 쓰려고 선언하는 코드임
         FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -108,6 +124,16 @@ public class HomeFragment extends Fragment {
         binding.categoryList.setAdapter(adapter); // setAdapter : 이걸 어댑터에 넣어준다고
 
         return binding.getRoot();
+    }
+
+    // 자동 로그인이 설정되어 있을 때 사용자 정보를 화면에 표시하는 메서드
+    private void displayUserInfo() {
+        String savedUserId = preferences.getString("user_id", "");
+        String savedUserContent = preferences.getString("user_content", "");
+
+        // TODO: 사용자 정보를 화면에 표시하는 코드
+        // 예시) binding.memberId.setText(savedUserId);
+        // 예시) binding.memberContent.setText(savedUserContent);
     }
 
     // 랜덤 숫자 생성 메소드(퀴즈 번호 호출할때 쓰는거)

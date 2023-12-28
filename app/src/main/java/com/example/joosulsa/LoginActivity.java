@@ -15,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.databinding.ActivityLoginBinding;
+import com.example.joosulsa.fragment.HomeFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         if (queue == null) {
             queue = Volley.newRequestQueue(this);
         }
@@ -55,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
+                            binding.errorMsg.setText("아이디 또는 비밀번호가 틀렸습니다.");
                             Log.d("LoginActivity", response);
                             handleLoginResponse(response);
 
@@ -109,14 +112,24 @@ public class LoginActivity extends AppCompatActivity {
         // response는 서버에서 보낸 JSON 형태의 데이터일 것이므로, 필요에 따라 파싱하여 사용
         try {
             JSONObject jsonResponse = new JSONObject(response);
+            // json 파싱하는 부분
             String loginName = jsonResponse.getString("userName");
             String loginId = jsonResponse.getString("userId");
+            String loginPw = jsonResponse.getString("userPw");
             String loginAddr = jsonResponse.getString("userAddr");
             Log.d("LogInDataCheck", loginName + loginId);
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, HomeFragment.class);
+            // intent에 값 집어넣음
             intent.putExtra("userName", loginName);
             intent.putExtra("userId", loginId);
+            intent.putExtra("userPw", loginPw);
             intent.putExtra("userAddr", loginAddr);
+            // 자동 로그인용 값
+            Bundle args = new Bundle();
+            args.putString("userPw", loginPw);
+            args.putString("userId", loginId);
+            intent.putExtras(args);
+
             startActivity(intent);
             finish();
         } catch (JSONException e) {
