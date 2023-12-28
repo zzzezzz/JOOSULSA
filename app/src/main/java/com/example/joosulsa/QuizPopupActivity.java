@@ -18,7 +18,7 @@ public class QuizPopupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityQuizPopupBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_quiz_popup);
+        setContentView(binding.getRoot());
 
         // 홈으로 버튼 클릭 시 홈 Fragment로 이동
         binding.homeBtn.setOnClickListener(new View.OnClickListener() {

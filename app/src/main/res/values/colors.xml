@@ -9,6 +9,8 @@
     <color name="lightGray">#ECECEC</color>
     <color name="heavyGray">#DCDCDC</color>
     <color name="heavyBlue">#1C66D6</color>
+    <color name="pointYellow">#FFFB3F</color>
+    <color name="pointRed">#FF4646</color>
 
     <!-- fragment_home 컬러-->
     <color name="checkColor">#489BFC</color>

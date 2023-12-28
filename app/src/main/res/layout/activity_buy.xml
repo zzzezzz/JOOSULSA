@@ -155,7 +155,6 @@
             app:layout_constraintTop_toTopOf="@+id/buyCount" />
 
         <TextView
-            android:id="@+id/buyCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
