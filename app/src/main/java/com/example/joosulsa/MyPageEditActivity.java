@@ -1,7 +1,6 @@
 package com.example.joosulsa;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -29,44 +28,32 @@ public class MyPageEditActivity extends AppCompatActivity {
 
         if (currentPassword.equals(enteredPassword)) {
             binding.pwNm.setVisibility(View.GONE); // 텍스트 숨김
-            binding.myChangeOK.setVisibility(View.VISIBLE); // 완료버튼 출력
-            binding.myChangeNo.setVisibility(View.GONE);    // 비활성화 숨김
+            binding.myChangeOK.setEnabled(true);
         } else {
             binding.pwNm.setVisibility(View.VISIBLE); // 텍스트 출력
-            binding.myChangeOK.setVisibility(View.GONE); // 완료버튼 숨김
-            binding.myChangeNo.setVisibility(View.VISIBLE);// 비활성화 출력
+            binding.myChangeOK.setEnabled(false);
         }
     }
 
     // 새로운 비밀번호 일치 여부 확인 메소드
-    private void newPwCheck(String newPw, String newPwCheck){
+    private void newPwCheck(){
         String newpw = binding.newPw.getText().toString();
         String newpwcheck = binding.newPwCheck.getText().toString();
 
         if(newpw.equals(newpwcheck)){
-            binding.newPwNm.setVisibility(View.GONE); // 텍스트 숨김
-            binding.myChangeOK.setVisibility(View.VISIBLE); // 완료버튼 출력
-            binding.myChangeNo.setVisibility(View.GONE);    // 비활성화 숨김
+            binding.newPwNm.setVisibility(View.VISIBLE); // 텍스트 숨김
+            binding.myChangeOK.setEnabled(true);
         }else{
-            binding.newPwNm.setVisibility(View.VISIBLE); // 텍스트 출력
-            binding.myChangeOK.setVisibility(View.GONE); // 완료버튼 숨김
-            binding.myChangeNo.setVisibility(View.VISIBLE);// 비활성화 출력
+            binding.newPwNm.setVisibility(View.GONE); // 텍스트 출력
+            binding.myChangeOK.setEnabled(false);
         }
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMyPageEditBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        // 페이지 이동
-        binding.myBack.setOnClickListener(v -> {
-            Intent intent = new Intent(MyPageEditActivity.this, MyPageEditActivity.class);
-            startActivity(intent);
-        });
 
         // 데이터 가져오기
         spf = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
