@@ -66,8 +66,8 @@ public class MyPageEditActivity extends AppCompatActivity {
         binding.myId.setText(myId);
         binding.myPw.setText(myPw);
         binding.myName.setText(myName);
-        binding.myNick.setText(myNick);
-        binding.myAddress.setText(myAddr);
+//        binding.myNick.setText(myNick);
+//        binding.myAddress.setText(myAddr);
 
 
         //현재 비밀번호 일치여부 확인하기
