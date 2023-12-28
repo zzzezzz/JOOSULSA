@@ -11,7 +11,6 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.android.volley.Request;
@@ -34,21 +33,15 @@ import java.net.URL;
 public class TestActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final String TAG = "TestActivity";
-    private static final String FLASK_SERVER_URL = "http://192.168.219:5000/upload_image";
+    private static final String FLASK_SERVER_URL = "http://127.0.0.1:5000/upload";
     private ActivityTestBinding binding;
-    Button button;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityTestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dispatchTakePictureIntent();
-            }
-        });
 
+        dispatchTakePictureIntent();
 
     }
 
@@ -76,7 +69,7 @@ public class TestActivity extends AppCompatActivity {
             // 이미지를 Base64로 인코딩
             Bitmap bitmap = bitmaps[0];
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
             byte[] imageBytes = byteArrayOutputStream.toByteArray();
             String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 
