@@ -1,6 +1,8 @@
 package com.example.joosulsa.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -41,6 +43,9 @@ import java.util.Random;
 
 public class HomeFragment extends Fragment {
 
+    // sharedPreference 선언(자동 로그인에 씀)
+    private SharedPreferences preferences;
+
     // 카테고리 데이터 연결
     private ArrayList<MainCategoryVO> dataset;
     // 카테고리 어댑터 연결
@@ -56,6 +61,14 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // 자동 로그인 부분
+        preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        String autoId = preferences.getString("autoId", null);
+        String autoPw = preferences.getString("autoPw", null);
+        String autoName = preferences.getString("autoName", null);
+        String autoAddr = preferences.getString("autoAddr", null);
+        String autoNick = preferences.getString("autoNick", null);
 
         // binding으로 view내부 객체들 가져다 쓰려고 선언하는 코드임
         FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -73,7 +86,23 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        // 로그인시 회원정보창 수정
+        // 회원정보창 이벤트
+        if (autoId!=null && autoPw!=null) {
+            binding.memberId.setText(autoNick);
+            binding.memberInfo.setOnClickListener(v -> {
+                // MyPageFragment로 이동하는 코드
+                requireActivity().getSupportFragmentManager().beginTransaction().replace(
+                        R.id.fl,
+                        new MypageFragment()
+                ).commit();
+            });
+        } else{
+            binding.memberInfo.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            });
+        }
+
 
         // 퀴즈버튼 이벤트
         binding.quizBtn.setOnClickListener(v -> {
