@@ -43,7 +43,7 @@ import java.util.Random;
 
 public class HomeFragment extends Fragment {
 
-    // sharedPreference 선언
+    // sharedPreference 선언(자동 로그인에 씀)
     private SharedPreferences preferences;
 
     // 카테고리 데이터 연결
@@ -62,16 +62,13 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // SharedPreferences 객체 생성
-        preferences = getActivity().getSharedPreferences("user_info", Context.MODE_PRIVATE);
-
-        // 자동 로그인 여부 확인
-        boolean isAutoLogin = preferences.getBoolean("auto_login", false);
-
-        if (isAutoLogin) {
-            // 자동 로그인이 설정되어 있으면 사용자 정보를 화면에 표시
-            displayUserInfo();
-        }
+        // 자동 로그인 부분
+        preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        String autoId = preferences.getString("autoId", null);
+        String autoPw = preferences.getString("autoPw", null);
+        String autoName = preferences.getString("autoName", null);
+        String autoAddr = preferences.getString("autoAddr", null);
+        String autoNick = preferences.getString("autoNick", null);
 
         // binding으로 view내부 객체들 가져다 쓰려고 선언하는 코드임
         FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -89,7 +86,20 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        // 로그인시 회원정보창 수정
+        // 회원정보창 이벤트
+        if(autoId.equals(null)&&autoPw.equals(null)){
+            binding.memberInfo.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            });
+        } else if (autoId!=null && autoPw!=null) {
+            binding.memberId.setText(autoNick);
+            binding.memberInfo.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), MypageFragment.class);
+            });
+        }
+
+
 
         // 퀴즈버튼 이벤트
         binding.quizBtn.setOnClickListener(v -> {
@@ -124,16 +134,6 @@ public class HomeFragment extends Fragment {
         binding.categoryList.setAdapter(adapter); // setAdapter : 이걸 어댑터에 넣어준다고
 
         return binding.getRoot();
-    }
-
-    // 자동 로그인이 설정되어 있을 때 사용자 정보를 화면에 표시하는 메서드
-    private void displayUserInfo() {
-        String savedUserId = preferences.getString("user_id", "");
-        String savedUserContent = preferences.getString("user_content", "");
-
-        // TODO: 사용자 정보를 화면에 표시하는 코드
-        // 예시) binding.memberId.setText(savedUserId);
-        // 예시) binding.memberContent.setText(savedUserContent);
     }
 
     // 랜덤 숫자 생성 메소드(퀴즈 번호 호출할때 쓰는거)

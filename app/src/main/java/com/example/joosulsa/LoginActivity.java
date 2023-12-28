@@ -3,7 +3,9 @@ package com.example.joosulsa;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -33,12 +35,15 @@ public class LoginActivity extends AppCompatActivity {
 
     int postMethod = Request.Method.POST;
 
+    private SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
 
         if (queue == null) {
             queue = Volley.newRequestQueue(this);
@@ -117,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
             String loginId = jsonResponse.getString("userId");
             String loginPw = jsonResponse.getString("userPw");
             String loginAddr = jsonResponse.getString("userAddr");
+            String loginNick = jsonResponse.getString("userNick");
             Log.d("LogInDataCheck", loginName + loginId);
             Intent intent = new Intent(LoginActivity.this, HomeFragment.class);
             // intent에 값 집어넣음
@@ -125,10 +131,14 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("userPw", loginPw);
             intent.putExtra("userAddr", loginAddr);
             // 자동 로그인용 값
-            Bundle args = new Bundle();
-            args.putString("userPw", loginPw);
-            args.putString("userId", loginId);
-            intent.putExtras(args);
+            // SharedPreferences에 사용자 정보 저장
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("autoId", loginId);
+            editor.putString("autoPw", loginPw);
+            editor.putString("autoName", loginName);
+            editor.putString("autoAddr", loginAddr);
+            editor.putString("autoNick", loginNick);
+            editor.apply();
 
             startActivity(intent);
             finish();
