@@ -152,8 +152,10 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
                         app:cardBackgroundColor="@color/hintBack"
                         app:cardCornerRadius="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/textView51"
                         app:layout_constraintStart_toStartOf="@+id/textView51"
                         app:layout_constraintTop_toBottomOf="@+id/textView51">
@@ -173,7 +175,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <EditText
-                                android:id="@+id/myPw1"
+                                android:id="@+id/myPw"
                                 android:layout_width="250dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center|start"
@@ -216,7 +218,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:text="현재 비밀번호를 입력해주세요"
                         android:textSize="16sp"
@@ -239,7 +241,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView59">
 
                         <EditText
-                            android:id="@+id/myPw2"
+                            android:id="@+id/myPwCheck"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|start"
@@ -249,7 +251,8 @@
                             android:ems="10"
                             android:hint="현재 비밀번호"
                             android:inputType="textPassword"
-                            android:textColorHint="@color/hintText" />
+                            android:textColorHint="@color/hintText"
+                            android:visibility="visible" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -290,7 +293,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView61">
 
                         <EditText
-                            android:id="@+id/myPw3"
+                            android:id="@+id/newPw"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|start"
@@ -308,17 +311,15 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
                         android:visibility="visible"
                         app:cardBackgroundColor="@color/hintBack"
                         app:cardCornerRadius="20dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/cardView12"
                         app:layout_constraintStart_toStartOf="@+id/cardView12"
                         app:layout_constraintTop_toBottomOf="@+id/cardView12">
 
                         <EditText
-                            android:id="@+id/myPw4"
+                            android:id="@+id/newPwCheck"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|start"
@@ -332,13 +333,15 @@
                     </androidx.cardview.widget.CardView>
 
                     <TextView
-                        android:id="@+id/myNm2"
+                        android:id="@+id/newPwNm"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="비밀번호가 일치하지 않습니다."
+                        android:layout_marginBottom="8dp"
+                        android:text="비밀번호가 일치하지않습니다."
                         android:textColor="#FF0000"
                         android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/cardView20"
                         app:layout_constraintStart_toStartOf="@+id/cardView20"
                         app:layout_constraintTop_toBottomOf="@+id/cardView20" />
@@ -346,6 +349,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="visible"
@@ -420,7 +424,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="64dp"
-                        android:layout_marginBottom="50dp"
+                        android:layout_marginBottom="70dp"
                         android:backgroundTint="@color/main"
                         android:text="변경 완료"
                         android:textColor="@color/black"

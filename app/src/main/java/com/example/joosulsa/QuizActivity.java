@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.joosulsa.databinding.ActivityQuizBinding;
@@ -25,41 +24,17 @@ public class QuizActivity extends AppCompatActivity {
 
 
         // 퀴즈 버튼을 클릭 시 팝업창 뜨는 코드
-        //correctBtn
-
-//        binding.correctBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d("check ", "감지");
-//
-//                    Intent intent = new Intent(QuizActivity.this,QuizPopupActivity.class);
-//                    intent.putExtra("quizAnswer", quizAnswer);
-//                    intent.putExtra("quizInfo", quizInfo);
-//                    intent.putExtra("quizPoint", quizPoint);
-//                    startactivity(intent);
-//            }
-//        });
-
         binding.correctBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("check ", "감지");
-
                 Intent intent = new Intent(getApplicationContext(),QuizPopupActivity.class);
-                    intent.putExtra("quizAnswer", quizAnswer);
-                    intent.putExtra("quizInfo", quizInfo);
-                    intent.putExtra("quizPoint", quizPoint);
-
-                    startActivity(intent);
-
+                intent.putExtra("quizAnswer", quizAnswer);
+                intent.putExtra("quizInfo", quizInfo);
+                intent.putExtra("quizPoint", quizPoint);
+                startActivity(intent);
             }
         });
 
     }
-
-
-
-
-
 
 }
