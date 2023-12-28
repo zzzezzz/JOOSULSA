@@ -175,6 +175,7 @@ public class HomeFragment extends Fragment {
                 if (data != null && data.getExtras() != null) {
                     Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                     // 여기에서 캡처한 이미지를 처리하면 됩니다.
+                    // 그렇다네
                     Intent testIntent = new Intent(getActivity(), TestActivity.class);
                     testIntent.putExtra("TestImg", bitmap);
                     startActivity(testIntent);
