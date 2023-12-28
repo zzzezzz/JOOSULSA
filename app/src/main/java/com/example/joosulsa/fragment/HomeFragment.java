@@ -87,18 +87,21 @@ public class HomeFragment extends Fragment {
         });
 
         // 회원정보창 이벤트
-        if(autoId.equals(null)&&autoPw.equals(null)){
+        if (autoId!=null && autoPw!=null) {
+            binding.memberId.setText(autoNick);
+            binding.memberInfo.setOnClickListener(v -> {
+                // MyPageFragment로 이동하는 코드
+                requireActivity().getSupportFragmentManager().beginTransaction().replace(
+                        R.id.fl,
+                        new MypageFragment()
+                ).commit();
+            });
+        } else{
             binding.memberInfo.setOnClickListener(v -> {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
             });
-        } else if (autoId!=null && autoPw!=null) {
-            binding.memberId.setText(autoNick);
-            binding.memberInfo.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), MypageFragment.class);
-            });
         }
-
 
 
         // 퀴즈버튼 이벤트
