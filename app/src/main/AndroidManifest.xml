@@ -43,7 +43,7 @@
             android:name=".purchase_list.PurchaseListActivity"
             android:exported="false" />
         <activity
-            android:name=".MyPageEditActivity"
+            android:name=".QuizActivity"
             android:exported="false" />
         <activity
             android:name=".MyPageInfoActivity"
@@ -91,7 +91,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".QuizActivity"
+            android:name=".MyPageEditActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
