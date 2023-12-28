@@ -52,13 +52,19 @@ public class RegisterActivity extends AppCompatActivity {
         EditText userIdEditText = findViewById(R.id.joinId); // 변경 필요
 
         userIdEditText.addTextChangedListener(new TextWatcher() {
+
+            // int i = 시작하기전
+            // int i1 = 과정
+            // int i2 = 결과
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //                                                   변경 시작점, 변경 과정, 변경 결과
                 // 텍스트 변경 전 호출
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //                                            변경 시작점, 변경 과정, 변경 결과
                 // 텍스트가 변경될 때 호출
                 String newText = charSequence.toString().trim();
                 if (!newText.isEmpty()) {
