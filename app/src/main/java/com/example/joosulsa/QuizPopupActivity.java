@@ -54,8 +54,9 @@ public class QuizPopupActivity extends AppCompatActivity {
 
         String quizInfo = intent.getStringExtra("quizInfo");
         int quizNum = intent.getIntExtra("quizNum", 0);
+        String distinct = intent.getStringExtra("distinct");
 
-        if (quizInfo!=null){
+        if (distinct.equals("wrong")){
             binding.titAnswer.setText("오답입니다");
             binding.commentary.setText(quizInfo);
         }else {
