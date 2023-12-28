@@ -16,13 +16,14 @@ public class QuizPopupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityQuizPopupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // 홈으로 버튼 클릭 시 홈 Fragment로 이동
         binding.homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QuizPopupActivity.this, .class);
+                Intent intent = new Intent(QuizPopupActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

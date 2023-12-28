@@ -61,7 +61,7 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".QuizActivity"
+            android:name=".CheckActivity"
             android:exported="false" />
         <activity
             android:name=".ModelCompleteActivity"
@@ -91,7 +91,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".CheckActivity"
+            android:name=".QuizActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
