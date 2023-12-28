@@ -1,5 +1,9 @@
 package com.example.joosulsa;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -35,6 +39,9 @@ public class TestActivity extends AppCompatActivity {
     private static final String TAG = "TestActivity";
     private static final String FLASK_SERVER_URL = "http://127.0.0.1:5000/upload";
     private ActivityTestBinding binding;
+
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +51,8 @@ public class TestActivity extends AppCompatActivity {
         dispatchTakePictureIntent();
 
     }
+
+
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

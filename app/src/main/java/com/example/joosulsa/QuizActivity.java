@@ -43,9 +43,9 @@ public class QuizActivity extends AppCompatActivity {
                 intent1.putExtra("distinct", distinct);
                 startActivity(intent1);
             }else {
-                Intent intent2 = new Intent();
+                Intent intent2 = new Intent(getApplicationContext(),QuizPopupActivity.class);
                 intent2.putExtra("quizInfo", quizInfo);
-                distinct = "right";
+                distinct = "wrong";
                 intent2.putExtra("distinct", distinct);
                 startActivity(intent2);
             }
@@ -62,9 +62,9 @@ public class QuizActivity extends AppCompatActivity {
                 intent3.putExtra("distinct", distinct);
                 startActivity(intent3);
             }else {
-                Intent intent4 = new Intent();
+                Intent intent4 = new Intent(getApplicationContext(),QuizPopupActivity.class);
                 intent4.putExtra("quizInfo", quizInfo);
-                distinct = "right";
+                distinct = "wrong";
                 intent4.putExtra("distinct", distinct);
                 startActivity(intent4);
             }
