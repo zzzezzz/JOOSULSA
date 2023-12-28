@@ -25,7 +25,7 @@
             android:name=".QuizPopupActivity"
             android:theme="@style/TransparentTheme" />
         <activity
-            android:name=".TestActivity"
+            android:name=".CheckActivity"
             android:exported="false" />
         <activity
             android:name=".BuyActivity"
@@ -91,7 +91,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".CheckActivity"
+            android:name=".TestActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
