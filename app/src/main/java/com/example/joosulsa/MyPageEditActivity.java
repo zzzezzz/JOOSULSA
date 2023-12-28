@@ -7,16 +7,34 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.databinding.ActivityMyPageEditBinding;
 
 public class MyPageEditActivity extends AppCompatActivity {
 
     private ActivityMyPageEditBinding binding;
+
+    private RequestQueue queue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMyPageEditBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        if(queue==null){
+            queue= Volley.newRequestQueue(this);
+        }
+
+        // 서버 통신
+        // 화면에 보여줄 값 가져오기
+
+
+
 
         // 수정하기 버튼 클릭 이벤트
         binding.btnMyPw.setOnClickListener(new View.OnClickListener() {
