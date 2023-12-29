@@ -37,6 +37,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
 
+    // 하루에 한번 퀴즈용 불리언
+    boolean quizBoolean = false;
+
+    // 하루에 한번 출석체크용 불리언
+    boolean checkBoolean = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,6 +144,8 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("autoName", loginName);
             editor.putString("autoAddr", loginAddr);
             editor.putString("autoNick", loginNick);
+            editor.putBoolean("quizBoolean", quizBoolean);
+            editor.putBoolean("checkBoolean", checkBoolean);
             editor.apply();
 
             startActivity(intent);
