@@ -10,8 +10,11 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:usesCleartextTraffic="true" />
+    <!-- 카카오맵 api작업을 위한 초기 설정 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
 
     <application
         android:allowBackup="true"
@@ -69,7 +72,7 @@
             android:name=".PersonRankActivity"
             android:exported="false" />
         <activity
-            android:name=".TownRankActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
@@ -105,7 +108,7 @@
             android:name=".QuizActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".TownRankActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -114,8 +117,8 @@
             </intent-filter>
         </activity>
 
-
-        <meta-data android:name="com.kakao.sdk.AppKey" android:value="4df8f1303551fcf1ba9958b008360c3f" />
+        <!-- 카카오맵 api작업 -->
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="d795b0c1ca1e7ee6df03b80a0e6c1494" />
 
 
 
