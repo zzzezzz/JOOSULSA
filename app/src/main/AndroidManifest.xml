@@ -53,7 +53,7 @@
         <activity
             android:name=".MyPageEditActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustNothing"
             />
         <activity
             android:name=".MyPageInfoActivity"
