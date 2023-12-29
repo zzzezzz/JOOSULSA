@@ -63,7 +63,13 @@ public class MyPageEditActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // 페이지 이동
+
+        // 뒤로가기 이벤트
         binding.myBack.setOnClickListener(v -> {
+            finish();
+        });
+        // 변경완료 이벤트
+        binding.myChangeOK.setOnClickListener(v -> {
             finish();
         });
 
@@ -152,5 +158,6 @@ public class MyPageEditActivity extends AppCompatActivity {
                 // 수정하는 레이아웃 비활성화
             }
         });
+        //
     }
 }
