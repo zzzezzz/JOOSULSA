@@ -23,7 +23,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".point_history.PointHistroyActivity"
+            android:name=".point.RePointHistroyActivity"
             android:exported="false" />
         <activity
             android:name=".QuizPopupActivity"
