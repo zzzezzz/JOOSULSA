@@ -30,6 +30,9 @@
         -->
 
         <activity
+            android:name=".point.RePointHistroyActivity"
+            android:exported="false" />
+        <activity
             android:name=".QuizPopupActivity"
             android:theme="@style/TransparentTheme" />
         <activity
@@ -45,16 +48,13 @@
             android:name=".PointMarketActivity"
             android:exported="false" />
         <activity
-            android:name=".PointHistoryActivity"
-            android:exported="false" />
-        <activity
             android:name=".purchase_list.PurchaseListActivity"
             android:exported="false" />
         <activity
             android:name=".MyPageEditActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"
-            />
+            android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".MyPageInfoActivity"
             android:exported="false" />
