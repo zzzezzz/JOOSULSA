@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:usesCleartextTraffic="true" />
 
     <application
         android:allowBackup="true"
@@ -22,7 +24,8 @@
         android:theme="@style/Theme.JOOSULSA"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustNothing"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        tools:ignore="CoarseFineLocation">
         <activity
             android:name=".CheckPopupActivity"
             android:theme="@style/TransparentTheme" />
@@ -66,9 +69,6 @@
             android:name=".TownRankActivity"
             android:exported="false" />
         <activity
-            android:name=".RankSelectActivity"
-            android:exported="false" />
-        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
@@ -110,6 +110,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="4df8f1303551fcf1ba9958b008360c3f" />
+
+
+
     </application>
 
 </manifest>
