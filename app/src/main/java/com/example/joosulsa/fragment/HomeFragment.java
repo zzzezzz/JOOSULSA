@@ -123,7 +123,7 @@ public class HomeFragment extends Fragment {
             });
         }
 
-        // 쓰레기 사진 이벤트
+        // 카메라 이벤트
         binding.checkBtn.setOnClickListener(v -> {
             if (ContextCompat.checkSelfPermission(requireActivity(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 // 카메라 권한이 없을 경우 권한 요청
@@ -140,7 +140,6 @@ public class HomeFragment extends Fragment {
             int quizNumber = getRandomNumber(1, 100);
             quizRequest(quizNumber);
         });
-
 
         // 객체 생성
         dataset = new ArrayList<>();
