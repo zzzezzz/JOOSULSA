@@ -38,6 +38,9 @@
             android:name=".QuizPopupActivity"
             android:theme="@style/TransparentTheme" />
         <activity
+            android:name=".QuizClosePopup"
+            android:theme="@style/TransparentTheme" />
+        <activity
             android:name=".TestActivity"
             android:exported="false" />
         <activity
