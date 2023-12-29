@@ -20,7 +20,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JOOSULSA"
+        android:wiwindowSoftInputMode ="adjustNothing"
         tools:targetApi="31">
+
+        <!-- 키보드 밀림 해결 application 에 아래 코드 추가
+             android:wiwindowSoftInputMode ="adjustNothing"
+             <activity android:name=".원하는페이지" android:windowSoftInputMode="adjustNothing"></activity>
+        -->
+
         <activity
             android:name=".QuizPopupActivity"
             android:theme="@style/TransparentTheme" />
@@ -44,7 +51,8 @@
             android:exported="false" />
         <activity
             android:name=".MyPageEditActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".MyPageInfoActivity"
             android:exported="false" />
@@ -88,10 +96,10 @@
             android:name=".SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".QuizActivity"
             android:exported="false" />
         <activity
-            android:name=".QuizActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

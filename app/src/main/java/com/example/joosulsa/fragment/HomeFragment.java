@@ -111,7 +111,6 @@ public class HomeFragment extends Fragment {
             quizRequest(quizNumber);
         });
 
-
         // 객체 생성
         dataset = new ArrayList<>();
 
