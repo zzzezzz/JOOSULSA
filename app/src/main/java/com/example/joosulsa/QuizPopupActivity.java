@@ -45,6 +45,7 @@ public class QuizPopupActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
         String autoId = preferences.getString("autoId", null);
+        boolean quizBoolean = preferences.getBoolean("quizBoolean", false);
 
         if (requestQueue == null){
             requestQueue = Volley.newRequestQueue(QuizPopupActivity.this);
@@ -55,14 +56,18 @@ public class QuizPopupActivity extends AppCompatActivity {
         String quizInfo = intent.getStringExtra("quizInfo");
         int quizNum = intent.getIntExtra("quizNum", 0);
         String distinct = intent.getStringExtra("distinct");
-
+        SharedPreferences.Editor editor = preferences.edit();
         if (distinct.equals("wrong")){
             binding.titAnswer.setText("오답입니다");
             binding.commentary.setText(quizInfo);
+            editor.putBoolean("quizBoolean", true);
+            editor.apply();
         }else {
             binding.titAnswer.setText("정답입니다");
             binding.commentary.setText(quizInfo);
             quizPointRequest(quizNum, autoId);
+            editor.putBoolean("quizBoolean", true);
+            editor.apply();
         }
 
         // 홈으로 버튼 클릭 시 홈 Fragment로 이동

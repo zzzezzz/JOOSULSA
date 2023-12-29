@@ -13,9 +13,7 @@ import android.os.Bundle;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -27,7 +25,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -37,20 +34,24 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.joosulsa.CheckActivity;
+import com.example.joosulsa.CheckPopupActivity;
 import com.example.joosulsa.LoginActivity;
-import com.example.joosulsa.MainActivity;
 import com.example.joosulsa.QuizActivity;
+import com.example.joosulsa.QuizClosePopup;
 import com.example.joosulsa.R;
 import com.example.joosulsa.SearchActivity;
 import com.example.joosulsa.TestActivity;
 import com.example.joosulsa.category.MainCategoryAdapter;
 import com.example.joosulsa.category.MainCategoryVO;
-import com.example.joosulsa.databinding.ActivitySearchBinding;
 import com.example.joosulsa.databinding.FragmentHomeBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -73,7 +74,8 @@ public class HomeFragment extends Fragment {
     private RequestQueue requestQueue;
 
     // 스프링 url 관리 여기 몰아서 할거임
-    private  String quizUrl = "http://192.168.219.44:8089/quizRequest";
+    private String quizUrl = "http://192.168.219.44:8089/quizRequest";
+    private String checkUrl = "http://192.168.219.44:8089/dateCheck";
 
     int postMethod = Request.Method.POST;
 
@@ -81,6 +83,14 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // binding으로 view내부 객체들 가져다 쓰려고 선언하는 코드임
+        FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
+
+        // requestqueue없으면 만드는곳
+        if(requestQueue==null){
+            requestQueue = Volley.newRequestQueue(getActivity());
+        }
 
         // 자동 로그인 부분
         // 데이터 가져오기
@@ -97,14 +107,22 @@ public class HomeFragment extends Fragment {
         // 출석체크
         if (checkBoolean == false){
 
+            Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
+            preferences.edit().putBoolean("checkBoolean", true).apply();
+
+
+            startActivity(intent);
         }
 
-        // binding으로 view내부 객체들 가져다 쓰려고 선언하는 코드임
-        FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
-
-        // requestqueue없으면 만드는곳
-        if(requestQueue==null){
-            requestQueue = Volley.newRequestQueue(getActivity());
+        long lastResetDate = preferences.getLong("lastResetDate", 0);
+        long currentDate = System.currentTimeMillis();
+        if (!isSameDay(lastResetDate, currentDate)) {
+            // 값들을 초기화하고 마지막으로 초기화된 날짜를 업데이트합니다.
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("quizBoolean", false);
+            editor.putBoolean("checkBoolean", false);
+            editor.putLong("lastResetDate", currentDate);
+            editor.apply();
         }
 
         // homeFragment에 있는 요소 순서대로 이벤트 작성바람
@@ -163,7 +181,10 @@ public class HomeFragment extends Fragment {
                 quizRequest(quizNumber);
             });
         }else {
-
+            binding.quizBtn.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), QuizClosePopup.class);
+                startActivity(intent);
+            });
         }
 
         // 객체 생성
@@ -214,6 +235,17 @@ public class HomeFragment extends Fragment {
         cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), resultCallback);
 
         return binding.getRoot();
+    }
+
+    // 출석 현황 가져오는 메소드(출석 팝업에 띄워줄 데이터 가져오는거)
+    private void userDateCheck(){
+
+    }
+
+    private boolean isSameDay(long timestamp1, long timestamp2) {
+        LocalDate date1 = Instant.ofEpochMilli(timestamp1).atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate date2 = Instant.ofEpochMilli(timestamp2).atZone(ZoneId.systemDefault()).toLocalDate();
+        return date1.isEqual(date2);
     }
 
 
