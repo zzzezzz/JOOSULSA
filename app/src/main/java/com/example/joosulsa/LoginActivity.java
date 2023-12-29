@@ -71,7 +71,6 @@ public class LoginActivity extends AppCompatActivity {
                             binding.errorMsg.setText("아이디 또는 비밀번호가 틀렸습니다.");
                             Log.d("LoginActivity", response);
                             handleLoginResponse(response);
-
                         }
                     },
                     new Response.ErrorListener() {

@@ -63,9 +63,22 @@ public class MyPageEditActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // 페이지 이동
+
+        // 뒤로가기 이벤트
         binding.myBack.setOnClickListener(v -> {
             Intent intent = new Intent(MyPageEditActivity.this, MyPageEditActivity.class);
             startActivity(intent);
+        });
+
+        // 변경완료 이벤트
+        binding.myChangeOK.setOnClickListener(v -> {
+            // 마이페이지로 이동
+            Intent intent = new Intent(MyPageEditActivity.this, MyPageEditActivity.class);
+            startActivity(intent);
+            // 비밀번호, 닉네임, 주소 가져오기
+            String newPw = binding.newPwCheck.getText().toString();
+            String newNick = binding.myNick.getText().toString();
+            String newApp = binding.myAddress.getText().toString();
         });
 
         // 데이터 가져오기
@@ -155,5 +168,6 @@ public class MyPageEditActivity extends AppCompatActivity {
                 // 수정하는 레이아웃 비활성화
             }
         });
+        //
     }
 }

@@ -31,9 +31,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class TestActivity extends AppCompatActivity {
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final String TAG = "TestActivity";
-    private static final String FLASK_SERVER_URL = "http://127.0.0.1:5000/upload";
+    private static final String FLASK_SERVER_URL = "http://192.168.219.1:5000/upload_image";
     private ActivityTestBinding binding;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,26 +40,15 @@ public class TestActivity extends AppCompatActivity {
         binding = ActivityTestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        dispatchTakePictureIntent();
+        Bitmap receivedBitmap = getIntent().getParcelableExtra("TestImg");
+        ((ImageView) findViewById(R.id.inputImg)).setImageBitmap(receivedBitmap);
+        new UploadImageTask().execute(receivedBitmap);
 
     }
 
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE );
-        }
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            // 카메라로 찍은 이미지를 플라스크 서버로 업로드
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            new UploadImageTask().execute(photo);
-        }
-    }
+
+
 
     private class UploadImageTask extends AsyncTask<Bitmap, Void, Void> {
 
@@ -69,7 +57,7 @@ public class TestActivity extends AppCompatActivity {
             // 이미지를 Base64로 인코딩
             Bitmap bitmap = bitmaps[0];
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
             byte[] imageBytes = byteArrayOutputStream.toByteArray();
             String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 
