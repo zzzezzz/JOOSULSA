@@ -77,6 +77,7 @@ public class HomeFragment extends Fragment {
 
     int postMethod = Request.Method.POST;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,6 +92,7 @@ public class HomeFragment extends Fragment {
         String autoNick = preferences.getString("autoNick", null);
         boolean quizBoolean = preferences.getBoolean("quizBoolean", false);
         boolean checkBoolean = preferences.getBoolean("checkBoolean", false);
+        Log.d("checkingchecking", autoId + autoNick);
 
         // 출석체크
         if (checkBoolean == false){

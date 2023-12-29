@@ -146,10 +146,10 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("autoNick", loginNick);
             editor.putBoolean("quizBoolean", quizBoolean);
             editor.putBoolean("checkBoolean", checkBoolean);
+            Log.d("checkAfterInput", editor.toString());
             editor.apply();
 
             startActivity(intent);
-            finish();
         } catch (JSONException e) {
             e.printStackTrace();
         }
