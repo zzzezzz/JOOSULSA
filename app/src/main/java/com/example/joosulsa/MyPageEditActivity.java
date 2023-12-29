@@ -6,13 +6,23 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.databinding.ActivityMyPageEditBinding;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyPageEditActivity extends AppCompatActivity {
 
@@ -21,6 +31,12 @@ public class MyPageEditActivity extends AppCompatActivity {
     private SharedPreferences spf;
 
     private RequestQueue queue;
+
+    // url 주소
+    private String springUrl = "http://192.168.219.44:8089/myChange";
+
+    // post
+    int postMethod = Request.Method.POST;
 
     // 현재 비밀번호 확인여부 메소드
     private void checkPasswordMatch() {
@@ -39,21 +55,20 @@ public class MyPageEditActivity extends AppCompatActivity {
     }
 
     // 새로운 비밀번호 일치 여부 확인 메소드
-    private void newPwCheck(){
+    private void newPwCheck() {
         String newpw = binding.newPw.getText().toString();
         String newpwcheck = binding.newPwCheck.getText().toString();
 
-        if(newpw.equals(newpwcheck)){
+        if (newpw.equals(newpwcheck)) {
             binding.newPwNm.setVisibility(View.GONE); // 텍스트 숨김
             binding.myChangeOK.setVisibility(View.VISIBLE); // 완료버튼 출력
             binding.myChangeNo.setVisibility(View.GONE);    // 비활성화 숨김
-        }else{
+        } else {
             binding.newPwNm.setVisibility(View.VISIBLE); // 텍스트 출력
             binding.myChangeOK.setVisibility(View.GONE); // 완료버튼 숨김
             binding.myChangeNo.setVisibility(View.VISIBLE);// 비활성화 출력
         }
     }
-
 
 
     @Override
@@ -66,21 +81,54 @@ public class MyPageEditActivity extends AppCompatActivity {
 
         // 뒤로가기 이벤트
         binding.myBack.setOnClickListener(v -> {
-            Intent intent = new Intent(MyPageEditActivity.this, MyPageEditActivity.class);
-            startActivity(intent);
+            finish();
         });
 
         // 변경완료 이벤트
         binding.myChangeOK.setOnClickListener(v -> {
-            // 마이페이지로 이동
-            Intent intent = new Intent(MyPageEditActivity.this, MyPageEditActivity.class);
-            startActivity(intent);
             // 비밀번호, 닉네임, 주소 가져오기
+            String myId = binding.myId.getText().toString();
             String newPw = binding.newPwCheck.getText().toString();
             String newNick = binding.myNick.getText().toString();
             String newApp = binding.myAddress.getText().toString();
-        });
 
+            // 데이터 보내기
+            StringRequest request = new StringRequest(
+                    postMethod,
+                    springUrl,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // 서버 응답 처리
+                            Log.d("MyPageEditActivity", "야 가냐?");
+                            // 서버로부터 응당 처리 메소드 호출
+
+                        }
+                    },
+                    // 에러
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    }
+            ) {
+                @Nullable
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    // 전송할 데이터 설정
+                    Map<String, String> params = new HashMap<>();
+                    params.put("id",myId);
+                    params.put("newPw", newPw);
+                    params.put("newNick", newNick);
+                    params.put("newApp", newApp);
+                    Log.d("MyPageEditActivity", params.toString());
+                    return params;
+                }
+            };
+            // 마이페이지로 이동
+            finish();
+        });
         // 데이터 가져오기
         spf = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
         String myId = spf.getString("autoId", null);
@@ -116,17 +164,17 @@ public class MyPageEditActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable editable) {
                 // 텍스트 변경후 이벤트
             }
         });
 
         // 새로운 비밀번호 일치 여부 확인
-        binding.newPw.addTextChangedListener(new TextWatcher() {
+        binding.newPwCheck.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // 시작전
-                binding.newPwCheck.setVisibility(View.GONE); // 텍스트 숨김
+                binding.newPwNm.setVisibility(View.GONE); // 텍스트 숨김
             }
 
             @Override
@@ -136,7 +184,7 @@ public class MyPageEditActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable editable) {
 
             }
         });
