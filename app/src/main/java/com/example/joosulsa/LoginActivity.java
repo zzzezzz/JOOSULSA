@@ -136,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("userId", loginId);
             intent.putExtra("userPw", loginPw);
             intent.putExtra("userAddr", loginAddr);
+            intent.putExtra("userNick", loginNick);
             // 자동 로그인용 값
             // SharedPreferences에 사용자 정보 저장
             SharedPreferences.Editor editor = preferences.edit();

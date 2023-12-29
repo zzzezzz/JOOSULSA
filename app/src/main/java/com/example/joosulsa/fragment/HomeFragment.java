@@ -89,6 +89,13 @@ public class HomeFragment extends Fragment {
         String autoName = preferences.getString("autoName", null);
         String autoAddr = preferences.getString("autoAddr", null);
         String autoNick = preferences.getString("autoNick", null);
+        boolean quizBoolean = preferences.getBoolean("quizBoolean", false);
+        boolean checkBoolean = preferences.getBoolean("checkBoolean", false);
+
+        // 출석체크
+        if (checkBoolean == false){
+
+        }
 
         // binding으로 view내부 객체들 가져다 쓰려고 선언하는 코드임
         FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -106,9 +113,21 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
+        Intent afterUserInputIntent = getActivity().getIntent();
+        String checkUserInputNick = afterUserInputIntent.getStringExtra("userNick");
+
         // 회원정보창 이벤트
         if (autoId!=null && autoPw!=null) {
             binding.memberId.setText(autoNick);
+            binding.memberInfo.setOnClickListener(v -> {
+                // MyPageFragment로 이동하는 코드
+                requireActivity().getSupportFragmentManager().beginTransaction().replace(
+                        R.id.fl,
+                        new MypageFragment()
+                ).commit();
+            });
+        } else if (checkUserInputNick!=null) {
+            binding.memberId.setText(checkUserInputNick);
             binding.memberInfo.setOnClickListener(v -> {
                 // MyPageFragment로 이동하는 코드
                 requireActivity().getSupportFragmentManager().beginTransaction().replace(
@@ -136,10 +155,14 @@ public class HomeFragment extends Fragment {
         });
 
         // 퀴즈버튼 이벤트
-        binding.quizBtn.setOnClickListener(v -> {
-            int quizNumber = getRandomNumber(1, 100);
-            quizRequest(quizNumber);
-        });
+        if (quizBoolean == false){
+            binding.quizBtn.setOnClickListener(v -> {
+                int quizNumber = getRandomNumber(1, 100);
+                quizRequest(quizNumber);
+            });
+        }else {
+
+        }
 
         // 객체 생성
         dataset = new ArrayList<>();
