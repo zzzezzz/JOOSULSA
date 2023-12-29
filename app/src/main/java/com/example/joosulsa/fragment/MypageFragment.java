@@ -9,13 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.joosulsa.MainActivity;
 import com.example.joosulsa.MyPageEditActivity;
-import com.example.joosulsa.PointHistoryActivity;
-import com.example.joosulsa.R;
-import com.example.joosulsa.SearchActivity;
-import com.example.joosulsa.databinding.FragmentHomeBinding;
 import com.example.joosulsa.databinding.FragmentMypageBinding;
+import com.example.joosulsa.point.RePointHistroyActivity;
 import com.example.joosulsa.purchase_list.PurchaseListActivity;
 
 
@@ -39,7 +35,7 @@ public class MypageFragment extends Fragment {
         });
         // 포인트내역 페이지 이동
         binding.pointInquiry.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), PointHistoryActivity.class);
+            Intent intent = new Intent(getActivity(), RePointHistroyActivity.class);
             startActivity(intent);
         });
 

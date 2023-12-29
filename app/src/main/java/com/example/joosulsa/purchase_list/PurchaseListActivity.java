@@ -24,14 +24,14 @@ public class PurchaseListActivity extends AppCompatActivity {
 
         dataset = new ArrayList<>();
 
-        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
-        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
-        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
-        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
-        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
-        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
-        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
-        dataset.add(new PurchaseListVO(R.drawable.correct,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.backbtn,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.backbtn,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.backbtn,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.backbtn,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.backbtn,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.backbtn,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.backbtn,"test","test"));
+        dataset.add(new PurchaseListVO(R.drawable.backbtn,"test","test"));
 
         // 레이아웃 보여주기
         LinearLayoutManager manager = new LinearLayoutManager(this);
