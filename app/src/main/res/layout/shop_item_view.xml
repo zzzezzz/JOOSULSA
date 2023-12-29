@@ -3,12 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView23"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="35dp"
         app:cardBackgroundColor="@color/lightGray"
         app:cardCornerRadius="10dp"
@@ -25,7 +27,7 @@
             android:paddingBottom="15dp">
 
             <ImageView
-                android:id="@+id/imageView22"
+                android:id="@+id/img"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_marginTop="20dp"
@@ -42,7 +44,7 @@
                 android:text="TextView"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toTopOf="@+id/proPrice"
-                app:layout_constraintEnd_toEndOf="@+id/imageView22"
+                app:layout_constraintEnd_toEndOf="@+id/img"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/proTitle"
                 app:layout_constraintTop_toBottomOf="@+id/proTitle" />
@@ -54,7 +56,7 @@
                 android:layout_marginTop="4dp"
                 android:text="TextView"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/imageView22"
+                app:layout_constraintEnd_toStartOf="@+id/textView17"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/proInfo"
                 app:layout_constraintTop_toBottomOf="@+id/proInfo" />
@@ -68,10 +70,19 @@
                 android:text="TextView"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/proInfo"
-                app:layout_constraintEnd_toEndOf="@+id/imageView22"
+                app:layout_constraintEnd_toEndOf="@+id/img"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/imageView22"
-                app:layout_constraintTop_toBottomOf="@+id/imageView22" />
+                app:layout_constraintStart_toStartOf="@+id/img"
+                app:layout_constraintTop_toBottomOf="@+id/img" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/units"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/img"
+                app:layout_constraintTop_toBottomOf="@+id/proInfo" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
@@ -80,6 +91,7 @@
         android:id="@+id/cardView24"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         app:cardBackgroundColor="@color/lightGray"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
@@ -94,46 +106,55 @@
             android:paddingBottom="15dp">
 
             <TextView
-                android:id="@+id/textView47"
+                android:id="@+id/proPrice2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="TextView"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/imageView24"
+                app:layout_constraintEnd_toStartOf="@+id/textView25"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView25"
-                app:layout_constraintTop_toBottomOf="@+id/textView25" />
+                app:layout_constraintStart_toStartOf="@+id/proInfo2"
+                app:layout_constraintTop_toBottomOf="@+id/proInfo2" />
 
             <TextView
-                android:id="@+id/textView25"
+                android:id="@+id/proInfo2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:text="TextView"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@+id/textView47"
-                app:layout_constraintEnd_toEndOf="@+id/imageView24"
+                app:layout_constraintBottom_toTopOf="@+id/proPrice2"
+                app:layout_constraintEnd_toEndOf="@+id/img2"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView17"
-                app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                app:layout_constraintStart_toStartOf="@+id/proTitle2"
+                app:layout_constraintTop_toBottomOf="@+id/proTitle2" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/proTitle2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="4dp"
                 android:text="TextView"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toTopOf="@+id/textView25"
-                app:layout_constraintEnd_toEndOf="@+id/imageView24"
+                app:layout_constraintBottom_toTopOf="@+id/proInfo2"
+                app:layout_constraintEnd_toEndOf="@+id/img2"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/imageView24"
-                app:layout_constraintTop_toBottomOf="@+id/imageView24" />
+                app:layout_constraintStart_toStartOf="@+id/img2"
+                app:layout_constraintTop_toBottomOf="@+id/img2" />
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/units"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/img2"
+                app:layout_constraintTop_toBottomOf="@+id/proInfo2" />
 
             <ImageView
-                android:id="@+id/imageView24"
+                android:id="@+id/img2"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_marginTop="20dp"

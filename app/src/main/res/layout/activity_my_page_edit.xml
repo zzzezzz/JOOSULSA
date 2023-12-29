@@ -11,11 +11,8 @@
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="1dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView4"
-        app:layout_constraintGuide_percent="0.1"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintGuide_percent="0.1" />
 
     <ImageView
         android:id="@+id/myBack"
@@ -40,13 +37,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/scrollView4"
-        android:layout_width="0dp"
+        android:layout_width="409dp"
         android:layout_height="663dp"
-        android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6">
 
@@ -183,7 +177,7 @@
                             <EditText
                                 android:id="@+id/myPw"
                                 android:layout_width="250dp"
-                                android:layout_height="0dp"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center|start"
                                 android:layout_marginStart="16dp"
                                 android:background="@null"
@@ -214,7 +208,7 @@
                     android:id="@+id/pwChange"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
@@ -248,8 +242,8 @@
 
                         <EditText
                             android:id="@+id/myPwCheck"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center|start"
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
@@ -300,8 +294,8 @@
 
                         <EditText
                             android:id="@+id/newPw"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center|start"
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
@@ -316,20 +310,18 @@
                         android:id="@+id/cardView20"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
                         android:visibility="visible"
                         app:cardBackgroundColor="@color/hintBack"
                         app:cardCornerRadius="20dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/cardView12"
                         app:layout_constraintStart_toStartOf="@+id/cardView12"
                         app:layout_constraintTop_toBottomOf="@+id/cardView12">
 
                         <EditText
                             android:id="@+id/newPwCheck"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center|start"
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
@@ -392,8 +384,8 @@
 
                         <EditText
                             android:id="@+id/myNick"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center|start"
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
@@ -417,8 +409,8 @@
 
                         <EditText
                             android:id="@+id/myAddress"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center|start"
                             android:layout_marginLeft="16dp"
                             android:background="@null"
@@ -434,28 +426,10 @@
                         android:layout_marginTop="64dp"
                         android:layout_marginBottom="70dp"
                         android:backgroundTint="@color/main"
-                        android:text="수정 완료"
+                        android:text="변경 완료"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/cardView22"
-                        app:layout_constraintStart_toStartOf="@+id/textView66"
-                        app:layout_constraintTop_toBottomOf="@+id/cardView22" />
-
-                    <Button
-                        android:id="@+id/myChangeNo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="64dp"
-                        android:layout_marginBottom="70dp"
-                        android:backgroundTint="#808080"
-                        android:enabled="false"
-                        android:text="수정완료"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/cardView22"
                         app:layout_constraintStart_toStartOf="@+id/textView66"

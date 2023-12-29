@@ -64,7 +64,8 @@ public class MyPageEditActivity extends AppCompatActivity {
 
         // 페이지 이동
         binding.myBack.setOnClickListener(v -> {
-            finish();
+            Intent intent = new Intent(MyPageEditActivity.this, MyPageEditActivity.class);
+            startActivity(intent);
         });
 
         // 데이터 가져오기
@@ -108,20 +109,22 @@ public class MyPageEditActivity extends AppCompatActivity {
         });
 
         // 새로운 비밀번호 일치 여부 확인
-        binding.newPwCheck.addTextChangedListener(new TextWatcher() {
+        binding.newPw.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                // 시작전
+                binding.newPwCheck.setVisibility(View.GONE); // 텍스트 숨김
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                // 과정
+                newPwCheck(); // 새로운 비밀번호 일치여부 메소드 호출
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-                newPwCheck();
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
