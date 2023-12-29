@@ -192,22 +192,7 @@ public class HomeFragment extends Fragment {
         return binding.getRoot();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
-            // 권한이 부여되었는지 여부를 확인
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // 권한이 부여된 경우 카메라 앱을 실행하는 코드
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                cameraLauncher.launch(intent);
-            } else {
-                // 권한이 거부된 경우 사용자에게 설명이나 다시 요청할 수 있는 다이얼로그 등을 표시
-                Toast.makeText(requireContext(), "카메라 권한이 필요합니다.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
 
     // 랜덤 숫자 생성 메소드(퀴즈 번호 호출할때 쓰는거)
     private int getRandomNumber(int min, int max) {
