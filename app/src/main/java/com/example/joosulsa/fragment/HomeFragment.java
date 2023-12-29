@@ -108,6 +108,9 @@ public class HomeFragment extends Fragment {
         if (checkBoolean == false){
 
             Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
+            preferences.edit().putBoolean("checkBoolean", true).apply();
+
+
             startActivity(intent);
         }
 
