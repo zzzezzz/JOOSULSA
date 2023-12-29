@@ -37,6 +37,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
 
+    // 하루에 한번 퀴즈용 불리언
+    boolean quizBoolean = false;
+
+    // 하루에 한번 출석체크용 불리언
+    boolean checkBoolean = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("userId", loginId);
             intent.putExtra("userPw", loginPw);
             intent.putExtra("userAddr", loginAddr);
+            intent.putExtra("userNick", loginNick);
             // 자동 로그인용 값
             // SharedPreferences에 사용자 정보 저장
             SharedPreferences.Editor editor = preferences.edit();
@@ -137,10 +144,12 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("autoName", loginName);
             editor.putString("autoAddr", loginAddr);
             editor.putString("autoNick", loginNick);
+            editor.putBoolean("quizBoolean", quizBoolean);
+            editor.putBoolean("checkBoolean", checkBoolean);
+            Log.d("checkAfterInput", editor.toString());
             editor.apply();
 
             startActivity(intent);
-            finish();
         } catch (JSONException e) {
             e.printStackTrace();
         }
