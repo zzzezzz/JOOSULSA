@@ -74,8 +74,8 @@ public class HomeFragment extends Fragment {
     private RequestQueue requestQueue;
 
     // 스프링 url 관리 여기 몰아서 할거임
-    private String quizUrl = "http://192.168.219.44:8089/quizRequest";
-    private String checkUrl = "http://192.168.219.44:8089/dateCheck";
+    private String quizUrl = "http://172.30.48.1:8089/quizRequest";
+    private String checkUrl = "http://172.30.48.1:8089/dateCheck";
 
     int postMethod = Request.Method.POST;
 
@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment {
         String autoNick = preferences.getString("autoNick", null);
         boolean quizBoolean = preferences.getBoolean("quizBoolean", false);
         boolean checkBoolean = preferences.getBoolean("checkBoolean", false);
-        Log.d("checkingchecking", autoId + autoNick);
+        Log.d("checkingchecking", "id:"+autoId + "닉네임:"+autoNick+"pw:"+autoPw);
 
         // 출석체크
         if (checkBoolean == false){

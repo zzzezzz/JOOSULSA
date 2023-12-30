@@ -7,48 +7,15 @@
     android:background="@null"
     tools:context=".MyPageEditActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="1dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView4"
-        app:layout_constraintGuide_percent="0.1"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/myBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/right" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="회원정보 수정하기"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="0dp"
-        android:layout_height="663dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,14 +27,38 @@
                 android:layout_height="match_parent"
                 android:background="@null">
 
+                <ImageView
+                    android:id="@+id/myBack"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/right" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="회원정보 수정하기"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@+id/textView12">
 
                     <TextView
                         android:id="@+id/textView14"
@@ -180,16 +171,17 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <EditText
+                            <TextView
                                 android:id="@+id/myPw"
-                                android:layout_width="250dp"
-                                android:layout_height="0dp"
+                                android:layout_width="240dp"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center|start"
                                 android:layout_marginStart="16dp"
                                 android:background="@null"
                                 android:focusableInTouchMode="false"
                                 android:inputType="textPassword"
-                                android:text="fasdfa"
+                                android:text=""
+                                android:textSize="14sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -214,6 +206,7 @@
                     android:id="@+id/pwChange"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -268,7 +261,7 @@
                         android:layout_marginTop="8dp"
                         android:text="비밀번호가 일치하지않습니다."
                         android:textColor="#FF0000"
-                        android:visibility="gone"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="@+id/cardView11"
                         app:layout_constraintStart_toStartOf="@+id/cardView11"
                         app:layout_constraintTop_toBottomOf="@+id/cardView11" />
@@ -343,10 +336,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
                         android:text="비밀번호가 일치하지않습니다."
                         android:textColor="#FF0000"
-                        android:visibility="gone"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/cardView20"
                         app:layout_constraintStart_toStartOf="@+id/cardView20"
@@ -397,8 +389,8 @@
                             android:layout_marginRight="16dp"
                             android:background="@null"
                             android:ems="10"
-                            android:inputType="text"
-                            android:text="사용자 닉네임" />
+                            android:hint="사용자 닉네임"
+                            android:inputType="text" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -421,8 +413,8 @@
                             android:layout_marginLeft="16dp"
                             android:background="@null"
                             android:ems="10"
-                            android:inputType="text"
-                            android:text="사용자 주소" />
+                            android:hint="사용자 주소"
+                            android:inputType="text" />
                     </androidx.cardview.widget.CardView>
 
                     <Button

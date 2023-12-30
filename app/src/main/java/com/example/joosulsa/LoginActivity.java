@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     // 서버에 요청 보내려면 필요함
     private RequestQueue queue;
 
-    private String springUrl = "http://192.168.219.44:8089/login";
+    private String springUrl = "http://172.30.48.1:8089/login";
 
     int postMethod = Request.Method.POST;
 
@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
             String loginPw = jsonResponse.getString("userPw");
             String loginAddr = jsonResponse.getString("userAddr");
             String loginNick = jsonResponse.getString("userNick");
-            Log.d("LogInDataCheck", loginName + loginId);
+            Log.d("LogInDataCheck", "닉네임: "+loginName + "Id: "+loginId + "Pw : "+ loginPw);
             Intent intent = new Intent(LoginActivity.this, HomeFragment.class);
             // intent에 값 집어넣음
             intent.putExtra("userName", loginName);
@@ -136,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("userPw", loginPw);
             intent.putExtra("userAddr", loginAddr);
             intent.putExtra("userNick", loginNick);
+            Log.d("오토로그인", "잘가니?");
             // 자동 로그인용 값
             // SharedPreferences에 사용자 정보 저장
             SharedPreferences.Editor editor = preferences.edit();
@@ -146,7 +147,8 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("autoNick", loginNick);
             editor.putBoolean("quizBoolean", quizBoolean);
             editor.putBoolean("checkBoolean", checkBoolean);
-            Log.d("checkAfterInput", editor.toString());
+            Log.d("checkAfterInput", loginPw);
+            Log.d("pw확인 : ", loginPw);
             editor.apply();
 
             startActivity(intent);

@@ -58,7 +58,7 @@
         <activity
             android:name=".MyPageEditActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustNothing" />
+            android:windowSoftInputMode="adjustUnspecified " />
         <activity
             android:name=".MyPageInfoActivity"
             android:exported="false" />
