@@ -116,9 +116,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView19">
 
-        <WebView
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
             android:layout_width="match_parent"
             android:layout_height="420dp" />
+
     </FrameLayout>
 
     <androidx.cardview.widget.CardView
