@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
 
         // binding으로 view내부 객체들 가져다 쓰려고 선언하는 코드임
         FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
-
+        // ㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁ
         // requestqueue없으면 만드는곳
         if(requestQueue==null){
             requestQueue = Volley.newRequestQueue(getActivity());
