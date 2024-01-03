@@ -2,12 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -15,6 +10,11 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- 카카오맵 api작업을 위한 초기 설정 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
 
     <application
         android:allowBackup="true"
@@ -27,9 +27,11 @@
         android:theme="@style/Theme.JOOSULSA"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustNothing"
-        tools:ignore="CoarseFineLocation"
-        tools:targetApi="31">
-
+        tools:targetApi="31"
+        tools:ignore="CoarseFineLocation">
+        <activity
+            android:name=".CheckPopupActivity"
+            android:theme="@style/TransparentTheme" />
         <!--
          키보드 밀림 해결 application 에 아래 코드 추가
              android:windowSoftInputMode="adjustNothing"
@@ -62,7 +64,10 @@
         <activity
             android:name=".MyPageEditActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustUnspecified" />
+            android:windowSoftInputMode="adjustUnspecified " />
+        <activity
+            android:name=".MyPageInfoActivity"
+            android:exported="false" />
         <activity
             android:name=".PersonRankActivity"
             android:exported="false" />
@@ -112,5 +117,11 @@
             </intent-filter>
         </activity>
 
+        <!-- 카카오맵 api작업 -->
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="d795b0c1ca1e7ee6df03b80a0e6c1494" />
+
+
+
     </application>
+
 </manifest>

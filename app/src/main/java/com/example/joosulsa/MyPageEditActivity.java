@@ -121,6 +121,8 @@ public class MyPageEditActivity extends AppCompatActivity {
                         params.put("newNick", newNick);
                         params.put("newAddr", newAddr);
                         Log.d("MyPageEditActivity", params.toString());
+                        // 조회수 추가
+                        // 포인트 추가
                         return params;
                     }
                 };
