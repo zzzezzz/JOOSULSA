@@ -46,6 +46,7 @@ import com.example.joosulsa.QuizClosePopup;
 import com.example.joosulsa.R;
 import com.example.joosulsa.SearchActivity;
 import com.example.joosulsa.TestActivity;
+import com.example.joosulsa.TownRankActivity;
 import com.example.joosulsa.category.MainCategoryAdapter;
 import com.example.joosulsa.category.MainCategoryVO;
 import com.example.joosulsa.databinding.ActivityQuizClosePopupBinding;
@@ -176,6 +177,13 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 cameraLauncher.launch(intent);
             }
+        });
+
+        // 우리동네 랭킹 버튼 이벤트
+        binding.rankBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), TownRankActivity.class);
+            startActivity(intent);
+            getActivity().finish();
         });
 
         // 퀴즈버튼 이벤트

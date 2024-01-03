@@ -2,6 +2,7 @@ package com.example.joosulsa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebViewClient;
 
@@ -30,6 +31,11 @@ public class TownRankActivity extends AppCompatActivity {
         // 4. url 적용
         binding.WebView.loadUrl(url);
 
+        binding.btnTownRankBack.setOnClickListener(v -> {
+            Intent intent = new Intent(TownRankActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
     }
 }
