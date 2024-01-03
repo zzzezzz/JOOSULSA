@@ -2,7 +2,10 @@ package com.example.joosulsa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import com.example.joosulsa.databinding.ActivityRecycleDetailBinding;
 
@@ -25,13 +28,30 @@ public class RecycleDetailActivity extends AppCompatActivity {
         YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
 
+        // Intent에서 YouTube 비디오의 ID를 가져오기
+        Intent intent = getIntent();
+
+        String youTub = getIntent().getStringExtra("sepaVideo"); // 유튜브 링크
+        String recycledImg = getIntent().getStringExtra("sepaImg"); // 분리수거 이미지
+        String way = getIntent().getStringExtra("sepaMethod"); // 분리수거 방법
+        String caution = getIntent().getStringExtra("sepaCaution"); // 주의사항
+        String upcycleVideo = getIntent().getStringExtra("recycleVideo"); // 업사이클 유트브 영상
+        String UpcycleImg = getIntent().getStringExtra("sepaMethod"); // 업사이클 이미지 (썸네일)
+
+        Log.d("데이터 확인","링크: "+youTub +"방법: "+ way + "분리수거 이미지: "+ recycledImg +
+                " 주의사항: "+ caution + " 업사이클 영상: "+ upcycleVideo + " 썸네일: "+UpcycleImg);
+        
+        // 동적 유뷰트 비디오 만들기
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(YouTubePlayer youTubePlayer) {
-                String videoId = "W8ZUHMd-MmQ"; //재생을 원하는 YouTube 비디오의 videoID
-                youTubePlayer.loadVideo(videoId, 0);
+                youTubePlayer.loadVideo(youTub, 0);
             }
         });
+
+
+
+
     }
 
 
