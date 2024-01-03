@@ -12,6 +12,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,7 +32,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class TestActivity extends AppCompatActivity {
-    private static final String TAG = "TestActivity";
     private static final String FLASK_SERVER_URL = "http://192.168.219.1:5000/upload_image";
     private ActivityTestBinding binding;
     @Override
@@ -40,64 +40,57 @@ public class TestActivity extends AppCompatActivity {
         binding = ActivityTestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Bitmap receivedBitmap = getIntent().getParcelableExtra("TestImg");
-        ((ImageView) findViewById(R.id.inputImg)).setImageBitmap(receivedBitmap);
-        new UploadImageTask().execute(receivedBitmap);
+        Bitmap bitmap = getIntent().getParcelableExtra("TestImg");
+
+        String base64Image = encodeToBase64(bitmap, Bitmap.CompressFormat.PNG,100);
+
+        uploadImageToServer(base64Image);
 
     }
 
+    private String encodeToBase64(Bitmap image, Bitmap.CompressFormat compressFormat, int quality){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        image.compress(compressFormat,quality,byteArrayOutputStream);
+        return Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
+    }
 
+    private void uploadImageToServer(String base64Image){
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("image",base64Image);
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
 
-
-
-    private class UploadImageTask extends AsyncTask<Bitmap, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Bitmap... bitmaps) {
-            // 이미지를 Base64로 인코딩
-            Bitmap bitmap = bitmaps[0];
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-            byte[] imageBytes = byteArrayOutputStream.toByteArray();
-            String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-
-            // JSON 객체 생성
-            JSONObject jsonRequest = new JSONObject();
-            try {
-                jsonRequest.put("image", encodedImage);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            // Volley 요청 큐 초기화
-            RequestQueue requestQueue = Volley.newRequestQueue(TestActivity.this);
-
-            // JSON 형식의 POST 요청 생성
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                    Request.Method.POST,
-                    FLASK_SERVER_URL,
-                    jsonRequest,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            // 플라스크 서버 응답을 처리하는 코드
-                            Log.d(TAG, "플라스크 서버 응답: " + response);
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            // 에러가 발생했을 때 처리하는 코드
-                            Log.e(TAG, "에러 발생: " + error.toString());
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST,
+                FLASK_SERVER_URL,
+                jsonBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String result = response.getString("result");
+                            Toast.makeText(TestActivity.this, "서버응답" + result, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
                     }
-            );
-
-
-            // 요청을 큐에 추가
-            requestQueue.add(jsonObjectRequest);
-
-            return null;
-        }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(TestActivity.this, "서버오류", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+        Volley.newRequestQueue(this).add(request);
     }
+
+
+
+
+
+
+
 }
