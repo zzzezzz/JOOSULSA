@@ -31,17 +31,11 @@ public class LoginActivity extends AppCompatActivity {
     // 서버에 요청 보내려면 필요함
     private RequestQueue queue;
 
-    private String springUrl = "http://172.30.48.1:8089/login";
+    private String springUrl = "http://192.168.219.62:8089/login";
 
     int postMethod = Request.Method.POST;
 
     private SharedPreferences preferences;
-
-    // 하루에 한번 퀴즈용 불리언
-    boolean quizBoolean = false;
-
-    // 하루에 한번 출석체크용 불리언
-    boolean checkBoolean = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,15 +62,15 @@ public class LoginActivity extends AppCompatActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            binding.errorMsg.setText("아이디 또는 비밀번호가 틀렸습니다.");
                             Log.d("LoginActivity", response);
                             handleLoginResponse(response);
+
                         }
                     },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-
+                            binding.errorMsg.setText("아이디 또는 비밀번호가 틀렸습니다.");
                         }
                     }
             ){
@@ -129,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
             String loginAddr = jsonResponse.getString("userAddr");
             String loginNick = jsonResponse.getString("userNick");
             Log.d("LogInDataCheck", "닉네임: "+loginName + "Id: "+loginId + "Pw : "+ loginPw);
-            Intent intent = new Intent(LoginActivity.this, HomeFragment.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             // intent에 값 집어넣음
             intent.putExtra("userName", loginName);
             intent.putExtra("userId", loginId);
@@ -145,10 +139,7 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("autoName", loginName);
             editor.putString("autoAddr", loginAddr);
             editor.putString("autoNick", loginNick);
-            editor.putBoolean("quizBoolean", quizBoolean);
-            editor.putBoolean("checkBoolean", checkBoolean);
             Log.d("checkAfterInput", loginPw);
-            Log.d("pw확인 : ", loginPw);
             editor.apply();
 
             startActivity(intent);
