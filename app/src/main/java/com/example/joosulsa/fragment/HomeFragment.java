@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
 
     // 스프링 url 관리 여기 몰아서 할거임
     private String quizUrl = "http://192.168.219.62:8089/quizRequest";
-    private String checkUrl = "http://192.168.219.62:8089/dateCheck";
+    private String checkUrl = "http://192.168.219.62:8089/dataCheck";
 
     int postMethod = Request.Method.POST;
 
@@ -101,18 +101,27 @@ public class HomeFragment extends Fragment {
         String autoName = autoNameMethod(preferences);
         String autoAddr = autoAddrMethod(preferences);
         String autoNick = autoNickMethod(preferences);
-        boolean checkBoolean = autoTodayAtt(preferences);
-        boolean quizBoolean = autoQuiz(preferences);
+        boolean checkBoolean = true;
+        boolean quizBoolean = true;
+        int userPoint = 0;
+        if (autoId!=null){
+            quizCheckDataRequest(autoId);
+            checkBoolean = autoTodayAtt(preferences);
+            quizBoolean = autoQuiz(preferences);
+            userPoint = userPoint(preferences);
+        }
         Log.d("checkingchecking", "id:"+autoId + "닉네임:"+autoNick+"pw:"+autoPw + "이름" + autoName + "주소 : " + autoAddr);
         Log.d("booleanCheck", checkBoolean + " / " + quizBoolean);
 
         // 출석체크
-        if (checkBoolean == false){
-
-            Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
-
-            startActivity(intent);
-        }
+//        if (checkBoolean == false){
+//
+//            Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
+//
+//            startActivity(intent);
+//        }else {
+//
+//        }
 
         // homeFragment에 있는 요소 순서대로 이벤트 작성바람
 
@@ -128,6 +137,7 @@ public class HomeFragment extends Fragment {
         // 회원정보창 이벤트
         if (autoId!=null && autoPw!=null) {
             binding.memberId.setText(autoNick);
+            binding.numPoint.setText(Integer.toString(userPoint));
             binding.memberInfo.setOnClickListener(v -> {
                 // MyPageFragment로 이동하는 코드
                 requireActivity().getSupportFragmentManager().beginTransaction().replace(
@@ -137,6 +147,7 @@ public class HomeFragment extends Fragment {
             });
         } else if (checkUserInputNick!=null) {
             binding.memberId.setText(checkUserInputNick);
+            binding.numPoint.setText(Integer.toString(userPoint));
             binding.memberInfo.setOnClickListener(v -> {
                 // MyPageFragment로 이동하는 코드
                 requireActivity().getSupportFragmentManager().beginTransaction().replace(
@@ -145,6 +156,7 @@ public class HomeFragment extends Fragment {
                 ).commit();
             });
         } else{
+            binding.numPoint.setText(Integer.toString(userPoint));
             binding.memberInfo.setOnClickListener(v -> {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
@@ -224,6 +236,56 @@ public class HomeFragment extends Fragment {
         cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), resultCallback);
 
         return binding.getRoot();
+    }
+
+    // 자동로그인 유저 출석, 퀴즈 여부 불러오기
+    private void quizCheckDataRequest(String autoId){
+        StringRequest request = new StringRequest(
+                postMethod,
+                checkUrl,
+                new Response.Listener<String>() {
+                    // 서버 통신 성공시
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("dailyDatacheck", response);
+                        handleDailyData(response);
+                    }
+                    // 서버 통신 실패시
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", autoId);
+                return params;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+    // 퀴즈 출석 일일데이터 관리
+    private void handleDailyData(String response){
+
+        try {
+            JSONObject jsonResponse = new JSONObject(response);
+            Log.d("why", response);
+            preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+            boolean todayAtt = jsonResponse.getBoolean("attendance");
+            boolean quizAtt = jsonResponse.getBoolean("quizParticipation");
+            int monthlyAttNum = Integer.parseInt(jsonResponse.getString("monthlyAttendance"));
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("quizBoolean", todayAtt);
+            editor.putBoolean("checkBoolean", quizAtt);
+            editor.putInt("monthlyAttendance", monthlyAttNum);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // 공유 프리퍼런스 데이터 호출

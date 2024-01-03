@@ -122,9 +122,6 @@ public class LoginActivity extends AppCompatActivity {
             String loginPw = jsonResponse.getString("userPw");
             String loginAddr = jsonResponse.getString("userAddr");
             String loginNick = jsonResponse.getString("userNick");
-            boolean todayAtt = jsonResponse.getBoolean("attendance");
-            boolean quizAtt = jsonResponse.getBoolean("quizParticipation");
-            int monthlyAttNum = Integer.parseInt(jsonResponse.getString("monthlyAttendance"));
             Log.d("LogInDataCheck", "닉네임: "+loginName + "Id: "+loginId + "Pw : "+ loginPw);
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             // intent에 값 집어넣음
@@ -142,9 +139,6 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("autoName", loginName);
             editor.putString("autoAddr", loginAddr);
             editor.putString("autoNick", loginNick);
-            editor.putBoolean("quizBoolean", todayAtt);
-            editor.putBoolean("checkBoolean", quizAtt);
-            editor.putInt("monthlyAttendance", monthlyAttNum);
             Log.d("checkAfterInput", loginPw);
             editor.apply();
 

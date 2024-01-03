@@ -48,8 +48,9 @@ public class CheckPopupActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        int monthlyAtt = monthlyAtt(preferences);
         String autoId = preferences.getString("autoId", null);
-        int monthlyAtt = preferences.getInt("monthlyAttendance", 0) + 1;
+
         Log.d("checkData", monthlyAtt + autoId);
         if (requestQueue == null){
             requestQueue = Volley.newRequestQueue(CheckPopupActivity.this);
@@ -59,8 +60,10 @@ public class CheckPopupActivity extends AppCompatActivity {
         binding.checkPopupBtn.setOnClickListener(v -> {
             if (monthlyAtt<=28){
                 checkPointRequest(autoId, monthlyAtt);
+                plusMonthlyAtt(monthlyAtt);
                 finish();
             } else if (monthlyAtt>28) {
+                plusMonthlyAtt(monthlyAtt);
                 finish();
             }
         });
@@ -73,6 +76,13 @@ public class CheckPopupActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    // 출석 횟수 추가
+    private int monthlyAtt(SharedPreferences preferences){
+        preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        int monthlyAtt = preferences.getInt("monthlyAttendance", 0) + 1;
+        return monthlyAtt;
     }
 
     // 출첵하면 포인트 추가, 출석여부 변경
@@ -112,12 +122,20 @@ public class CheckPopupActivity extends AppCompatActivity {
 
     }
 
+    // 출석 횟수 저장
+    private void plusMonthlyAtt(int monthlyAtt){
+        preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("monthlyAttendance", monthlyAtt);
+        editor.apply();
+    }
+
     private void handlePointResponse(String response){
 
         try {
             JSONObject jsonResponse = new JSONObject(response);
 
-            int userPoint = jsonResponse.getInt("totalPoint");
+            int userPoint = jsonResponse.getInt("totalPoints");
             SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("userPoint", userPoint);
             editor.apply();
