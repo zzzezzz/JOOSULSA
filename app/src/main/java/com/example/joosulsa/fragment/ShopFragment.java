@@ -1,5 +1,6 @@
 package com.example.joosulsa.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.joosulsa.MainActivity;
 import com.example.joosulsa.R;
 import com.example.joosulsa.databinding.FragmentShopBinding;
 import com.example.joosulsa.shop.ShopListAdapter;
@@ -25,6 +27,11 @@ public class ShopFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         FragmentShopBinding binding = FragmentShopBinding.inflate(inflater,container,false);
+
+        binding.shopBack.setOnClickListener(v->{
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+        });
 
         dataset = new ArrayList<>();
 
