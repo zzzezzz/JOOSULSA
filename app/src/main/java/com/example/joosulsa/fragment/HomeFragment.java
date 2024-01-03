@@ -19,6 +19,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.work.Constraints;
+import androidx.work.NetworkType;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -34,7 +38,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.joosulsa.CheckActivity;
 import com.example.joosulsa.CheckPopupActivity;
 import com.example.joosulsa.LoginActivity;
 import com.example.joosulsa.QuizActivity;
@@ -49,13 +52,12 @@ import com.example.joosulsa.databinding.FragmentHomeBinding;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 
 public class HomeFragment extends Fragment {
@@ -74,8 +76,8 @@ public class HomeFragment extends Fragment {
     private RequestQueue requestQueue;
 
     // 스프링 url 관리 여기 몰아서 할거임
-    private String quizUrl = "http://172.30.48.1:8089/quizRequest";
-    private String checkUrl = "http://172.30.48.1:8089/dateCheck";
+    private String quizUrl = "http://192.168.219.62:8089/quizRequest";
+    private String checkUrl = "http://192.168.219.62:8089/dateCheck";
 
     int postMethod = Request.Method.POST;
 
@@ -94,35 +96,22 @@ public class HomeFragment extends Fragment {
 
         // 자동 로그인 부분
         // 데이터 가져오기
-        preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
-        String autoId = preferences.getString("autoId", null);
-        String autoPw = preferences.getString("autoPw", null);
-        String autoName = preferences.getString("autoName", null);
-        String autoAddr = preferences.getString("autoAddr", null);
-        String autoNick = preferences.getString("autoNick", null);
-        boolean quizBoolean = preferences.getBoolean("quizBoolean", false);
-        boolean checkBoolean = preferences.getBoolean("checkBoolean", false);
-        Log.d("checkingchecking", "id:"+autoId + "닉네임:"+autoNick+"pw:"+autoPw);
+        String autoId = autoIdMethod(preferences);
+        String autoPw = autoPwMethod(preferences);
+        String autoName = autoNameMethod(preferences);
+        String autoAddr = autoAddrMethod(preferences);
+        String autoNick = autoNickMethod(preferences);
+        boolean checkBoolean = autoTodayAtt(preferences);
+        boolean quizBoolean = autoQuiz(preferences);
+        Log.d("checkingchecking", "id:"+autoId + "닉네임:"+autoNick+"pw:"+autoPw + "이름" + autoName + "주소 : " + autoAddr);
+        Log.d("booleanCheck", checkBoolean + " / " + quizBoolean);
 
         // 출석체크
         if (checkBoolean == false){
 
             Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
-            preferences.edit().putBoolean("checkBoolean", true).apply();
-
 
             startActivity(intent);
-        }
-
-        long lastResetDate = preferences.getLong("lastResetDate", 0);
-        long currentDate = System.currentTimeMillis();
-        if (!isSameDay(lastResetDate, currentDate)) {
-            // 값들을 초기화하고 마지막으로 초기화된 날짜를 업데이트합니다.
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("quizBoolean", false);
-            editor.putBoolean("checkBoolean", false);
-            editor.putLong("lastResetDate", currentDate);
-            editor.apply();
         }
 
         // homeFragment에 있는 요소 순서대로 이벤트 작성바람
@@ -237,25 +226,94 @@ public class HomeFragment extends Fragment {
         return binding.getRoot();
     }
 
+    // 공유 프리퍼런스 데이터 호출
+    private String autoIdMethod(SharedPreferences preferences){
+        Log.d("autoIdCheck", "Asdasd");
+        preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        String autoId = preferences.getString("autoId", null);
+        // Log.d("casdas", autoId);
+        return autoId;
+    }
+
+    private String autoPwMethod(SharedPreferences preferences){
+        preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        String autoPw = preferences.getString("autoPw", null);
+        return autoPw;
+    }
+
+    private String autoNameMethod(SharedPreferences preferences){
+        preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        String autoName = preferences.getString("autoName", null);
+        return autoName;
+    }
+
+    private String autoAddrMethod(SharedPreferences preferences){
+        preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        String autoAddr = preferences.getString("autoAddr", null);
+        return autoAddr;
+    }
+
+    private String autoNickMethod(SharedPreferences preferences){
+        preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        String autoNick = preferences.getString("autoNick", null);
+        return autoNick;
+    }
+
+    private boolean autoTodayAtt(SharedPreferences preferences){
+        preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        boolean checkBoolean = preferences.getBoolean("checkBoolean", false);
+        return checkBoolean;
+    }
+
+    private boolean autoQuiz(SharedPreferences preferences){
+        preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        boolean quizBoolean = preferences.getBoolean("quizBoolean", false);
+        return quizBoolean;
+    }
+
+    private int userPoint(SharedPreferences preferences){
+        preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        int userPoint = preferences.getInt("userPoint", 0);
+        return userPoint;
+    }
+
+//    private void setResetWorker() {
+//        // Constraints 설정
+//        Constraints constraints = new Constraints.Builder()
+//                .setRequiredNetworkType(NetworkType.CONNECTED)
+//                .build();
+//
+//        // 12시에 실행되도록 설정
+//        Calendar now = Calendar.getInstance();
+//        now.set(Calendar.HOUR_OF_DAY, 12);
+//        now.set(Calendar.MINUTE, 0);
+//        now.set(Calendar.SECOND, 0);
+//        long delayInMillis = now.getTimeInMillis() - System.currentTimeMillis();
+//
+//        // PeriodicWorkRequest 설정(worker 요청 주기 설정하는거)
+//        PeriodicWorkRequest resetWorkerRequest = new PeriodicWorkRequest.Builder(
+//                ResetWorker.class,
+//                1,
+//                TimeUnit.DAYS
+//        )
+//                .setConstraints(constraints)
+//                .setInitialDelay(delayInMillis, TimeUnit.MILLISECONDS)
+//                .build();
+//
+//        // WorkManager에 작업 추가
+//        WorkManager.getInstance(requireContext()).enqueue(resetWorkerRequest);
+//    }
+
     // 출석 현황 가져오는 메소드(출석 팝업에 띄워줄 데이터 가져오는거)
     private void userDateCheck(){
 
     }
-
-    private boolean isSameDay(long timestamp1, long timestamp2) {
-        LocalDate date1 = Instant.ofEpochMilli(timestamp1).atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate date2 = Instant.ofEpochMilli(timestamp2).atZone(ZoneId.systemDefault()).toLocalDate();
-        return date1.isEqual(date2);
-    }
-
-
 
     // 랜덤 숫자 생성 메소드(퀴즈 번호 호출할때 쓰는거)
     private int getRandomNumber(int min, int max) {
         Random rd = new Random();
         return rd.nextInt(max - min + 1) + min;
     }
-
 
     // 퀴즈 번호 랜덤으로 뽑아서 퀴즈 정보 불러오는 메소드
     private void quizRequest(int quizNumber){
