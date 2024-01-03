@@ -38,6 +38,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.joosulsa.CheckActivity;
 import com.example.joosulsa.CheckPopupActivity;
 import com.example.joosulsa.LoginActivity;
 import com.example.joosulsa.QuizActivity;
@@ -47,6 +48,7 @@ import com.example.joosulsa.SearchActivity;
 import com.example.joosulsa.TestActivity;
 import com.example.joosulsa.category.MainCategoryAdapter;
 import com.example.joosulsa.category.MainCategoryVO;
+import com.example.joosulsa.databinding.ActivityQuizClosePopupBinding;
 import com.example.joosulsa.databinding.FragmentHomeBinding;
 
 import org.json.JSONException;
@@ -109,19 +111,20 @@ public class HomeFragment extends Fragment {
             checkBoolean = autoTodayAtt(preferences);
             quizBoolean = autoQuiz(preferences);
             userPoint = userPoint(preferences);
+            Log.d("asdasdawdqweqwdqawd", checkBoolean + "/" +  quizBoolean + "/" + userPoint);
         }
         Log.d("checkingchecking", "id:"+autoId + "닉네임:"+autoNick+"pw:"+autoPw + "이름" + autoName + "주소 : " + autoAddr);
         Log.d("booleanCheck", checkBoolean + " / " + quizBoolean);
 
-        // 출석체크
-//        if (checkBoolean == false){
-//
-//            Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
-//
-//            startActivity(intent);
-//        }else {
-//
-//        }
+         // 출석체크
+        if (checkBoolean == false){
+
+            Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
+
+            startActivity(intent);
+        }else {
+
+        }
 
         // homeFragment에 있는 요소 순서대로 이벤트 작성바람
 
@@ -187,6 +190,13 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             });
         }
+
+        // 오늘의 출석체크 이벤트
+        binding.calBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CheckActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        });
 
         // 객체 생성
         dataset = new ArrayList<>();
@@ -279,10 +289,12 @@ public class HomeFragment extends Fragment {
             boolean todayAtt = jsonResponse.getBoolean("attendance");
             boolean quizAtt = jsonResponse.getBoolean("quizParticipation");
             int monthlyAttNum = Integer.parseInt(jsonResponse.getString("monthlyAttendance"));
+            Log.d("asdasdasd", todayAtt + "/" + quizAtt + "/" + monthlyAttNum);
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("quizBoolean", todayAtt);
-            editor.putBoolean("checkBoolean", quizAtt);
+            editor.putBoolean("quizBoolean", quizAtt);
+            editor.putBoolean("checkBoolean", todayAtt);
             editor.putInt("monthlyAttendance", monthlyAttNum);
+            editor.apply();
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }

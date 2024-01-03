@@ -182,7 +182,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView137"
+                android:id="@+id/monthlyCheckNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
@@ -688,7 +688,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView21"
+        android:id="@+id/btnCheckBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

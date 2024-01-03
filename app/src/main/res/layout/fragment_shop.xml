@@ -43,15 +43,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/backbtn"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView21"
-        app:layout_constraintEnd_toStartOf="@+id/imageView21"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCheckBack"
+        app:layout_constraintEnd_toStartOf="@+id/btnCheckBack"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toTopOf="@+id/imageView21" />
+        app:layout_constraintTop_toTopOf="@+id/btnCheckBack" />
 
     <ImageView
-        android:id="@+id/imageView21"
+        android:id="@+id/btnCheckBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/tab1_home"

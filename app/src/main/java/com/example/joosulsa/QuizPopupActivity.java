@@ -20,6 +20,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.databinding.ActivityQuizPopupBinding;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -35,7 +38,7 @@ public class QuizPopupActivity extends AppCompatActivity {
     int postMethod = Request.Method.POST;
 
     // 우리 스프링 주소 넣어둘 변수
-    private String springUrl = "http://192.168.219.44:8089/quizPoint";
+    private String springUrl = "http://192.168.219.62:8089/quizPoint";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +100,7 @@ public class QuizPopupActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d("quiquiquiqui", response);
+                        handleQuizData(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -121,5 +125,22 @@ public class QuizPopupActivity extends AppCompatActivity {
         };
         requestQueue.add(request);
     }
+
+    private void handleQuizData(String response){
+
+        try {
+            JSONObject jsonResponse = new JSONObject(response);
+
+            int userPoint = jsonResponse.getInt("totalPoints");
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("userPoint", userPoint);
+            editor.apply();
+            Intent intent = new Intent(QuizPopupActivity.this, MainActivity.class);
+            startActivity(intent);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }
