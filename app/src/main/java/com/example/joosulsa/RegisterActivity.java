@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
 
     // 우리 스프링 주소 넣어둘 변수
-    private String springUrl = "http://192.168.219.44:8089/register";
+    private String springUrl = "http://192.168.219.62:8089/register";
 
     // 회원가입이라 post로 했는데 아니면 바꾸죠 뭐
     int postMethod = Request.Method.POST;
@@ -111,6 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     // 회원가입 데이터 보내는 메소드
     private void registerRequest(String userName, String userID, String userPw, String userNick, String userAddr){
+        Log.d("repairing", userAddr);
         StringRequest request = new StringRequest(
                 postMethod,
                 springUrl,
@@ -119,6 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // 응답 처리
                         if ("success".equals(response)) {
+                            Log.d("regisCheck", response);
                             // 성공 시 원하는 동작 수행
                             // 예: 회원가입 성공 메시지 표시
                             // Toast.makeText(RegisterActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
