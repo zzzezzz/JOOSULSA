@@ -15,7 +15,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -27,8 +26,8 @@
         android:theme="@style/Theme.JOOSULSA"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustNothing"
-        tools:targetApi="31"
-        tools:ignore="CoarseFineLocation">
+        tools:ignore="CoarseFineLocation"
+        tools:targetApi="31">
         <activity
             android:name=".CheckPopupActivity"
             android:theme="@style/TransparentTheme" />
@@ -64,15 +63,9 @@
         <activity
             android:name=".MyPageEditActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustUnspecified " />
-        <activity
-            android:name=".MyPageInfoActivity"
-            android:exported="false" />
+            android:windowSoftInputMode="adjustUnspecified" />
         <activity
             android:name=".PersonRankActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
@@ -100,7 +93,8 @@
             android:exported="false" />
         <activity
             android:name=".SearchActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible"/>
         <activity
             android:name=".SplashActivity"
             android:exported="false" />
@@ -108,7 +102,7 @@
             android:name=".QuizActivity"
             android:exported="false" />
         <activity
-            android:name=".TownRankActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -118,8 +112,9 @@
         </activity>
 
         <!-- 카카오맵 api작업 -->
-        <meta-data android:name="com.kakao.sdk.AppKey" android:value="d795b0c1ca1e7ee6df03b80a0e6c1494" />
-
+<!--        <meta-data-->
+<!--            android:name="com.kakao.sdk.AppKey"-->
+<!--            android:value="d795b0c1ca1e7ee6df03b80a0e6c1494" />-->
 
 
     </application>

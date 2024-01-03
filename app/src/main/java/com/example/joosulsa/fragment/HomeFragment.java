@@ -263,11 +263,13 @@ public class HomeFragment extends Fragment {
                 postMethod,
                 quizUrl,
                 new Response.Listener<String>() {
+                    // 서버 통신 성공시
                     @Override
                     public void onResponse(String response) {
                         Log.d("quizdatacheck", response);
                         handleQuizLoad(response);
                     }
+                    // 서버 통신 실패시
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
