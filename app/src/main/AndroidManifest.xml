@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -10,9 +14,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <!-- 카카오맵 api작업을 위한 초기 설정 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
 
 
@@ -64,15 +66,9 @@
         <activity
             android:name=".MyPageEditActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustUnspecified " />
-        <activity
-            android:name=".MyPageInfoActivity"
-            android:exported="false" />
+            android:windowSoftInputMode="adjustUnspecified" />
         <activity
             android:name=".PersonRankActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
@@ -117,8 +113,6 @@
             </intent-filter>
         </activity>
 
-        <!-- 카카오맵 api작업 -->
-        <meta-data android:name="com.kakao.sdk.AppKey" android:value="d795b0c1ca1e7ee6df03b80a0e6c1494" />
 
 
 
