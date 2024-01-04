@@ -49,6 +49,9 @@
             android:name=".TestActivity"
             android:exported="false" />
         <activity
+            android:name=".SplashActivity"
+            android:exported="false" />
+        <activity
             android:name=".BuyActivity"
             android:exported="false" />
         <activity
@@ -95,7 +98,7 @@
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".PointMarketActivity"
             android:exported="false" />
         <activity
             android:name=".QuizActivity"
@@ -104,7 +107,7 @@
             android:name=".TownRankActivity"
             android:exported="false" />
         <activity
-            android:name=".PointMarketActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
