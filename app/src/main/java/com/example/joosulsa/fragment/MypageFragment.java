@@ -86,6 +86,7 @@ public class MypageFragment extends Fragment {
             editor.remove("quizBoolean");
             editor.remove("checkBoolean");
             editor.remove("userPoint");
+            editor.remove("monthlyAttendance");
             editor.apply();
             requireActivity().getSupportFragmentManager().beginTransaction().replace(
                     R.id.fl,

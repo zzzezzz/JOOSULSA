@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -54,6 +55,17 @@ public class CheckActivity extends AppCompatActivity {
         // 출석횟수 정보 가져오고 글자 설정하는 메소드
         checkOutput(autoId);
 
+        int monthlyAtt = preferences.getInt("monthlyAttendance", 0);
+        for (int i = 1; i<= monthlyAtt; i++){
+            String imageViewId = "checkView" + i;
+            Log.d("???", imageViewId);
+            int resourceId = getResources().getIdentifier(imageViewId, "id", getPackageName());
+
+            ImageView imageView = findViewById(resourceId);
+
+            // 이미지 변경
+            imageView.setImageResource(R.drawable.checkstamp);
+        }
         // 뒤로가기 버튼
         binding.btnCheckBack.setOnClickListener(v -> {
             Intent intent = new Intent(CheckActivity.this, MainActivity.class);
@@ -72,6 +84,7 @@ public class CheckActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.d("checkJson", response);
                         checkOutputHandle(response);
                     }
                 }, new Response.ErrorListener() {
@@ -99,6 +112,9 @@ public class CheckActivity extends AppCompatActivity {
             int monthlyAttNum = Integer.parseInt(jsonResponse.getString("monthlyAttendance"));
             Log.d("asdasdasd", Integer.toString(monthlyAttNum));
             binding.monthlyCheckNum.setText(Integer.toString(monthlyAttNum));
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("monthlyAttendance", monthlyAttNum);
+            editor.apply();
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
