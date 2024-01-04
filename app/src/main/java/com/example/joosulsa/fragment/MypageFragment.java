@@ -85,6 +85,7 @@ public class MypageFragment extends Fragment {
             editor.remove("autoNick");
             editor.remove("quizBoolean");
             editor.remove("checkBoolean");
+            editor.remove("userPoint");
             editor.apply();
             requireActivity().getSupportFragmentManager().beginTransaction().replace(
                     R.id.fl,

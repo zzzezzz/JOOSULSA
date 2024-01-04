@@ -293,7 +293,7 @@ public class HomeFragment extends Fragment {
         try {
             JSONObject jsonResponse = new JSONObject(response);
             Log.d("why", response);
-            preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+            preferences = getActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
             boolean todayAtt = jsonResponse.getBoolean("attendance");
             boolean quizAtt = jsonResponse.getBoolean("quizParticipation");
             int monthlyAttNum = Integer.parseInt(jsonResponse.getString("monthlyAttendance"));
