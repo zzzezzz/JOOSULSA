@@ -39,7 +39,7 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityTestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        //시발
         Bitmap bitmap = getIntent().getParcelableExtra("TestImg");
         Log.d("확인",bitmap.toString());
         String base64Image = encodeToBase64(bitmap, Bitmap.CompressFormat.PNG,100);
