@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".PointMarketActivity">
 
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/asdfasdf"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="67dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

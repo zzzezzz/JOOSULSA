@@ -55,9 +55,6 @@
             android:name=".ProductInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".PointMarketActivity"
-            android:exported="false" />
-        <activity
             android:name=".point.RePointHistroyActivity"
             android:exported="false" />
         <activity
@@ -107,7 +104,7 @@
             android:name=".TownRankActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".PointMarketActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
