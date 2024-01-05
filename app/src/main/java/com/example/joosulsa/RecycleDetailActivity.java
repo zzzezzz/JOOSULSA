@@ -23,7 +23,7 @@ public class RecycleDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityRecycleDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        // 이걸로 다시 받아요
         // 유튜브 영상 띄우는 코드
         YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
