@@ -69,6 +69,7 @@ public class TestActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             Log.d("확인11", response.toString());
+
                             // Toast.makeText(TestActivity.this, "서버응답" +, Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             e.printStackTrace();
