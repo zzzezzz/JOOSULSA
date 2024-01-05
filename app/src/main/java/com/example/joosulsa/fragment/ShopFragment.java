@@ -18,10 +18,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.example.joosulsa.MainActivity;
+import com.example.joosulsa.ProductInfoActivity;
 import com.example.joosulsa.R;
 import com.example.joosulsa.databinding.FragmentShopBinding;
 import com.example.joosulsa.shop.ShopListAdapter;
 import com.example.joosulsa.shop.ShopListVO;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +37,7 @@ public class ShopFragment extends Fragment {
     private ShopListAdapter adapter;
     int postMethod = Request.Method.POST;
     private RequestQueue requestQueue;
-    private String producturl = "http://172.30.48.1:8089/dataCheck";
+    private String producturl = "http://172.30.48.1:8089/shop";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,20 +57,15 @@ public class ShopFragment extends Fragment {
 
         dataset = new ArrayList<>();
 
-        dataset.add(new ShopListVO(R.drawable.backbtn,R.drawable.backbtn,"test","test","teszxt","test",123, 123));
-        dataset.add(new ShopListVO(R.drawable.backbtn,R.drawable.backbtn,"test","test","teszxt","test",123, 123));
-        dataset.add(new ShopListVO(R.drawable.backbtn,R.drawable.backbtn,"test","test","teszxt","test",123, 123));
-        dataset.add(new ShopListVO(R.drawable.backbtn,R.drawable.backbtn,"test","test","teszxt","test",123, 123));
 
         // 레이아웃 보여주기
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
 
         // 레이아웃 설정
-        binding.proList.setLayoutManager(manager);
+
 
         // 어댑터 연결
-        adapter = new ShopListAdapter(dataset);
-        binding.proList.setAdapter(adapter);
+
 
         return binding.getRoot();
     }
@@ -87,9 +86,34 @@ public class ShopFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+                params.put("shop",Shop);
+                Log.d("shop통신",Shop);
                 return params;
             }
         };
         requestQueue.add(request);
+    }
+    // Spring 에서 받아온 재활용 데이터 처리 메소드
+    private void handShop(String response){
+        // prodName = 상품 이름
+        // prodPrice = 상품 가격
+        // prodInfo = 상품 상세정보
+        // prodImg = 상품 이미지
+        try {
+            JSONObject jsonResponse = new JSONObject(response);
+            String prodName = jsonResponse.getString("prodName");
+            String stringProdPrice = jsonResponse.getString("prodPrice");
+            // 상품 가격은 int 형이기에 형태 변환
+            int prodPrice = Integer.parseInt(stringProdPrice);
+            String prodInfo = jsonResponse.getString("prodInfo");
+            String stringProdImg = jsonResponse.getString("prodImg");
+            int prodImg = Integer.parseInt(stringProdImg);
+
+            // 확인
+            Log.d("shop확인","이름: "+ prodName +"가격: " + prodPrice + "상세정보: "+ prodInfo +"이미지"+prodImg);
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
     }
 }

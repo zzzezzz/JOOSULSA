@@ -61,10 +61,11 @@
         app:layout_constraintStart_toEndOf="@+id/shopBack"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/proList"
+    <GridView
+        android:id="@+id/prodGriodView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:numColumns="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline22"
         app:layout_constraintStart_toStartOf="@+id/guideline21"

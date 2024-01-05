@@ -9,11 +9,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <!-- 카카오맵 api작업을 위한 초기 설정 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- 카카오맵 api작업을 위한 초기 설정 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
 
     <application
         android:allowBackup="true"
@@ -28,6 +26,7 @@
         android:windowSoftInputMode="adjustNothing"
         tools:ignore="CoarseFineLocation"
         tools:targetApi="31">
+
         <activity
             android:name=".CheckPopupActivity"
             android:theme="@style/TransparentTheme" />
@@ -94,7 +93,7 @@
         <activity
             android:name=".SearchActivity"
             android:exported="false"
-            android:windowSoftInputMode="stateVisible"/>
+            android:windowSoftInputMode="stateVisible" />
         <activity
             android:name=".SplashActivity"
             android:exported="false" />
@@ -110,13 +109,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- 카카오맵 api작업 -->
-<!--        <meta-data-->
-<!--            android:name="com.kakao.sdk.AppKey"-->
-<!--            android:value="d795b0c1ca1e7ee6df03b80a0e6c1494" />-->
-
-
     </application>
 
 </manifest>

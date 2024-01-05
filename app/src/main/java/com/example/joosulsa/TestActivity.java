@@ -32,7 +32,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class TestActivity extends AppCompatActivity {
-    private static final String FLASK_SERVER_URL = "http://192.168.219.1:5000/upload_image";
+    private static final String FLASK_SERVER_URL = "http://192.168.219.51:5000/upload_image";
     private ActivityTestBinding binding;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,9 +41,9 @@ public class TestActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Bitmap bitmap = getIntent().getParcelableExtra("TestImg");
-
+        Log.d("이미지왔어",bitmap.toString());
         String base64Image = encodeToBase64(bitmap, Bitmap.CompressFormat.PNG,100);
-
+        Log.d("이미지변환",base64Image.toString());
         uploadImageToServer(base64Image);
 
     }
@@ -58,6 +58,7 @@ public class TestActivity extends AppCompatActivity {
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("image",base64Image);
+            Log.d("담았냐?",jsonBody.toString());
         }catch (JSONException e){
             e.printStackTrace();
         }
@@ -80,6 +81,7 @@ public class TestActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.e("VolleyError", error.toString());
                         Toast.makeText(TestActivity.this, "서버오류", Toast.LENGTH_SHORT).show();
                     }
                 }
