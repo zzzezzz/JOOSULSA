@@ -22,6 +22,7 @@ import com.example.joosulsa.ProductInfoActivity;
 import com.example.joosulsa.R;
 import com.example.joosulsa.databinding.FragmentShopBinding;
 
+import com.example.joosulsa.shop.ShopListAdapter;
 import com.example.joosulsa.shop.ShopListVO;
 
 import org.json.JSONException;
@@ -29,11 +30,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ShopFragment extends Fragment {
 
     private ArrayList<ShopListVO> dataset;
+    private ShopListAdapter adapter;
 
     int postMethod = Request.Method.POST;
     private RequestQueue requestQueue;
@@ -54,7 +57,7 @@ public class ShopFragment extends Fragment {
         });
 
 
-
+        // 초기화
         dataset = new ArrayList<>();
 
 
@@ -64,8 +67,10 @@ public class ShopFragment extends Fragment {
         // 레이아웃 설정
 
 
-        // 어댑터 연결
 
+        // 어댑터 초기화
+        adapter = new ShopListAdapter(getActivity(), dataset);
+        binding.prodGriodView.setAdapter(adapter);
 
         return binding.getRoot();
     }
@@ -76,10 +81,10 @@ public class ShopFragment extends Fragment {
                 postMethod,
                 producturl,
                 response -> {
-                    Log.d("shop통신","성공");
+                    Log.d("shop통신 성공","성공");
                 },
                 error ->{
-                    Log.d("shop통신","실패");
+                    Log.d("shop통신 실패","실패");
                 }
         ){
             @Nullable
@@ -87,7 +92,7 @@ public class ShopFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("shop",Shop);
-                Log.d("shop통신",Shop);
+                Log.d("shop통신 1",Shop);
                 return params;
             }
         };
@@ -101,16 +106,16 @@ public class ShopFragment extends Fragment {
         // prodImg = 상품 이미지
         try {
             JSONObject jsonResponse = new JSONObject(response);
-            String prodName = jsonResponse.getString("prodName");
-            String stringProdPrice = jsonResponse.getString("prodPrice");
-            // 상품 가격은 int 형이기에 형태 변환
-            int prodPrice = Integer.parseInt(stringProdPrice);
-            String prodInfo = jsonResponse.getString("prodInfo");
             String stringProdImg = jsonResponse.getString("prodImg");
-            int prodImg = Integer.parseInt(stringProdImg);
+            int prodImg = Integer.parseInt(stringProdImg);// int 형이기에 형태 변환
+            String prodName = jsonResponse.getString("prodName");
+            String prodInfo = jsonResponse.getString("prodInfo");
+            String stringProdPrice = jsonResponse.getString("prodPrice");
+            int prodPrice = Integer.parseInt(stringProdPrice);// int 형이기에 형태 변환
 
             // 확인
             Log.d("shop확인","이름: "+ prodName +"가격: " + prodPrice + "상세정보: "+ prodInfo +"이미지"+prodImg);
+            dataset.add(new ShopListVO(prodImg,prodName,prodInfo,prodPrice));
 
         }catch (JSONException e){
             e.printStackTrace();
