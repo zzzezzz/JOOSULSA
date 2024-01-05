@@ -38,7 +38,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.joosulsa.CheckActivity;
 import com.example.joosulsa.CheckPopupActivity;
 import com.example.joosulsa.LoginActivity;
 import com.example.joosulsa.QuizActivity;
@@ -46,10 +45,8 @@ import com.example.joosulsa.QuizClosePopup;
 import com.example.joosulsa.R;
 import com.example.joosulsa.SearchActivity;
 import com.example.joosulsa.TestActivity;
-import com.example.joosulsa.TownRankActivity;
 import com.example.joosulsa.category.MainCategoryAdapter;
 import com.example.joosulsa.category.MainCategoryVO;
-import com.example.joosulsa.databinding.ActivityQuizClosePopupBinding;
 import com.example.joosulsa.databinding.FragmentHomeBinding;
 
 import org.json.JSONException;
@@ -91,6 +88,7 @@ public class HomeFragment extends Fragment {
 
         // binding으로 view내부 객체들 가져다 쓰려고 선언하는 코드임
         FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
+        // ㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁ
         // requestqueue없으면 만드는곳
         if(requestQueue==null){
             requestQueue = Volley.newRequestQueue(getActivity());
@@ -111,20 +109,19 @@ public class HomeFragment extends Fragment {
             checkBoolean = autoTodayAtt(preferences);
             quizBoolean = autoQuiz(preferences);
             userPoint = userPoint(preferences);
-            Log.d("asdasdawdqweqwdqawd", checkBoolean + "/" +  quizBoolean + "/" + userPoint);
         }
         Log.d("checkingchecking", "id:"+autoId + "닉네임:"+autoNick+"pw:"+autoPw + "이름" + autoName + "주소 : " + autoAddr);
         Log.d("booleanCheck", checkBoolean + " / " + quizBoolean);
 
-         // 출석체크
-        if (checkBoolean == false){
-
-            Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
-
-            startActivity(intent);
-        }else {
-
-        }
+        // 출석체크
+//        if (checkBoolean == false){
+//
+//            Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
+//
+//            startActivity(intent);
+//        }else {
+//
+//        }
 
         // homeFragment에 있는 요소 순서대로 이벤트 작성바람
 
@@ -178,13 +175,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // 우리동네 랭킹 버튼 이벤트
-        binding.rankBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), TownRankActivity.class);
-            startActivity(intent);
-            getActivity().finish();
-        });
-
         // 퀴즈버튼 이벤트
         if (quizBoolean == false){
             binding.quizBtn.setOnClickListener(v -> {
@@ -197,13 +187,6 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             });
         }
-
-        // 오늘의 출석체크 이벤트
-        binding.calBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), CheckActivity.class);
-            startActivity(intent);
-            getActivity().finish();
-        });
 
         // 객체 생성
         dataset = new ArrayList<>();
@@ -292,16 +275,14 @@ public class HomeFragment extends Fragment {
         try {
             JSONObject jsonResponse = new JSONObject(response);
             Log.d("why", response);
-            preferences = getActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+            preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
             boolean todayAtt = jsonResponse.getBoolean("attendance");
             boolean quizAtt = jsonResponse.getBoolean("quizParticipation");
             int monthlyAttNum = Integer.parseInt(jsonResponse.getString("monthlyAttendance"));
-            Log.d("asdasdasd", todayAtt + "/" + quizAtt + "/" + monthlyAttNum);
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("quizBoolean", quizAtt);
-            editor.putBoolean("checkBoolean", todayAtt);
+            editor.putBoolean("quizBoolean", todayAtt);
+            editor.putBoolean("checkBoolean", quizAtt);
             editor.putInt("monthlyAttendance", monthlyAttNum);
-            editor.apply();
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }

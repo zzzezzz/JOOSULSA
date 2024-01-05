@@ -401,9 +401,9 @@
                         android:layout_marginTop="8dp"
                         app:cardBackgroundColor="@color/hintBack"
                         app:cardCornerRadius="20dp"
-                        app:layout_constraintEnd_toEndOf="@+id/townRank2Nm"
-                        app:layout_constraintStart_toStartOf="@+id/townRank2Nm"
-                        app:layout_constraintTop_toBottomOf="@+id/townRank2Nm">
+                        app:layout_constraintEnd_toEndOf="@+id/textView66"
+                        app:layout_constraintStart_toStartOf="@+id/textView66"
+                        app:layout_constraintTop_toBottomOf="@+id/textView66">
 
                         <EditText
                             android:id="@+id/myAddress"
@@ -430,7 +430,7 @@
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/cardView22"
-                        app:layout_constraintStart_toStartOf="@+id/townRank2Nm"
+                        app:layout_constraintStart_toStartOf="@+id/textView66"
                         app:layout_constraintTop_toBottomOf="@+id/cardView22" />
 
                     <Button
@@ -448,11 +448,11 @@
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/cardView22"
-                        app:layout_constraintStart_toStartOf="@+id/townRank2Nm"
+                        app:layout_constraintStart_toStartOf="@+id/textView66"
                         app:layout_constraintTop_toBottomOf="@+id/cardView22" />
 
                     <TextView
-                        android:id="@+id/townRank2Nm"
+                        android:id="@+id/textView66"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"

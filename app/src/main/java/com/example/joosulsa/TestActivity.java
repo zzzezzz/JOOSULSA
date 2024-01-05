@@ -60,6 +60,7 @@ public class TestActivity extends AppCompatActivity {
 
     private void uploadImageToServer(String base64Image){
 
+
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 FLASK_SERVER_URL,

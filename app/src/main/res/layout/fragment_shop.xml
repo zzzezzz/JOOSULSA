@@ -39,32 +39,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/shopBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/backbtn"
-        app:layout_constraintBottom_toBottomOf="@+id/btnCheckBack"
-        app:layout_constraintEnd_toStartOf="@+id/btnCheckBack"
+        app:layout_constraintBottom_toBottomOf="@+id/shopHome"
+        app:layout_constraintEnd_toStartOf="@+id/shopHome"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toTopOf="@+id/btnCheckBack" />
+        app:layout_constraintTop_toTopOf="@+id/shopHome" />
 
     <ImageView
-        android:id="@+id/btnCheckBack"
+        android:id="@+id/shopHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/tab1_home"
         app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintEnd_toStartOf="@+id/guideline22"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
+        app:layout_constraintStart_toEndOf="@+id/shopBack"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/proList"
+    <GridView
+        android:id="@+id/prodGriodView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:numColumns="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline22"
         app:layout_constraintStart_toStartOf="@+id/guideline21"
