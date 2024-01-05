@@ -50,6 +50,7 @@ public class CheckPopupActivity extends AppCompatActivity {
         preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
         int monthlyAtt = monthlyAtt(preferences);
         String autoId = preferences.getString("autoId", null);
+        binding.checkNum.setText(Integer.toString(monthlyAtt));
 
         Log.d("checkData", monthlyAtt + autoId);
         if (requestQueue == null){
