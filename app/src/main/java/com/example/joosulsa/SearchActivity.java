@@ -4,7 +4,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -31,11 +33,15 @@ public class SearchActivity extends AppCompatActivity {
     // Queue 쓸거
     private RequestQueue queue;
     // url 주소
-    private String springUrl = "http://172.30.48.1:8089/search";
+    private String springUrl = "http://192.168.219.62:8089/search";
+
+    private String viewRequestUrl = "http://192.168.219.62:8089/viewUp";
     // post
     int postMethod = Request.Method.POST;
 
     private RequestQueue requestQueue;
+
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +101,14 @@ public class SearchActivity extends AppCompatActivity {
                     Log.d("searchCheck", response); // 로그
 
                     handSearch(response);
+
+                    // 조회수 추가 + 사용자 포인트 추가 메소드 만들겠음
+                    preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+
+                    String autoId = preferences.getString("autoId", null);
+                    if (response!=null){
+                        //upViewsPoint(autoId);
+                    }
 
                     // 키워드에 따른 페이지 이동 이벤트
                     if(response.equals("")){
@@ -159,4 +173,28 @@ public class SearchActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    // 조회수 추가 + 포인트 추가 메소드
+//    private void upViewsPoint(String autoId) {
+//
+//        StringRequest stringRequest = new StringRequest(
+//                postMethod,
+//                viewRequestUrl,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//
+//                    }
+//                }
+//
+//        )
+//
+//
+//
+//
+//
+//
+//
+//
+//    }
 }
