@@ -14,13 +14,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.databinding.ActivityTestBinding;
 
@@ -32,8 +30,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 public class TestActivity extends AppCompatActivity {
     private static final String FLASK_SERVER_URL = "http://192.168.219.51:5000/upload_image";
@@ -43,11 +39,11 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityTestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        //시발
+
         Bitmap bitmap = getIntent().getParcelableExtra("TestImg");
-        Log.d("확인",bitmap.toString());
+        Log.d("이미지왔어",bitmap.toString());
         String base64Image = encodeToBase64(bitmap, Bitmap.CompressFormat.PNG,100);
-        Log.d("변환",base64Image.toString());
+        Log.d("이미지변환",base64Image.toString());
         uploadImageToServer(base64Image);
 
     }
@@ -59,19 +55,25 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void uploadImageToServer(String base64Image){
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("image",base64Image);
+            Log.d("담았냐?",jsonBody.toString());
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
 
-
-        StringRequest request = new StringRequest(
+        JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST,
                 FLASK_SERVER_URL,
-                new Response.Listener<String>() {
+                jsonBody,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(JSONObject response) {
                         try {
-                            Log.d("확인11", response.toString());
-
-                            // Toast.makeText(TestActivity.this, "서버응답" +, Toast.LENGTH_SHORT).show();
-                        } catch (Exception e) {
+                            String result = response.getString("result");
+                            Toast.makeText(TestActivity.this, "서버응답" + result, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
@@ -83,17 +85,14 @@ public class TestActivity extends AppCompatActivity {
                         Toast.makeText(TestActivity.this, "서버오류", Toast.LENGTH_SHORT).show();
                     }
                 }
-
-        ){
-            @androidx.annotation.Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("image", base64Image);
-                return params;
-            }
-        };
+        );
         Volley.newRequestQueue(this).add(request);
     }
+
+
+
+
+
+
 
 }
