@@ -21,7 +21,7 @@ import com.example.joosulsa.MainActivity;
 import com.example.joosulsa.ProductInfoActivity;
 import com.example.joosulsa.R;
 import com.example.joosulsa.databinding.FragmentShopBinding;
-import com.example.joosulsa.shop.ShopListAdapter;
+
 import com.example.joosulsa.shop.ShopListVO;
 
 import org.json.JSONException;
@@ -34,7 +34,7 @@ import java.util.Map;
 public class ShopFragment extends Fragment {
 
     private ArrayList<ShopListVO> dataset;
-    private ShopListAdapter adapter;
+
     int postMethod = Request.Method.POST;
     private RequestQueue requestQueue;
     private String producturl = "http://172.30.48.1:8089/shop";
