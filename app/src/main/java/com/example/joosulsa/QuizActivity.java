@@ -69,6 +69,12 @@ public class QuizActivity extends AppCompatActivity {
                 startActivity(intent4);
             }
         });
+
+        binding.quizBack.setOnClickListener(v -> {
+            Intent intent5 = new Intent(QuizActivity.this, MainActivity.class);
+            startActivity(intent5);
+            finish();
+        });
     }
 
 }
