@@ -100,14 +100,14 @@ public class SearchActivity extends AppCompatActivity {
                     // 서버통신 성공시
                     Log.d("searchCheck", response); // 로그
 
-                    handSearch(response);
+                    String searchNum = handSearch(response);
 
                     // 조회수 추가 + 사용자 포인트 추가 메소드 만들겠음
                     preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
 
                     String autoId = preferences.getString("autoId", null);
                     if (response!=null){
-                        //upViewsPoint(autoId);
+                        upViewsPoint(autoId);
                     }
 
                     // 키워드에 따른 페이지 이동 이벤트
@@ -140,7 +140,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     // Spring 에서 받아온 재활용 데이터 처리 메소드
-    private void handSearch(String response) {
+    private String handSearch(String response) {
 //                sepaMethod = 분리수거 방법
 //                sepaCaution = 분리수거 주의사항
 //                sepaImg = 분리수거 이미지
@@ -156,6 +156,7 @@ public class SearchActivity extends AppCompatActivity {
             String sepaVideo = jsonResponse.getString("sepaVideo");
             String recycleVideo = jsonResponse.getString("recycleVideo");
             String recycleImg = jsonResponse.getString("recycleImg");
+            String recycleNum = jsonResponse.getString("recycleNum");
             // 확인
             Log.d("데이터 처리","방법: "+sepaMethod+" 주의사항: "+ sepaCaution +
                     " 이미지: "+ sepaImg + " 분리수거 영상: "+ sepaVideo+ " 업사이클 영상: "+ recycleVideo+
@@ -169,32 +170,40 @@ public class SearchActivity extends AppCompatActivity {
             intent.putExtra("recycleVideo",recycleVideo);
             intent.putExtra("recycleImg",recycleImg);
             startActivity(intent);
+            return recycleNum;
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return "";
     }
 
     // 조회수 추가 + 포인트 추가 메소드
-//    private void upViewsPoint(String autoId) {
-//
-//        StringRequest stringRequest = new StringRequest(
-//                postMethod,
-//                viewRequestUrl,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//
-//                    }
-//                }
-//
-//        )
-//
-//
-//
-//
-//
-//
-//
-//
-//    }
+    private void upViewsPoint(String autoId) {
+
+        StringRequest stringRequest = new StringRequest(
+                postMethod,
+                viewRequestUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> param = new HashMap<>();
+                return param;
+            }
+        };
+        requestQueue.add(stringRequest);
+
+    }
 }
