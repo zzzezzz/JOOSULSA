@@ -71,7 +71,8 @@ public class TestActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            Toast.makeText(TestActivity.this, "서버응답", Toast.LENGTH_SHORT).show();
+                            String result = response.getString("result");
+                            Toast.makeText(TestActivity.this, "서버응답" + result, Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
