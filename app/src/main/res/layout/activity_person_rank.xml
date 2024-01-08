@@ -31,7 +31,9 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:fontFamily="@font/pretendard_bold"
+        android:text="개인 랭킹"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline25"
         app:layout_constraintEnd_toStartOf="@+id/guideline24"
         app:layout_constraintStart_toStartOf="@+id/guideline20"
@@ -87,6 +89,7 @@
                 android:layout_marginStart="21dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="TextView"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/personScore3"
@@ -100,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="#FFFFFF"
+                android:fontFamily="@font/pretendard_regular"
                 android:padding="2dp"
                 android:text="55416516"
                 android:textSize="10sp"
@@ -139,9 +143,9 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:id="@+id/imageView28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/btnPersonRankBack"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline25"
         app:layout_constraintEnd_toStartOf="@+id/imageView29"
         app:layout_constraintHorizontal_bias="0.5"
@@ -196,6 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="9dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="TextView"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView75"
@@ -223,6 +228,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="#FFFFFF"
+                android:fontFamily="@font/pretendard_regular"
                 android:padding="2dp"
                 android:text="55416516"
                 android:textSize="10sp"
@@ -247,13 +253,13 @@
 
     <ImageView
         android:id="@+id/imageView29"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView28"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnPersonRankBack"
         app:layout_constraintEnd_toStartOf="@+id/guideline24"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView28"
-        app:layout_constraintTop_toTopOf="@+id/imageView28"
+        app:layout_constraintStart_toEndOf="@+id/btnPersonRankBack"
+        app:layout_constraintTop_toTopOf="@+id/btnPersonRankBack"
         app:srcCompat="@drawable/tab1_home" />
 
     <TextView
@@ -315,6 +321,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="TextView"
                 app:layout_constraintBottom_toTopOf="@+id/textView60"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -327,6 +334,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
+                android:fontFamily="@font/pretendard_regular"
                 android:padding="2dp"
                 android:text="55416516"
                 android:textSize="12sp"
@@ -415,6 +423,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="TextView" />
 
             <TextView
@@ -423,6 +432,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_regular"
                 android:text="TextView" />
 
             <TextView
@@ -488,6 +498,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="TextView" />
 
             <TextView
@@ -496,6 +507,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_regular"
                 android:text="TextView" />
 
             <TextView
@@ -562,6 +574,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="TextView" />
 
             <TextView
@@ -570,6 +583,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_regular"
                 android:text="TextView" />
 
             <TextView
@@ -635,6 +649,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="TextView" />
 
             <TextView
@@ -643,6 +658,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_regular"
                 android:text="TextView" />
 
             <TextView
@@ -708,6 +724,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="TextView" />
 
             <TextView
@@ -716,6 +733,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_regular"
                 android:text="TextView" />
 
             <TextView
@@ -781,6 +799,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="TextView" />
 
             <TextView
@@ -789,6 +808,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_regular"
                 android:text="TextView" />
 
             <TextView
@@ -854,6 +874,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="TextView" />
 
             <TextView
@@ -862,6 +883,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_regular"
                 android:text="TextView" />
 
             <TextView

@@ -23,6 +23,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +47,17 @@ public class TownRankActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityTownRankBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(TownRankActivity.this);
+
+        }
+
+        // 밑에 정의한 메소드
+        townRankData();
+
+
+
 //
 //        // 1. url 값 적어줄 때 카카오 api 연결할 도메인 값도 일치 시킬 것
 //        // 2. 로컬 아이피이기 때문에 같은 인터넷을 사용해야해서 연결 시 오류가 날 경우 단말의 인터넷 설정을 확인해보자.(와이파이가 연결되어 있지 않다면 인터넷이 뜨지 않음)
@@ -66,14 +79,6 @@ public class TownRankActivity extends AppCompatActivity {
 //            finish();
 //        });
 
-
-        if (requestQueue == null) {
-            requestQueue = Volley.newRequestQueue(TownRankActivity.this);
-        }
-
-        // 밑에 정의한 메소드
-        townRankData();
-
     }
 
 
@@ -86,13 +91,13 @@ public class TownRankActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("townDataCheck", response);
+                        Log.d("오냐고~~~~~", response);
                         townRankDataHandle(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                        Log.d("안옴", "안온다고");
             }
         }
         ){
@@ -123,8 +128,16 @@ public class TownRankActivity extends AppCompatActivity {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject townData = jsonArray.getJSONObject(i);
                 String townName = townData.getString("townName");
+
+//                // 한글 인코딩
+//                String jsonString = townData.getString("townName");
+//                byte[] bytes = jsonString.getBytes(StandardCharsets.UTF_8);
+//                String decodedString = new String(bytes, "UTF-8");
+
+//                Log.d("데이터 확인", decodedString);
+
                 Long totalPoints = townData.getLong("totalPoints");
-                Log.d("test", townName);
+                Log.d("테스트",  String.valueOf(jsonArray.getJSONObject(i)));
                 // 추출한 데이터를 리스트에 추가
                 townNameList.add(townName);
                 totalPointsList.add(totalPoints);
@@ -137,6 +150,7 @@ public class TownRankActivity extends AppCompatActivity {
                 String stringPoints = String.valueOf(totalPoints);
                 Log.d("총합 포인트 내역", stringPoints);
                 Log.d("동네 이름", townName);
+
                 String tvTownName = "townRankNm" + (i+1);
                 int tvTownNameId = getResources().getIdentifier(tvTownName, "id", getPackageName());
                 Log.d("동네 이름 가지고 오나?", Integer.toString(tvTownNameId));

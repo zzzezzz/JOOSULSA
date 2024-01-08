@@ -8,11 +8,12 @@
 
     <TextView
         android:id="@+id/titQuiz"
-        android:layout_width="wrap_content"
+        android:layout_width="295dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="135dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/pretendard_bold"
         android:text="퀴즈내용"
+        android:textAlignment="center"
         android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/correctBtn"

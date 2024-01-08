@@ -44,7 +44,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/personRankBtn"
         android:layout_width="150dp"
-        android:layout_height="168dp"
+        android:layout_height="160dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="20dp"
         app:cardBackgroundColor="#FCA33C"
@@ -65,7 +65,7 @@
             <ImageView
                 android:id="@+id/imageView10"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 app:srcCompat="@drawable/person" />
@@ -93,7 +93,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/townRankBtn"
         android:layout_width="150dp"
-        android:layout_height="168dp"
+        android:layout_height="160dp"
         app:cardBackgroundColor="#7987FF"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
@@ -112,7 +112,7 @@
             <ImageView
                 android:id="@+id/imageView19"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 app:srcCompat="@drawable/townicon" />
