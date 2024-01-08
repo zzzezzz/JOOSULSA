@@ -3,57 +3,62 @@ package com.example.joosulsa.category;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.joosulsa.R;
+import com.example.joosulsa.R; // 이 부분은 프로젝트에 맞게 수정해주세요.
 
-import java.util.ArrayList;
+import java.util.List;
 
-// extends해서 오류 뜰 경우 클릭해서 implements 메서드 만들어서 오류 해결
-public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryViewHolder> {
+public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryAdapter.MainCategoryViewHolder> {
 
-    // 정보가 들어갈 Arraylist 생성
-    ArrayList<MainCategoryVO> dataset;
+    private List<MainCategoryVO> dataset;
 
-    // 초기화 작업
-    // Arraylist 초기화
-    public MainCategoryAdapter(ArrayList<MainCategoryVO> dataset) {
+    public MainCategoryAdapter(List<MainCategoryVO> dataset) {
         this.dataset = dataset;
     }
 
-
-    // 레이아웃 뿌려주기
     @NonNull
     @Override
     public MainCategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item_view,parent,false);
-
-        MainCategoryViewHolder holder = new MainCategoryViewHolder(view);
-
-        return holder;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item_view, parent, false);
+        return new MainCategoryViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MainCategoryViewHolder holder, int position) {
-        // 데이터 초기화 해주는 작업
-        holder.getIconCategory().setImageResource(dataset.get(position).getImg());
-        holder.getTitCategory().setText(dataset.get(position).getTitle());
-
-        // 클릭 이벤트 생성
-        holder.listener = new MainCategoryClickListener() {
-            @Override
-            public void onMainCategoryClickListener(View v, int position) {
-
-            }
-        };
-
+        MainCategoryVO item = dataset.get(position);
+        holder.bind(item);
     }
 
     @Override
     public int getItemCount() {
         return dataset.size();
     }
-}
 
+    public static class MainCategoryViewHolder extends RecyclerView.ViewHolder {
+
+        private ImageView imageView;
+        private TextView titleTextView;
+
+        public MainCategoryViewHolder(@NonNull View itemView) {
+            super(itemView);
+            // View에서 ImageView와 TextView를 찾음
+            imageView = itemView.findViewById(R.id.iconCategory);
+            titleTextView = itemView.findViewById(R.id.titCategory);
+        }
+
+        public void bind(MainCategoryVO item) {
+            // Null 체크를 추가하여 안전하게 사용
+            if (imageView != null) {
+                imageView.setImageResource(item.getImg());
+            }
+            if (titleTextView != null) {
+                titleTextView.setText(item.getTitle());
+            }
+        }
+    }
+}
