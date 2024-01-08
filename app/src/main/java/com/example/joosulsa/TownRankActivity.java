@@ -1,16 +1,41 @@
 package com.example.joosulsa;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebViewClient;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.databinding.ActivityTownRankBinding;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class TownRankActivity extends AppCompatActivity {
 
     private ActivityTownRankBinding binding;
+
+    // 서버에 요청 보내기 필요함
+    private RequestQueue queue;
+
+    private String springUrl = "http://172.30.48.1:8089/townList";
+
+    int postMethod = Request.Method.POST;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,5 +62,65 @@ public class TownRankActivity extends AppCompatActivity {
             finish();
         });
 
+//
+//        if (queue == null) {
+//            queue = Volley.newRequestQueue(this);
+//        }
+//
+//        String townName = binding.townRank1Nm.toString();
+//        String townPoint = binding.townRank1Score.toString();
+//
+//        // 서버에 데이터 요청
+//        StringRequest request = new StringRequest(
+//                postMethod,
+//                springUrl, new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        handleLoginResponse(response);
+//                    }
+//                }, new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Log.d("에러","서버에서 값을 받아오지 못했습니다.");
+//                    }
+//                }
+//
+//        ){
+//            @Nullable
+//            @Override
+//            // Map<String(key), String(value)>를
+//            // getParams를 사용해서 key와 value를 login?key=value 형태로 바꿔준다.
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                // 전송방식을 POST로 지정했을 때 사용하는 메소드
+//                // 데이터를 전송할 때 Map 형태로 구성하여 리턴해줘야 한다.
+//                Map<String, String> params = new HashMap<>();
+//                params.put("townName", townName);
+//                params.put("townPoint", townPoint);
+//                Log.d("LoginParams", params.toString());
+//                return params;
+//            }
+//        };
+//        queue.add(request);
+//
+//    }
+
+//
+//    private void handleLoginResponse(String response) {
+//        // 서버에서 받아온 응답을 처리하는 로직을 작성 : 스프링이 보내준 값을 안드로이드에서 받아주는 작업
+//        // response는 서버에서 보낸 JSON 형태의 데이터일 것이므로, 필요에 따라 파싱하여 사용
+//        try {
+//            JSONObject jsonResponse = new JSONObject(response);
+//            // json 파싱하는 부분
+//            String townName = jsonResponse.getString("townName");
+//            String townPoint = jsonResponse.getString("townPoint");
+//
+//
+//            binding.townRank1Nm.setText(townName);
+//            binding.townRank1Score.setText(townPoint);
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
     }
 }

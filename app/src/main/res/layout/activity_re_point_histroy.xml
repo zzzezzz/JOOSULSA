@@ -51,8 +51,8 @@
 
     <ImageView
         android:id="@+id/imageView24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline33"
         app:layout_constraintEnd_toStartOf="@+id/homeBtn"
         app:layout_constraintHorizontal_bias="0.5"
@@ -63,8 +63,8 @@
 
     <ImageView
         android:id="@+id/homeBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView24"
         app:layout_constraintEnd_toStartOf="@+id/guideline32"
         app:layout_constraintHorizontal_bias="0.5"
@@ -135,7 +135,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_bold"
-                        android:gravity="center"
                         android:text="@string/pointHistoryMainTitle"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -145,7 +144,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_medium"
-                        android:gravity="center"
                         android:text="@string/pointHistorySubTitle" />
                 </LinearLayout>
 

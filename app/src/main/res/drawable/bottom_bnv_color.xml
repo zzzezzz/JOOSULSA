@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 메뉴의 아이템이 선택이 됐다면 색상 -->
+    <item android:color = "@color/main" android:state_selected="true"/>
+    <!-- 메뉴의 아이템이 선택이 되지 않았다면 색상 -->
+    <item android:color = "@color/subGray" android:state_selected="false"/>
+</selector>
