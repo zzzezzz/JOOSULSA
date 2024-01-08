@@ -15,20 +15,20 @@
 
     <ImageView
         android:id="@+id/productHome"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/tab1_home" />
 
     <ImageView
         android:id="@+id/productBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backbtn" />
@@ -37,27 +37,29 @@
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:fontFamily="@font/pretendard_bold"
         android:text="포인트 상점"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintBottom_toBottomOf="@+id/productBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/productBack"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/prodctPurchase"
-        android:layout_width="300dp"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="25dp"
         android:backgroundTint="@color/main"
+        android:fontFamily="@font/pretendard_bold"
         android:text="구매하기"
-        android:textColor="@color/black"
-        android:textSize="34sp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         android:textStyle="bold"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
@@ -80,9 +82,10 @@
 
             <ImageView
                 android:id="@+id/imageView23"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_marginLeft="50dp"
+                android:layout_width="310dp"
+                android:layout_height="310dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 tools:src="@tools:sample/avatars" />
 
             <TextView
@@ -91,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="상품 이름"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -102,11 +106,13 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="50dp"
+                android:fontFamily="@font/pretendard_medium"
                 android:text="상품 내용" />
 
             <View
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="3px"
+                android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:background="@color/hintText"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -126,6 +132,7 @@
                     android:layout_width="500dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/pretendard_bold"
                     android:gravity="center|start"
                     android:text="수량"
                     android:textSize="20sp"
@@ -137,28 +144,34 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/purchaseUp"
-                        android:layout_width="30dp"
+                    <TextView
+                        android:id="@+id/purchaseDown"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        tools:src="@tools:sample/avatars" />
+                        android:text="-"
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/productCount"
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@color/hintText"
+                        android:background="@color/white"
+                        android:fontFamily="@font/pretendard_bold"
                         android:gravity="center"
-                        android:text="0" />
+                        android:text="1" />
 
-                    <ImageView
-                        android:id="@+id/purchaseDown"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                    <TextView
+                        android:id="@+id/purchaseUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        tools:src="@tools:sample/avatars" />
+                        android:gravity="center_vertical"
+                        android:text="+"
+                        android:textAlignment="center"
+                        android:textSize="15sp" />
 
                 </LinearLayout>
 
@@ -166,8 +179,9 @@
 
             <View
                 android:id="@+id/view5"
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="3px"
+                android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:background="@color/hintText"
@@ -189,6 +203,7 @@
                     android:layout_width="300dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/pretendard_bold"
                     android:gravity="center|start"
                     android:text="상품 금액"
                     android:textSize="20sp"
@@ -206,6 +221,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/pretendard_bold"
                         android:gravity="center|right"
                         android:text="0"
                         android:textSize="20sp"
@@ -216,6 +232,7 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="@font/pretendard_bold"
                         android:gravity="center"
                         android:text="Point"
                         android:textSize="20sp"

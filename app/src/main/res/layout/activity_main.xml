@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8508892" />
+        app:layout_constraintGuide_end="95dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -20,18 +20,30 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.0" />
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#FFFFFF"
+        app:itemIconSize="35sp"
+        app:itemIconTint="@drawable/bottom_bnv_color"
+        app:itemPaddingBottom="20dp"
+        app:itemPaddingTop="18dp"
+        app:itemTextAppearanceActive="@dimen/design_bottom_navigation_active_text_size"
+        app:itemTextAppearanceActiveBoldEnabled="true"
+        app:itemTextColor="@drawable/bottom_bnv_color"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:menu="@menu/item_list"
-        app:itemIconSize="40sp"
-        app:itemTextAppearanceActive="@dimen/design_bottom_navigation_active_text_size"/>
+        app:menu="@menu/item_list" />
 
     <FrameLayout
         android:id="@+id/fl"

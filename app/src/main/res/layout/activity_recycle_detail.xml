@@ -27,8 +27,8 @@
 
                 <ImageView
                     android:id="@+id/btnBackRecycle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:layout_gravity="center_vertical"
                     app:layout_constraintBottom_toTopOf="@+id/guideline15"
                     app:layout_constraintEnd_toStartOf="@+id/imageView13"
@@ -48,8 +48,8 @@
 
                 <ImageView
                     android:id="@+id/goHome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:layout_gravity="center_vertical"
                     app:layout_constraintBottom_toTopOf="@+id/guideline15"
                     app:layout_constraintEnd_toStartOf="@+id/guideline14"

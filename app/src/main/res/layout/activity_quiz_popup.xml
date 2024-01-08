@@ -30,10 +30,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:gravity="center"
                 android:text="정답입니다."
-                android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textColor="#FF3838"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/commentary"
@@ -68,8 +69,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/pretendard_bold"
                         android:text="홈으로"
-                        android:textColor="#000000" />
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp" />
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>

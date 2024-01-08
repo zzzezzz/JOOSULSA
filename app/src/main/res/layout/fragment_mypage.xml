@@ -24,6 +24,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_bold"
         android:text="My page"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -36,11 +37,11 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="3px"
+        android:layout_width="0dp"
+        android:layout_height="2px"
         android:background="@color/hintText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/userInfoChange"
+        app:layout_constraintStart_toStartOf="@+id/userInfoChange"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <LinearLayout
@@ -81,7 +82,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="유저닉네임"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -89,7 +92,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="유저 아이디" />
+                android:fontFamily="@font/pretendard_regular"
+                android:text="유저 아이디"
+                android:textColor="@color/heavyGray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -101,6 +106,7 @@
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendard_medium"
                     android:text="포인트"
                     android:textColor="@color/hintText" />
 
@@ -117,6 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
+                    android:fontFamily="@font/pretendard_bold"
                     android:text="0"
                     android:textColor="#FFC107" />
 
@@ -126,7 +133,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_weight="1"
-                    android:text="p" />
+                    android:fontFamily="@font/pretendard_bold"
+                    android:text="pt" />
             </LinearLayout>
 
 
@@ -140,7 +148,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.10259918" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/userInfoChange"
@@ -165,6 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="사용자 정보 수정"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView30"
@@ -209,6 +218,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="구매내역 조회"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView30"
@@ -253,6 +263,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="포인트 내역 조회"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView30"
@@ -297,6 +308,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="로그아웃"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView30"

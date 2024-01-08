@@ -24,7 +24,9 @@
         android:id="@+id/textView45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:fontFamily="@font/pretendard_bold"
+        android:text="동네 랭킹"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline19"
         app:layout_constraintEnd_toStartOf="@+id/guideline18"
         app:layout_constraintStart_toStartOf="@+id/guideline16"
@@ -32,20 +34,20 @@
 
     <ImageView
         android:id="@+id/btnTownRankBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:src="@drawable/backbtn"
         app:layout_constraintBottom_toBottomOf="@+id/imageView20"
         app:layout_constraintEnd_toStartOf="@+id/imageView20"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/guideline16"
-        app:layout_constraintTop_toTopOf="@+id/imageView20"
-        android:src="@drawable/backbtn" />
+        app:layout_constraintTop_toTopOf="@+id/imageView20" />
 
     <ImageView
         android:id="@+id/imageView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:src="@drawable/tab1_home"
         app:layout_constraintBottom_toTopOf="@+id/guideline19"
         app:layout_constraintEnd_toStartOf="@+id/guideline18"
@@ -77,35 +79,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginStart="80dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:gravity="center_vertical"
                 android:text="우리 동네는"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/textView57"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="0dp"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="0dp" />
 
             <TextView
                 android:id="@+id/textView57"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:gravity="center_vertical"
                 android:text="TextView"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/textView58"
                 app:layout_constraintStart_toEndOf="@+id/textView53"
-                tools:layout_editor_absoluteY="0dp"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="0dp" />
 
             <TextView
                 android:id="@+id/textView58"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginEnd="80dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:gravity="center_vertical"
                 android:text="포인트 이에요!"
+                android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView57"
+                tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteY="0dp"
-                tools:ignore="MissingConstraints" />
+                android:textSize="16sp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
@@ -148,6 +159,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="Best Town List"
                 android:textSize="18sp" />
 
@@ -166,25 +178,20 @@
                     android:src="@drawable/first" />
 
                 <TextView
-                    android:id="@+id/townRank1Nm"
+                    android:id="@+id/townRankNm1"
                     android:layout_width="170dp"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/pretendard_bold"
                     android:gravity="center_vertical"
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/townRank1Score"
+                    android:id="@+id/townRankSc1"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/pretendard_medium"
                     android:gravity="center_vertical"
                     android:text="TextView" />
-
-                <TextView
-                    android:id="@+id/textView63"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/units" />
 
             </LinearLayout>
 
@@ -203,25 +210,21 @@
                     android:src="@drawable/second" />
 
                 <TextView
-                    android:id="@+id/townRank2Nm"
+                    android:id="@+id/townRankNm2"
                     android:layout_width="170dp"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/pretendard_bold"
                     android:gravity="center_vertical"
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/townRank2Score"
+                    android:id="@+id/townRankSc2"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/pretendard_medium"
                     android:gravity="center_vertical"
                     android:text="TextView" />
 
-                <TextView
-                    android:id="@+id/textView64"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/units" />
             </LinearLayout>
 
             <LinearLayout
@@ -239,25 +242,21 @@
                     android:src="@drawable/third" />
 
                 <TextView
-                    android:id="@+id/townRank3Nm"
+                    android:id="@+id/townRankNm3"
                     android:layout_width="170dp"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/pretendard_bold"
                     android:gravity="center_vertical"
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/townRank3Score"
+                    android:id="@+id/townRankSc3"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/pretendard_medium"
                     android:gravity="center_vertical"
                     android:text="TextView" />
 
-                <TextView
-                    android:id="@+id/textView62"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/units" />
             </LinearLayout>
 
         </LinearLayout>

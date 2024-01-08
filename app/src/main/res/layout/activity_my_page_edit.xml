@@ -29,26 +29,27 @@
 
                 <ImageView
                     android:id="@+id/myBack"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="22dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/right" />
+                    app:srcCompat="@drawable/backbtn" />
 
                 <TextView
                     android:id="@+id/textView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="회원정보 수정하기"
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/pretendard_bold"
+                    android:text="사용자 정보 수정"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline6"
+                    app:layout_constraintBottom_toBottomOf="@+id/myBack"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/myBack" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout2"
@@ -64,9 +65,10 @@
                         android:id="@+id/textView14"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginEnd="40dp"
+                        android:fontFamily="@font/pretendard_bold"
                         android:text="이름"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -80,7 +82,9 @@
                         android:layout_height="50dp"
                         android:layout_marginTop="8dp"
                         android:backgroundTint="@color/hintBack"
-                        app:cardCornerRadius="20dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:cardMaxElevation="0dp"
                         app:layout_constraintEnd_toEndOf="@+id/textView14"
                         app:layout_constraintStart_toStartOf="@+id/textView14"
                         app:layout_constraintTop_toBottomOf="@+id/textView14">
@@ -93,8 +97,10 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
                             android:layout_weight="1"
+                            android:fontFamily="@font/pretendard_medium"
                             android:text="사용자 이름"
-                            android:textColor="#808080" />
+                            android:textColor="#808080"
+                            android:textSize="16sp" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -103,6 +109,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:fontFamily="@font/pretendard_bold"
                         android:text="아이디"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -116,7 +123,9 @@
                         android:layout_height="50dp"
                         android:layout_marginTop="8dp"
                         app:cardBackgroundColor="@color/hintBack"
-                        app:cardCornerRadius="20dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:cardMaxElevation="0dp"
                         app:layout_constraintEnd_toEndOf="@+id/textView27"
                         app:layout_constraintStart_toStartOf="@+id/textView27"
                         app:layout_constraintTop_toBottomOf="@+id/textView27">
@@ -128,8 +137,10 @@
                             android:layout_gravity="center|start"
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="16dp"
+                            android:fontFamily="@font/pretendard_medium"
                             android:text="사용자 ID"
-                            android:textColor="#808080" />
+                            android:textColor="#808080"
+                            android:textSize="16sp" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -137,6 +148,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:fontFamily="@font/pretendard_bold"
                         android:text="비밀번호"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -151,7 +163,9 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         app:cardBackgroundColor="@color/hintBack"
-                        app:cardCornerRadius="20dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:cardMaxElevation="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/textView51"
                         app:layout_constraintStart_toStartOf="@+id/textView51"
@@ -163,17 +177,19 @@
 
                             <Button
                                 android:id="@+id/btnMyPw"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="80dp"
+                                android:layout_height="45dp"
                                 android:layout_marginEnd="16dp"
-                                android:text="수정하기"
+                                android:backgroundTint="#FCA33C"
+                                android:fontFamily="@font/pretendard_bold"
+                                android:text="수정"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
                                 android:id="@+id/myPw"
-                                android:layout_width="240dp"
+                                android:layout_width="220dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center|start"
                                 android:layout_marginStart="16dp"
@@ -188,9 +204,11 @@
 
                             <Button
                                 android:id="@+id/btnMyPw2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="80dp"
+                                android:layout_height="45dp"
                                 android:layout_marginEnd="16dp"
+                                android:backgroundTint="#FCA33C"
+                                android:fontFamily="@font/pretendard_bold"
                                 android:text="숨김"
                                 android:visibility="gone"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -216,9 +234,10 @@
                         android:id="@+id/textView59"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="40dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginEnd="40dp"
+                        android:fontFamily="@font/pretendard_bold"
                         android:text="현재 비밀번호를 입력해주세요"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -234,7 +253,9 @@
                         android:layout_marginTop="8dp"
                         android:visibility="visible"
                         app:cardBackgroundColor="@color/hintBack"
-                        app:cardCornerRadius="20dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:cardMaxElevation="0dp"
                         app:layout_constraintEnd_toEndOf="@+id/textView59"
                         app:layout_constraintStart_toStartOf="@+id/textView59"
                         app:layout_constraintTop_toBottomOf="@+id/textView59">
@@ -248,9 +269,11 @@
                             android:layout_marginRight="16dp"
                             android:background="@null"
                             android:ems="10"
+                            android:fontFamily="@font/pretendard_medium"
                             android:hint="현재 비밀번호"
                             android:inputType="textPassword"
                             android:textColorHint="@color/hintText"
+                            android:textSize="16sp"
                             android:visibility="visible" />
                     </androidx.cardview.widget.CardView>
 
@@ -271,6 +294,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:fontFamily="@font/pretendard_bold"
                         android:text="새로운 비밀번호를 입력해주세요."
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -286,7 +310,9 @@
                         android:layout_marginTop="8dp"
                         android:visibility="visible"
                         app:cardBackgroundColor="@color/hintBack"
-                        app:cardCornerRadius="20dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:cardMaxElevation="0dp"
                         app:layout_constraintEnd_toEndOf="@+id/textView61"
                         app:layout_constraintStart_toStartOf="@+id/textView61"
                         app:layout_constraintTop_toBottomOf="@+id/textView61">
@@ -300,19 +326,23 @@
                             android:layout_marginRight="16dp"
                             android:background="@null"
                             android:ems="10"
+                            android:fontFamily="@font/pretendard_medium"
                             android:hint="새 비밀번호"
                             android:inputType="textPassword"
-                            android:textColorHint="@color/hintText" />
+                            android:textColorHint="@color/hintText"
+                            android:textSize="16sp" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardView20"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="10dp"
                         android:visibility="visible"
                         app:cardBackgroundColor="@color/hintBack"
-                        app:cardCornerRadius="20dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:cardMaxElevation="0dp"
                         app:layout_constraintEnd_toEndOf="@+id/cardView12"
                         app:layout_constraintStart_toStartOf="@+id/cardView12"
                         app:layout_constraintTop_toBottomOf="@+id/cardView12">
@@ -326,9 +356,11 @@
                             android:layout_marginRight="16dp"
                             android:background="@null"
                             android:ems="10"
+                            android:fontFamily="@font/pretendard_medium"
                             android:hint="새 비밀번호 재입력"
                             android:inputType="textPassword"
-                            android:textColorHint="@color/hintText" />
+                            android:textColorHint="@color/hintText"
+                            android:textSize="16sp" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -338,6 +370,7 @@
                         android:layout_marginTop="8dp"
                         android:text="비밀번호가 일치하지않습니다."
                         android:textColor="#FF0000"
+                        android:textSize="12sp"
                         android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/cardView20"
@@ -360,8 +393,8 @@
                         android:id="@+id/textView63"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="@font/pretendard_bold"
                         android:text="닉네임"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -373,9 +406,11 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginEnd="40dp"
                         app:cardBackgroundColor="@color/hintBack"
-                        app:cardCornerRadius="20dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:cardMaxElevation="0dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/textView63"
                         app:layout_constraintTop_toBottomOf="@+id/textView63">
@@ -389,8 +424,10 @@
                             android:layout_marginRight="16dp"
                             android:background="@null"
                             android:ems="10"
+                            android:fontFamily="@font/pretendard_medium"
                             android:hint="사용자 닉네임"
-                            android:inputType="text" />
+                            android:inputType="text"
+                            android:textSize="16sp" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -400,7 +437,9 @@
                         android:layout_height="50dp"
                         android:layout_marginTop="8dp"
                         app:cardBackgroundColor="@color/hintBack"
-                        app:cardCornerRadius="20dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:cardMaxElevation="0dp"
                         app:layout_constraintEnd_toEndOf="@+id/textView66"
                         app:layout_constraintStart_toStartOf="@+id/textView66"
                         app:layout_constraintTop_toBottomOf="@+id/textView66">
@@ -413,21 +452,25 @@
                             android:layout_marginLeft="16dp"
                             android:background="@null"
                             android:ems="10"
+                            android:fontFamily="@font/pretendard_medium"
                             android:hint="사용자 주소"
-                            android:inputType="text" />
+                            android:inputType="text"
+                            android:textSize="16sp" />
                     </androidx.cardview.widget.CardView>
 
                     <Button
                         android:id="@+id/myChangeOK"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="64dp"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="30dp"
                         android:layout_marginBottom="70dp"
                         android:backgroundTint="@color/main"
-                        android:text="수정 완료"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:text="변경 완료"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
                         android:textStyle="bold"
+                        app:cornerRadius="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/cardView22"
                         app:layout_constraintStart_toStartOf="@+id/textView66"
@@ -445,7 +488,7 @@
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:visibility="gone"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/cardView22"
                         app:layout_constraintStart_toStartOf="@+id/textView66"
@@ -462,7 +505,8 @@
                         app:layout_constraintEnd_toEndOf="@+id/cardView21"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/cardView21"
-                        app:layout_constraintTop_toBottomOf="@+id/cardView21" />
+                        app:layout_constraintTop_toBottomOf="@+id/cardView21"
+                        android:fontFamily="@font/pretendard_bold" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     // 서버에 요청 보내려면 필요함
     private RequestQueue queue;
 
-    private String springUrl = "http://172.30.48.1:8089/login";
+    private String springUrl = "http://192.168.219.42:8089/login";
 
     int postMethod = Request.Method.POST;
 
@@ -102,11 +102,6 @@ public class LoginActivity extends AppCompatActivity {
         // 뒤로가기 버튼 클릭시 홈 화면으로 이동
         binding.loginBack.setOnClickListener(v->{
             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-            startActivity(intent);
-        });
-        // 홈 버튼 클릭시 홈 화면으로 이동
-        binding.loginHoam.setOnClickListener(v->{
-            Intent intent= new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         });
     }
