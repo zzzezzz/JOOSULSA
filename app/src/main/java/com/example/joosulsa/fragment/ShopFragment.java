@@ -89,8 +89,11 @@ public class ShopFragment extends Fragment {
                 postMethod,
                 producturl,
                 response -> {
-                    Log.d("shop통신 성공","성공");
+                    Log.d("shop통신 성공",response);
                     handShop(response);
+                    Log.d("1","가냐?");
+
+                    Log.d("check", response.toString());
                 },
                 error ->{
                     Log.d("shop통신 실패","실패");
@@ -116,17 +119,14 @@ public class ShopFragment extends Fragment {
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                byte[] decodedBytes = Base64.decode(response, Base64.DEFAULT);
-                Bitmap bitmpImg = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
-//                String prodImg = jsonObject.getString("bitmap");
-                String prodImg = jsonObject.getString("prodImg");
+
                 String prodName = jsonObject.getString("prodName");
                 String prodInfo = jsonObject.getString("prodInfo");
                 String stringProdPrice = jsonObject.getString("prodPrice");
                 int prodPrice = Integer.parseInt(stringProdPrice);
 
-                ShopListVO vo = new ShopListVO(prodImg,prodName, prodInfo, prodPrice);
-                vo.setBitmap(bitmpImg);
+                ShopListVO vo = new ShopListVO(prodName, prodInfo, prodPrice);
+
 
                 // 확인
                 dataset.add(vo);
