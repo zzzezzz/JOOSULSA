@@ -178,7 +178,7 @@
                     android:src="@drawable/first" />
 
                 <TextView
-                    android:id="@+id/townRank1Nm"
+                    android:id="@+id/townRankNm1"
                     android:layout_width="170dp"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/pretendard_bold"
@@ -186,7 +186,7 @@
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/townRank1Score"
+                    android:id="@+id/townRankSc1"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/pretendard_medium"
@@ -210,7 +210,7 @@
                     android:src="@drawable/second" />
 
                 <TextView
-                    android:id="@+id/townRank2Nm"
+                    android:id="@+id/townRankNm2"
                     android:layout_width="170dp"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/pretendard_bold"
@@ -218,7 +218,7 @@
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/townRank2Score"
+                    android:id="@+id/townRankSc2"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/pretendard_medium"
@@ -242,7 +242,7 @@
                     android:src="@drawable/third" />
 
                 <TextView
-                    android:id="@+id/townRank3Nm"
+                    android:id="@+id/townRankNm3"
                     android:layout_width="170dp"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/pretendard_bold"
@@ -250,7 +250,7 @@
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/townRank3Score"
+                    android:id="@+id/townRankSc3"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/pretendard_medium"
