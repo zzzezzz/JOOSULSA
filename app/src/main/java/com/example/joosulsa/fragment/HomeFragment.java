@@ -14,19 +14,20 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.work.Constraints;
-import androidx.work.NetworkType;
-import androidx.work.PeriodicWorkRequest;
-import androidx.work.WorkManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -36,31 +37,29 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.joosulsa.CheckActivity;
 import com.example.joosulsa.CheckPopupActivity;
 import com.example.joosulsa.LoginActivity;
 import com.example.joosulsa.QuizActivity;
 import com.example.joosulsa.QuizClosePopup;
 import com.example.joosulsa.R;
+import com.example.joosulsa.RecycleDetailActivity;
 import com.example.joosulsa.SearchActivity;
 import com.example.joosulsa.TestActivity;
-import com.example.joosulsa.TownRankActivity;
 import com.example.joosulsa.category.MainCategoryAdapter;
 import com.example.joosulsa.category.MainCategoryVO;
-import com.example.joosulsa.databinding.ActivityQuizClosePopupBinding;
 import com.example.joosulsa.databinding.FragmentHomeBinding;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 
 public class HomeFragment extends Fragment {
@@ -82,7 +81,12 @@ public class HomeFragment extends Fragment {
     private String quizUrl = "http://192.168.219.62:8089/quizRequest";
     private String checkUrl = "http://192.168.219.62:8089/dataCheck";
 
+    private String cateUrl = "http://192.168.219.62:8089/category";
+
     int postMethod = Request.Method.POST;
+
+    // recyclerview
+    private RecyclerView categoryView;
 
 
     @Override
@@ -91,6 +95,7 @@ public class HomeFragment extends Fragment {
 
         // binding으로 view내부 객체들 가져다 쓰려고 선언하는 코드임
         FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
+
         // requestqueue없으면 만드는곳
         if(requestQueue==null){
             requestQueue = Volley.newRequestQueue(getActivity());
@@ -111,7 +116,6 @@ public class HomeFragment extends Fragment {
             checkBoolean = autoTodayAtt(preferences);
             quizBoolean = autoQuiz(preferences);
             userPoint = userPoint(preferences);
-            Log.d("asdasdawdqweqwdqawd", checkBoolean + "/" +  quizBoolean + "/" + userPoint);
         }
         Log.d("checkingchecking", "id:"+autoId + "닉네임:"+autoNick+"pw:"+autoPw + "이름" + autoName + "주소 : " + autoAddr);
         Log.d("booleanCheck", checkBoolean + " / " + quizBoolean);
@@ -178,58 +182,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // 우리동네 랭킹 버튼 이벤트
-        binding.rankBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), TownRankActivity.class);
-            startActivity(intent);
-            getActivity().finish();
-        });
-
-        // 퀴즈버튼 이벤트
-        if (quizBoolean == false){
-            binding.quizBtn.setOnClickListener(v -> {
-                int quizNumber = getRandomNumber(1, 100);
-                quizRequest(quizNumber);
-            });
-        }else {
-            binding.quizBtn.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), QuizClosePopup.class);
-                startActivity(intent);
-            });
-        }
-
-        // 오늘의 출석체크 이벤트
-        binding.calBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), CheckActivity.class);
-            startActivity(intent);
-            getActivity().finish();
-        });
-
-        // 객체 생성
-        dataset = new ArrayList<>();
-
-        // 데이터 넣어주기
-        dataset.add(new MainCategoryVO(R.drawable.tab1_home,"test01"));
-        dataset.add(new MainCategoryVO(R.drawable.tab1_home,"test02"));
-        dataset.add(new MainCategoryVO(R.drawable.tab1_home,"test03"));
-        dataset.add(new MainCategoryVO(R.drawable.tab1_home,"test04"));
-        dataset.add(new MainCategoryVO(R.drawable.tab1_home,"test05"));
-        dataset.add(new MainCategoryVO(R.drawable.tab1_home,"test06"));
-        dataset.add(new MainCategoryVO(R.drawable.tab1_home,"test07"));
-
-        // 레이아웃 보여주기
-        // manager : 레이아웃 정보를 갖고있음..
-        //LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false); // 가로로 배열해주기
-
-        // 뿌려줄 xml파일에 recycleview 넣어주고 id 값을 꼭 지정해주기
-        // 레이아웃을 설정해주기
-        binding.categoryList.setLayoutManager(manager);
-
-        // 어댑터를 연결해주기
-        adapter = new MainCategoryAdapter(dataset);
-        binding.categoryList.setAdapter(adapter); // setAdapter : 이걸 어댑터에 넣어준다고
-
         // ActivityResultCallback 정의
         ActivityResultCallback<ActivityResult> resultCallback = result -> {
             if (result.getResultCode() == RESULT_OK) {
@@ -252,7 +204,116 @@ public class HomeFragment extends Fragment {
         // ActivityResultCallback을 등록
         cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), resultCallback);
 
+        // 카테고리 코드
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        categoryView = binding.getRoot().findViewById(R.id.categoryList);
+        categoryView.setLayoutManager(manager);
+        dataset = new ArrayList<>();
+        loadRecyclingItems();
+        adapter = new MainCategoryAdapter(dataset);
+        binding.categoryList.setAdapter(adapter);
+
+        // 카테고리 영역 클릭 이벤트
+        categoryView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            GestureDetector gestureDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener() {
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    return true;
+                }
+
+                @Override
+                public void onLongPress(MotionEvent e) {
+                    View child = categoryView.findChildViewUnder(e.getX(), e.getY());
+                    if (child != null) {
+                        int position = categoryView.getChildAdapterPosition(child);
+                        // 아이템을 길게 클릭한 경우의 처리 (필요에 따라 구현)
+                    }
+                }
+            });
+
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                View child = rv.findChildViewUnder(e.getX(), e.getY());
+                if (child != null && gestureDetector.onTouchEvent(e)) {
+                    int position = rv.getChildAdapterPosition(child);
+
+                    // 클릭한 카테고리의 정보 가져오기
+                    MainCategoryVO clickedCategory = dataset.get(position);
+                    String trashName = clickedCategory.getTitle();
+
+                    // RecycleDetailActivity로 이동하는 Intent 생성
+                    Intent intent = new Intent(getActivity(), RecycleDetailActivity.class);
+                    intent.putExtra("trashName", trashName);
+                    startActivity(intent);
+
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+            }
+        });
+
+        // 퀴즈버튼 이벤트
+        if (quizBoolean == false){
+            binding.quizBtn.setOnClickListener(v -> {
+                int quizNumber = getRandomNumber(1, 100);
+                quizRequest(quizNumber);
+            });
+        }else {
+            binding.quizBtn.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), QuizClosePopup.class);
+                startActivity(intent);
+            });
+        }
+
+        // 오늘의 출석체크 버튼 이벤트
+
         return binding.getRoot();
+    }
+
+    // 카테고리에 넣을 데이터 가져옴
+    private void loadRecyclingItems() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                postMethod,
+                cateUrl,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d("cateData", response.toString());
+                        int[] cateImgs ={R.drawable.can_icon, R.drawable.glass_icon, R.drawable.paper_icon, R.drawable.plastic_icon,
+                                R.drawable.styrofoam_icon, R.drawable.vinyl_icon};
+                        try {
+                            for (int i = 0; i < 6; i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                Log.d("sbytry", response.getJSONObject(i).toString());
+                                String title = jsonObject.getString("trashName");
+                                Log.d("titleCheck", title);
+                                dataset.add(new MainCategoryVO(cateImgs[i], title));
+                            }
+
+                            // RecyclerView에 데이터가 변경되었음을 알림
+                            adapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Volley", "Error: " + error.getMessage());
+                    }
+                });
+
+        requestQueue.add(jsonArrayRequest);
     }
 
     // 자동로그인 유저 출석, 퀴즈 여부 불러오기
@@ -292,16 +353,14 @@ public class HomeFragment extends Fragment {
         try {
             JSONObject jsonResponse = new JSONObject(response);
             Log.d("why", response);
-            preferences = getActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+            preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
             boolean todayAtt = jsonResponse.getBoolean("attendance");
             boolean quizAtt = jsonResponse.getBoolean("quizParticipation");
             int monthlyAttNum = Integer.parseInt(jsonResponse.getString("monthlyAttendance"));
-            Log.d("asdasdasd", todayAtt + "/" + quizAtt + "/" + monthlyAttNum);
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("quizBoolean", quizAtt);
-            editor.putBoolean("checkBoolean", todayAtt);
+            editor.putBoolean("quizBoolean", todayAtt);
+            editor.putBoolean("checkBoolean", quizAtt);
             editor.putInt("monthlyAttendance", monthlyAttNum);
-            editor.apply();
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -357,33 +416,6 @@ public class HomeFragment extends Fragment {
         int userPoint = preferences.getInt("userPoint", 0);
         return userPoint;
     }
-
-//    private void setResetWorker() {
-//        // Constraints 설정
-//        Constraints constraints = new Constraints.Builder()
-//                .setRequiredNetworkType(NetworkType.CONNECTED)
-//                .build();
-//
-//        // 12시에 실행되도록 설정
-//        Calendar now = Calendar.getInstance();
-//        now.set(Calendar.HOUR_OF_DAY, 12);
-//        now.set(Calendar.MINUTE, 0);
-//        now.set(Calendar.SECOND, 0);
-//        long delayInMillis = now.getTimeInMillis() - System.currentTimeMillis();
-//
-//        // PeriodicWorkRequest 설정(worker 요청 주기 설정하는거)
-//        PeriodicWorkRequest resetWorkerRequest = new PeriodicWorkRequest.Builder(
-//                ResetWorker.class,
-//                1,
-//                TimeUnit.DAYS
-//        )
-//                .setConstraints(constraints)
-//                .setInitialDelay(delayInMillis, TimeUnit.MILLISECONDS)
-//                .build();
-//
-//        // WorkManager에 작업 추가
-//        WorkManager.getInstance(requireContext()).enqueue(resetWorkerRequest);
-//    }
 
     // 출석 현황 가져오는 메소드(출석 팝업에 띄워줄 데이터 가져오는거)
     private void userDateCheck(){

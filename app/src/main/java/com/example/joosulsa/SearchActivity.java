@@ -32,12 +32,9 @@ import java.util.Map;
 
 public class SearchActivity extends AppCompatActivity {
     private ActivitySearchBinding binding;
-    // Queue 쓸거
-    private RequestQueue queue;
     // url 주소
     private String springUrl = "http://192.168.219.62:8089/search";
 
-    private String viewRequestUrl = "http://192.168.219.62:8089/viewUp";
     // post
     int postMethod = Request.Method.POST;
 
@@ -124,6 +121,7 @@ public class SearchActivity extends AppCompatActivity {
                 },
                 error -> {
                     // 서버통신 실패시
+                    Log.d("qwedaqszxc", "????");
                 }
         ) {
             @Nullable
