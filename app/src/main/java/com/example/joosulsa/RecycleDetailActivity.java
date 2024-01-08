@@ -24,6 +24,11 @@ public class RecycleDetailActivity extends AppCompatActivity {
         binding = ActivityRecycleDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // 검색 방법 받아오기
+        String searchMethod = getIntent().getStringExtra("searchmethod");
+        Log.d("searchMe", searchMethod);
+
+        // 이걸로 다시 받아요
         // 유튜브 영상 띄우는 코드
         YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
@@ -49,7 +54,16 @@ public class RecycleDetailActivity extends AppCompatActivity {
             }
         });
 
+        Intent intent1 = new Intent(RecycleDetailActivity.this, MainActivity.class);
+        binding.btnBackRecycle.setOnClickListener(v -> {
+            startActivity(intent1);
+            finish();
+        });
 
+        binding.goHome.setOnClickListener(v -> {
+            startActivity(intent1);
+            finish();
+        });
 
 
     }
