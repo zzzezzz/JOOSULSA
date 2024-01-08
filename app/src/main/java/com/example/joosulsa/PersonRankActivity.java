@@ -3,6 +3,7 @@ package com.example.joosulsa;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,6 +51,12 @@ public class PersonRankActivity extends AppCompatActivity {
         }
 
         personRankData();
+
+        binding.btnPersonRankBack.setOnClickListener(v -> {
+            Intent intent = new Intent(PersonRankActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
 
     }

@@ -36,6 +36,11 @@ public class MainCategoryViewHolder extends RecyclerView.ViewHolder implements V
         
     }
 
+    public void bind(MainCategoryVO item) {
+        iconCategory.setImageResource(item.getImg());
+        titCategory.setText(item.getTitle());
+    }
+
     public CardView getCategoryBtn() {
         return categoryBtn;
     }

@@ -25,17 +25,16 @@ import com.example.joosulsa.databinding.ActivitySearchDetailBinding;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class SearchActivity extends AppCompatActivity {
     private ActivitySearchBinding binding;
-    // Queue 쓸거
-    private RequestQueue queue;
     // url 주소
     private String springUrl = "http://192.168.219.62:8089/search";
 
-    private String viewRequestUrl = "http://192.168.219.62:8089/viewUp";
     // post
     int postMethod = Request.Method.POST;
 
@@ -52,6 +51,7 @@ public class SearchActivity extends AppCompatActivity {
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(SearchActivity.this);
         }
+
 
         // 버튼 이벤트 처리
 
@@ -83,7 +83,12 @@ public class SearchActivity extends AppCompatActivity {
         // 예를 들어, 검색어를 가져와서 검색 결과 화면으로 이동하는 등의 동작을 수행합니다.
 
         String search = binding.textSearch.getText().toString();
-        searchRequest(search);
+        // 검색 방법
+        String searchMethod = "text";
+        preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+
+        String autoId = preferences.getString("autoId", null);
+        searchRequest(search, searchMethod, autoId);
         Log.d("확인1", search);
 
 
@@ -92,7 +97,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     // 서버 통신
-    private void searchRequest(String search) {
+    private void searchRequest(String search, String searchMethod, String autoId) {
         StringRequest request = new StringRequest(
                 postMethod,
                 springUrl,
@@ -101,14 +106,6 @@ public class SearchActivity extends AppCompatActivity {
                     Log.d("searchCheck", response); // 로그
 
                     handSearch(response);
-
-                    // 조회수 추가 + 사용자 포인트 추가 메소드 만들겠음
-                    preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
-
-                    String autoId = preferences.getString("autoId", null);
-                    if (response!=null){
-                        //upViewsPoint(autoId);
-                    }
 
                     // 키워드에 따른 페이지 이동 이벤트
                     if(response.equals("")){
@@ -124,6 +121,7 @@ public class SearchActivity extends AppCompatActivity {
                 },
                 error -> {
                     // 서버통신 실패시
+                    Log.d("qwedaqszxc", "????");
                 }
         ) {
             @Nullable
@@ -131,6 +129,13 @@ public class SearchActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("search",search);
+                params.put("method", searchMethod);
+                params.put("user", autoId);
+                long now =System.currentTimeMillis();
+                Date today =new Date(now);
+                SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+                String time = format.format(today);
+                params.put("earnTime", time);
                 Log.d("가냐..?",search);
                 return params;
             }
@@ -140,7 +145,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     // Spring 에서 받아온 재활용 데이터 처리 메소드
-    private void handSearch(String response) {
+    private String handSearch(String response) {
 //                sepaMethod = 분리수거 방법
 //                sepaCaution = 분리수거 주의사항
 //                sepaImg = 분리수거 이미지
@@ -149,52 +154,48 @@ public class SearchActivity extends AppCompatActivity {
 //                recycleImg = 업사이클 이미지
         try {
             // 데이터 파싱 작업
+            // 데이터 파싱 작업
             JSONObject jsonResponse = new JSONObject(response);
-            String sepaMethod = jsonResponse.getString("sepaMethod");
-            String sepaCaution = jsonResponse.getString("sepaCaution");
-            String sepaImg = jsonResponse.getString("sepaImg");
-            String sepaVideo = jsonResponse.getString("sepaVideo");
-            String recycleVideo = jsonResponse.getString("recycleVideo");
-            String recycleImg = jsonResponse.getString("recycleImg");
+
+            // searchCheck JSON 객체 가져오기
+            JSONObject searchCheckObject = jsonResponse.getJSONObject("searchCheck");
+
+            // searchCheck의 속성들 가져오기
+            String sepaMethod = searchCheckObject.getString("sepaMethod");
+            String sepaCaution = searchCheckObject.getString("sepaCaution");
+            String sepaImg = searchCheckObject.getString("sepaImg");
+            String sepaVideo = searchCheckObject.getString("sepaVideo");
+            String recycleVideo = searchCheckObject.getString("recycleVideo");
+            String recycleImg = searchCheckObject.getString("recycleImg");
+            String recycleNum = searchCheckObject.getString("recycleNum");
+
+            // totalPoints 가져오기
+            int totalPoints = jsonResponse.getInt("totalPoints");
+
             // 확인
-            Log.d("데이터 처리","방법: "+sepaMethod+" 주의사항: "+ sepaCaution +
-                    " 이미지: "+ sepaImg + " 분리수거 영상: "+ sepaVideo+ " 업사이클 영상: "+ recycleVideo+
+            Log.d("데이터 처리", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
+                    " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
                     " 업사이클 이미지 : " + recycleImg);
+
+            Log.d("데이터 처리", "Total Points: " + totalPoints);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("userPoint", totalPoints);
+            editor.apply();
             // Intent에 값 넣어주기
-            Intent intent = new Intent(SearchActivity.this, RecycleDetailActivity.class);
-            intent.putExtra("sepaMethod",sepaMethod);
-            intent.putExtra("sepaCaution",sepaCaution);
-            intent.putExtra("sepaImg",sepaImg);
-            intent.putExtra("sepaVideo",sepaVideo);
-            intent.putExtra("recycleVideo",recycleVideo);
-            intent.putExtra("recycleImg",recycleImg);
-            startActivity(intent);
+            Intent textSearchIntent = new Intent(SearchActivity.this, RecycleDetailActivity.class);
+            textSearchIntent.putExtra("sepaMethod",sepaMethod);
+            textSearchIntent.putExtra("sepaCaution",sepaCaution);
+            textSearchIntent.putExtra("sepaImg",sepaImg);
+            textSearchIntent.putExtra("sepaVideo",sepaVideo);
+            textSearchIntent.putExtra("recycleVideo",recycleVideo);
+            textSearchIntent.putExtra("recycleImg",recycleImg);
+            textSearchIntent.putExtra("searchmethod", "text");
+            startActivity(textSearchIntent);
+            return recycleNum;
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return "";
     }
 
-    // 조회수 추가 + 포인트 추가 메소드
-//    private void upViewsPoint(String autoId) {
-//
-//        StringRequest stringRequest = new StringRequest(
-//                postMethod,
-//                viewRequestUrl,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//
-//                    }
-//                }
-//
-//        )
-//
-//
-//
-//
-//
-//
-//
-//
-//    }
 }
