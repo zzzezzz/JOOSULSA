@@ -48,6 +48,7 @@ import com.example.joosulsa.R;
 import com.example.joosulsa.RecycleDetailActivity;
 import com.example.joosulsa.SearchActivity;
 import com.example.joosulsa.TestActivity;
+import com.example.joosulsa.TownRankActivity;
 import com.example.joosulsa.category.MainCategoryAdapter;
 import com.example.joosulsa.category.MainCategoryVO;
 import com.example.joosulsa.databinding.FragmentHomeBinding;
@@ -181,6 +182,15 @@ public class HomeFragment extends Fragment {
                 cameraLauncher.launch(intent);
             }
         });
+
+
+        // 우리동네 랭킹 버튼 이벤트
+        binding.rankBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), TownRankActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        });
+
 
         // ActivityResultCallback 정의
         ActivityResultCallback<ActivityResult> resultCallback = result -> {
@@ -481,6 +491,12 @@ public class HomeFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+
+
+
+
     }
 
 

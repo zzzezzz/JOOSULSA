@@ -36,6 +36,9 @@
              <activity android:name=".원하는페이지" android:windowSoftInputMode="adjustNothing"></activity>
         -->
         <activity
+            android:name=".TownRankActivity"
+            android:exported="false" />
+        <activity
             android:name=".QuizPopupActivity"
             android:theme="@style/TransparentTheme" />
         <activity

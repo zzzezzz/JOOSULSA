@@ -8,43 +8,45 @@
 
     <ImageView
         android:id="@+id/joinHome"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@drawable/tab1_home" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="115dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/logo" />
 
     <ImageView
         android:id="@+id/joinBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
+        app:srcCompat="@drawable/backbtn" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:layout_marginBottom="25dp"
         app:cardBackgroundColor="@color/hintBack"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="0dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView4"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
@@ -58,6 +60,10 @@
             android:ems="10"
             android:hint="이름을 입력해주세요."
             android:inputType="text"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
             android:textColorHint="@color/hintText" />
     </androidx.cardview.widget.CardView>
 
@@ -67,7 +73,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         app:cardBackgroundColor="@color/hintBack"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="0dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView3"
         app:layout_constraintStart_toStartOf="@+id/cardView3"
         app:layout_constraintTop_toBottomOf="@+id/cardView3">
@@ -80,6 +88,10 @@
             android:ems="10"
             android:hint="아이디를 입력해주세요."
             android:inputType="text"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
             android:textColorHint="@color/hintText" />
     </androidx.cardview.widget.CardView>
 
@@ -89,7 +101,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         app:cardBackgroundColor="@color/hintBack"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="0dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView4"
         app:layout_constraintStart_toStartOf="@+id/cardView4"
         app:layout_constraintTop_toBottomOf="@+id/cardView4">
@@ -101,7 +115,11 @@
             android:background="@null"
             android:ems="10"
             android:hint="비밀번호를 입력해주세요."
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -110,7 +128,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         app:cardBackgroundColor="@color/hintBack"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="0dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView5"
         app:layout_constraintStart_toStartOf="@+id/cardView5"
         app:layout_constraintTop_toBottomOf="@+id/cardView5">
@@ -123,6 +143,10 @@
             android:ems="10"
             android:hint="닉네임을 입력해주세요."
             android:inputType="text"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
             android:textColorHint="@color/hintText" />
     </androidx.cardview.widget.CardView>
 
@@ -132,7 +156,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         app:cardBackgroundColor="@color/hintBack"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="0dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView6"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/cardView6"
@@ -146,6 +172,10 @@
             android:ems="10"
             android:hint="주소를 입력해주세요."
             android:inputType="text"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
             android:textColorHint="@color/hintText" />
     </androidx.cardview.widget.CardView>
 
@@ -155,8 +185,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:backgroundTint="@color/main"
+        android:fontFamily="@font/pretendard_bold"
         android:text="회원가입"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView7"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/cardView7"

@@ -28,22 +28,14 @@
         app:layout_constraintGuide_percent="0.05352798" />
 
     <TextView
-        android:id="@+id/textView141"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="랭킹"
-        app:layout_constraintBottom_toTopOf="@+id/guideline28"
-        app:layout_constraintEnd_toStartOf="@+id/guideline27"
-        app:layout_constraintStart_toStartOf="@+id/guideline26"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textView142"
-        android:layout_width="200dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
+        android:fontFamily="@font/pretendard_semibold"
         android:text="이곳에서 개인 랭킹과 동네별 랭킹을 조회하실 수 있습니다."
         android:textAlignment="center"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline27"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
@@ -51,11 +43,11 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/personRankBtn"
-        android:layout_width="140dp"
-        android:layout_height="175dp"
+        android:layout_width="150dp"
+        android:layout_height="160dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="20dp"
-        app:cardBackgroundColor="#FF2424"
+        app:cardBackgroundColor="#FCA33C"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
@@ -71,34 +63,38 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/personBtnImg"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_launcher_background" />
+                android:id="@+id/imageView10"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/person" />
 
             <TextView
                 android:id="@+id/textView144"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="개인별 랭킹 "
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_bold"
                 android:gravity="center"
-                android:text="조회하기" />
+                android:text="조회하기"
+                android:textColor="#FFFFFF" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/townRankBtn"
-        android:layout_width="140dp"
-        android:layout_height="175dp"
-        app:cardBackgroundColor="#FF2424"
+        android:layout_width="150dp"
+        android:layout_height="160dp"
+        app:cardBackgroundColor="#7987FF"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
@@ -114,25 +110,29 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/townBtnImg"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_launcher_background" />
+                android:id="@+id/imageView19"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/townicon" />
 
             <TextView
                 android:id="@+id/textView145"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_bold"
                 android:text="동네별 랭킹"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_bold"
                 android:gravity="center"
-                android:text="조회하기" />
+                android:text="조회하기"
+                android:textColor="#FFFFFF" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

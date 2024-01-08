@@ -4,7 +4,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- 메인 컬러 -->
-    <color name="main">#B8E93F</color>
+    <color name="main">#B1E540</color>
     <color name="text">#393939</color>
     <color name="lightGray">#ECECEC</color>
     <color name="heavyGray">#DCDCDC</color>
@@ -16,6 +16,7 @@
     <color name="checkColor">#489BFC</color>
     <color name="subYellow">#EDFFA4</color>
     <color name="subBlue">#CCEDFF</color>
+    <color name="subGray">#BBBBBB</color>
 
     <!-- hint 컬러 -->
     <color name="hintBack">#F8F8F8</color>

@@ -4,18 +4,18 @@
 
     <item
         android:id="@+id/tab1"
-        android:icon="@drawable/tab1_home"
+        android:icon="@drawable/tab1"
         android:title="홈" />
     <item
         android:id="@+id/tab2"
-        android:icon="@drawable/tab2_rank"
+        android:icon="@drawable/tab2"
         android:title="랭킹" />
     <item
         android:id="@+id/tab3"
-        android:icon="@drawable/tab3_shop"
+        android:icon="@drawable/tab3"
         android:title="포인트 상점" />
     <item
         android:id="@+id/tab4"
-        android:icon="@drawable/tab4_mypage"
+        android:icon="@drawable/tab4"
         android:title="마이페이지" />
 </menu>
