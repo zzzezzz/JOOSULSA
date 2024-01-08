@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     // 서버에 요청 보내려면 필요함
     private RequestQueue queue;
 
-    private String springUrl = "http://172.30.48.1:8089/login";
+    private String springUrl = "http://192.168.219.62:8089/login";
 
     int postMethod = Request.Method.POST;
 
