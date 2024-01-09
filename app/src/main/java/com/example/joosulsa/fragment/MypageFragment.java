@@ -15,6 +15,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.example.joosulsa.MyPageEditActivity;
 import com.example.joosulsa.R;
+import com.example.joosulsa.databinding.FragmentMypageBinding;
 import com.example.joosulsa.point.RePointHistoryActivity;
 import com.example.joosulsa.purchase_list.PurchaseListActivity;
 
