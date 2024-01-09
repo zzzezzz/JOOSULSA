@@ -59,7 +59,7 @@ public class ShopListAdapter extends BaseAdapter {
         ShopListVO item = dataList.get(position);
 
         // TODO: 이미지 로딩 및 기타 데이터를 뷰에 설정
-        viewHolder.getImg().setImageBitmap(item.getBitmap());
+        viewHolder.getImg().setImageBitmap(item.getImg());
         viewHolder.getProTitle().setText(item.getTitle());
         viewHolder.getProInfo().setText(item.getContent());
         viewHolder.getProPrice().setText(String.valueOf(item.getPrice()));
