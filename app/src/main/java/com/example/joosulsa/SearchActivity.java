@@ -145,7 +145,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     // Spring 에서 받아온 재활용 데이터 처리 메소드
-    private String handSearch(String response) {
+    private void handSearch(String response) {
 //                sepaMethod = 분리수거 방법
 //                sepaCaution = 분리수거 주의사항
 //                sepaImg = 분리수거 이미지
@@ -192,12 +192,14 @@ public class SearchActivity extends AppCompatActivity {
             textSearchIntent.putExtra("recycleVideo",recycleVideo);
             textSearchIntent.putExtra("recycleImg",recycleImg);
             textSearchIntent.putExtra("searchmethod", "text");
+            textSearchIntent.putExtra("recyNum", recycleNum);
+            Log.d("searchWhy", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
+                    " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
+                    " 업사이클 이미지 : " + recycleImg);
             startActivity(textSearchIntent);
-            return recycleNum;
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return "";
     }
 
 }

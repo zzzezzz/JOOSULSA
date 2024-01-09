@@ -173,16 +173,12 @@ public class ShopFragment extends Fragment {
         try {
             JSONObject jsonResponse = new JSONObject(response);
             for (int i =0; i<6; i++){
+                String prodImg = jsonResponse.getString("prodImg"+ i);
+                byte[] decodedBytes1 = Base64.decode(prodImg, Base64.DEFAULT);
+                Bitmap bitmap1 = BitmapFactory.decodeByteArray(decodedBytes1, 0, decodedBytes1.length);
+                ShopListVO imgVo = new ShopListVO(bitmap1);
+                dataset.add(imgVo);
 
-                try {
-                    String prodImg = jsonResponse.getString("prodImg"+ i);
-                    byte[] decodedBytes1 = Base64.decode(prodImg, Base64.DEFAULT);
-                    Bitmap bitmap1 = BitmapFactory.decodeByteArray(decodedBytes1, 0, decodedBytes1.length);
-                    ShopListVO imgVo = new ShopListVO(bitmap1);
-                    dataset.add(imgVo);
-                }catch (Exception e){
-                    Log.d("acsxzx", e.toString());
-                }
             }
         } catch (JSONException e) {
             throw new RuntimeException(e);
