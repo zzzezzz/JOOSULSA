@@ -24,6 +24,8 @@ public class ProductInfoActivity extends AppCompatActivity {
 
         int cntPrice = Integer.parseInt(price);
         int productCount = Integer.parseInt(binding.productCount.getText().toString());
+
+
         binding.prodctName.setText(title);
         binding.prodctInfo.setText(content);
         binding.purchasePoint.setText(price);
@@ -33,9 +35,10 @@ public class ProductInfoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int productCount = Integer.parseInt(binding.productCount.getText().toString());
                 if(productCount>1) {
-                    productCount = productCount - 1;
+                    productCount -= 1;
                     binding.productCount.setText(String.valueOf(productCount));
-                    binding.purchasePoint.setText(String.valueOf(productCount*cntPrice));
+                    int totalPrice = productCount*cntPrice;
+                    binding.purchasePoint.setText(String.valueOf(totalPrice));
                 }
             }
         });
@@ -46,19 +49,25 @@ public class ProductInfoActivity extends AppCompatActivity {
 
                 if(productCount>=1) {
                     int productCount = Integer.parseInt(binding.productCount.getText().toString());
-                    productCount = productCount + 1;
+                    productCount += 1;
                     binding.productCount.setText(String.valueOf(productCount));
-                    binding.purchasePoint.setText(String.valueOf(productCount*cntPrice));
+                    int totalPrice = productCount*cntPrice;
+                    binding.purchasePoint.setText(String.valueOf(totalPrice));
                 }
             }
         });
 
-        Intent intent2 = new Intent();
-        intent2.putExtra("title",title);
-        intent2.putExtra("count",productCount);
-        intent2.putExtra("price",price);
-        intent2.putExtra("totalPrice",String.valueOf(productCount*cntPrice));
-        startActivity(intent2);
+        binding.prodctPurchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(ProductInfoActivity.this, BuyActivity.class);
+                intent2.putExtra("title",title);
+                intent2.putExtra("count",binding.productCount.getText().toString());
+                intent2.putExtra("price",price);
+                startActivity(intent2);
+            }
+        });
+
 
     }
 }
