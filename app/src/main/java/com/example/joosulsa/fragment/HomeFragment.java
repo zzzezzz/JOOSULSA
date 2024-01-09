@@ -40,6 +40,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.joosulsa.CheckActivity;
 import com.example.joosulsa.CheckPopupActivity;
 import com.example.joosulsa.LoginActivity;
 import com.example.joosulsa.QuizActivity;
@@ -310,6 +311,11 @@ public class HomeFragment extends Fragment {
         }
 
         // 오늘의 출석체크 버튼 이벤트
+        binding.calBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CheckActivity.class);
+            startActivity(intent);
+        });
+
 
         return binding.getRoot();
     }
