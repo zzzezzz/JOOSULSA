@@ -101,7 +101,7 @@ public class TestActivity extends AppCompatActivity {
 
                                 String specialRes ="9";
                                 Log.d("poiuytyt", specialRes);
-                                handlePhotoSearch(specialRes);
+                                handlePhotoSearch(result1);
                             }else {
                                 handlePhotoSearch(result1);
                             }
@@ -131,7 +131,7 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void handlePhotoSearch(String result){
-
+        Log.d("handleData", result);
         StringRequest request = new StringRequest(
                 postMethod,
                 photoUrl,
@@ -153,11 +153,12 @@ public class TestActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 // 검색 방법
-                String searchMethod = "img";
+                String searchMethod = "video";
                 preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
 
                 String autoId = preferences.getString("autoId", "1");
-                params.put("photoNum", result);
+                int sendNum = 8 + Integer.parseInt(result);
+                params.put("sendNum", Integer.toString(sendNum));
                 params.put("method", searchMethod);
                 params.put("userId", autoId);
                 long now =System.currentTimeMillis();
@@ -165,6 +166,7 @@ public class TestActivity extends AppCompatActivity {
                 SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
                 String time = format.format(today);
                 params.put("earnTime", time);
+                Log.d("handleSendData", sendNum + searchMethod + autoId + time);
                 return params;
             }
         };
@@ -202,6 +204,7 @@ public class TestActivity extends AppCompatActivity {
             textSearchIntent.putExtra("recycleVideo",recyVideo);
             textSearchIntent.putExtra("recycleImg",recycleImg);
             textSearchIntent.putExtra("searchmethod", "text");
+            textSearchIntent.putExtra("recyNum", recyNum);
             startActivity(textSearchIntent);
             finish();
 

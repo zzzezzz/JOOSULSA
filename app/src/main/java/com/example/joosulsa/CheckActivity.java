@@ -56,6 +56,7 @@ public class CheckActivity extends AppCompatActivity {
         checkOutput(autoId);
 
         int monthlyAtt = preferences.getInt("monthlyAttendance", 0);
+        Log.d("checkNumCheck", String.valueOf(monthlyAtt));
         for (int i = 1; i<= monthlyAtt; i++){
             String imageViewId = "checkView" + i;
             Log.d("???", imageViewId);
