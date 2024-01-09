@@ -16,6 +16,7 @@ public class ShopListVO {
         this.price = price;
     }
 
+
     public ShopListVO(Bitmap img) {
         this.img = img;
     }

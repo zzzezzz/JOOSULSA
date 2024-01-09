@@ -46,8 +46,8 @@ public class ShopFragment extends Fragment {
 
     int postMethod = Request.Method.POST;
     private RequestQueue requestQueue;
-    private String producturl = "http://192.168.219.45:8089/shop";
-    private String producturlImg = "http://192.168.219.45:8089/shopImg";
+    private String producturl = "http://192.168.219.62:8089/shop";
+    private String productImgUrl = "http://192.168.219.62:8089/shopImg";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,7 +60,7 @@ public class ShopFragment extends Fragment {
             requestQueue = Volley.newRequestQueue(getActivity());
         }
         // 서버통신 메서드 사용
-        poingShop();
+        shopData();
         ShopImg();
 
         // 뒤로가기
@@ -87,13 +87,13 @@ public class ShopFragment extends Fragment {
     }
 
     // 서버 통신(이미지 제외)
-    private void poingShop() {
+    private void shopData() {
         StringRequest request = new StringRequest(
                 postMethod,
                 producturl,
                 response -> {
                     Log.d("shop통신 성공", response);
-                    handShop(response);
+                    handleShop(response);
                 },
                 error -> {
                     Log.d("shop통신 실패", "실패");
@@ -113,7 +113,7 @@ public class ShopFragment extends Fragment {
     private void ShopImg() {
         StringRequest request = new StringRequest(
                 postMethod,
-                producturlImg,
+                productImgUrl,
                 response -> {
                     Log.d("Img 통신 성공", response);
                     shopImg(response);
@@ -139,7 +139,7 @@ public class ShopFragment extends Fragment {
     }
 
     // Spring 에서 받아온 재활용 데이터 처리 메소드(이미지 제외)
-    private void handShop(String response) {
+    private void handleShop(String response) {
         // prodName = 상품 이름
         // prodPrice = 상품 가격
         // prodInfo = 상품 상세정보
@@ -171,48 +171,21 @@ public class ShopFragment extends Fragment {
     // Spring 서버통신 이미지 데이터 가져오기
     private void shopImg(String response) {
         try {
-            JSONArray jsonArray = new JSONArray(response);
-            // 이미지를 저장할 리스트
-            List<Bitmap> imageList = new ArrayList<>();
+            JSONObject jsonResponse = new JSONObject(response);
+            for (int i =0; i<6; i++){
 
-            // 파싱 작업
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                // 안드로이드 디코딩
-                // 올바른 키를 사용하고, 값이 비어있으면 빈 문자열("")을 반환
-                String base64Img = jsonObject.optString("prodImg", "");
-
-                // 값이 비어있지 않은 경우에만 처리
-                if (!base64Img.isEmpty()) {
-                    try {
-                        // Base64로 디코딩하여 Bitmap 생성
-                        byte[] decodedBytes = Base64.decode(base64Img, Base64.DEFAULT);
-                        Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
-
-                        // 이미지를 리스트에 추가
-                        imageList.add(bitmap);
-                    } catch (Exception e) {
-                        // 디코딩 에러가 발생한 경우 에러 메시지를 로그에 출력
-                        Log.e("img이미지 확인", "이미지 디코딩 에러: " + e.getMessage(), e);
-
-                        // 디코딩 에러가 발생하면 빈 이미지를 리스트에 추가하여 에러를 구분할 수 있도록 함
-                        imageList.add(Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888));
-                    }
-                } else {
-                    Log.e("img이미지 확인", "base64Img가 비어있습니다.");
+                try {
+                    String prodImg = jsonResponse.getString("prodImg"+ i);
+                    byte[] decodedBytes1 = Base64.decode(prodImg, Base64.DEFAULT);
+                    Bitmap bitmap1 = BitmapFactory.decodeByteArray(decodedBytes1, 0, decodedBytes1.length);
+                    ShopListVO imgVo = new ShopListVO(bitmap1);
+                    dataset.add(imgVo);
+                }catch (Exception e){
+                    Log.d("acsxzx", e.toString());
                 }
             }
-
-            // 리스트에 있는 이미지들을 데이터셋에 설정
-            for (int i = 0; i < imageList.size(); i++) {
-                dataset.get(i).setImg(imageList.get(i));
-            }
-
-            // 어댑터에 변경된 데이터셋을 알림
-            adapter.notifyDataSetChanged();
         } catch (JSONException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
