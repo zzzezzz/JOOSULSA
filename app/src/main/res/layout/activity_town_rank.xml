@@ -81,16 +81,17 @@
                 android:layout_marginStart="80dp"
                 android:fontFamily="@font/pretendard_bold"
                 android:gravity="center_vertical"
-                android:text="우리 동네는"
+                android:text="현재 우리 동네는"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/textView57"
+                app:layout_constraintEnd_toStartOf="@+id/userTownPoint"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteY="0dp" />
 
             <TextView
-                android:id="@+id/textView57"
+                android:id="@+id/userTownPoint"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:fontFamily="@font/pretendard_bold"
@@ -110,13 +111,13 @@
                 android:layout_marginEnd="80dp"
                 android:fontFamily="@font/pretendard_bold"
                 android:gravity="center_vertical"
-                android:text="포인트 이에요!"
+                android:text=" 입니다!"
                 android:textColor="#FFFFFF"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView57"
+                app:layout_constraintStart_toEndOf="@+id/userTownPoint"
                 tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteY="0dp"
-                android:textSize="16sp" />
+                tools:layout_editor_absoluteY="0dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

@@ -4,6 +4,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -37,10 +38,22 @@ public class TownRankActivity extends AppCompatActivity {
 
     private ActivityTownRankBinding binding;
 
+    // 사용자가 속한 동네의 포인트를 가지고 오기 위해
+    // 로그인 한 사용자 아이디를 가지고 오기 위해 사용
+    private SharedPreferences preferences;
+
     // 서버에 요청 보내기 필요함
     private RequestQueue requestQueue;
-
+    
+    // 상위 동네 랭킹 데이터 뽑아주기 위한 링크
     private String townRankUrl = "http://192.168.219.42:8089/townList";
+    
+    // 로그인 한 사용자가 속한 동네의 포인트를 뽑아주기 위한 링크
+    private String userTownPointUrl = "http://192.168.219.42:8089/userTownPoint";
+
+    // 로그인 한 사용자가 속한 동네의 좌표값을 뽑아주기 위한 링크
+    private String userTownGpsUrl = "http://192.168.219.42:8089/map";
+
 
     int postMethod = Request.Method.POST;
 
@@ -50,6 +63,13 @@ public class TownRankActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityTownRankBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+        // 로그인 한 아이디 전역변수 선언
+        // 스프링의 param값과 이름을 일치시켜주자. 안그러면 매개변수가 달라 오류난다.
+        String userId = autoIdMethod(preferences);
+
+
 
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(TownRankActivity.this);
@@ -72,13 +92,20 @@ public class TownRankActivity extends AppCompatActivity {
         });
 
 
+        // 사용자가 속한 동네의 좌표값을 가지고 오는 메소드
+        // 좌표값을 처리해주기 위해서 아이디 값을 보내주자.
+        townListData(userId);
 
         // 밑에 정의한 메소드
+        // 동네 상위랭킹 뽑아주는 메소드
         townRankData();
 
+        // 사용자가 속한 동네의 포인트를 가지고 오는 메소드
+        // 메소드 안에 로그인한 사용자 아이디를 넣어주자.
+        userTownPointData(userId);
 
 
-
+        // 웹 지도
         // 1. url 값 적어줄 때 카카오 api 연결할 도메인 값도 일치 시킬 것
         // 2. 로컬 아이피이기 때문에 같은 인터넷을 사용해야해서 연결 시 오류가 날 경우 단말의 인터넷 설정을 확인해보자.(와이파이가 연결되어 있지 않다면 인터넷이 뜨지 않음)
         String url = "http://192.168.219.42:8089/map"; // defValue : 오류가 나거나 안뜰때 작성해주는 곳
@@ -98,14 +125,42 @@ public class TownRankActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        
+    }
 
-        // 뒤로 가기 버튼
+    
+    // 사용자가 속한 동네의 좌표값 보내기
+    private void townListData(String userId){
 
+        StringRequest request = new StringRequest(
+                postMethod,
+                userTownGpsUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("오냐고~~~~~", response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("안옴", "안온다고");
+            }
+        }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> param = new HashMap<>();
+                param.put("userId", userId); // 스프링으로 현재 로그인한 id값 전송
+                Log.d("아이디 와줘", userId);
+                return param;
+            }
+        };
+        requestQueue.add(request);
     }
 
 
-
-    // 동네 랭킹에 사용할 데이터 가져올거
+    // 동네 랭킹에 상위랭킹 3개만 뽑아올 때 사용할 데이터 가져오는 요청 및 응답 처리
     private void townRankData(){
 
         StringRequest request = new StringRequest(
@@ -135,7 +190,7 @@ public class TownRankActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
-
+    // 동네 랭킹에 상위랭킹 3개만 뽑아올 때 사용할 데이터 가져오는 처리
     private void townRankDataHandle(String response) {
 
         try {
@@ -195,4 +250,53 @@ public class TownRankActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
     }
+
+
+    // 사용자 user_id가 속한 동네의 포인트 총합을 가지고 오는 응답처리
+    private void userTownPointData(String userId){
+
+        StringRequest request = new StringRequest(
+                postMethod,
+                userTownPointUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("오냐고~~~~~", response);
+                        // response : 스프링에서 보내준 응답 값
+                        // 값을 하나만 가지고 오기 때문에 이렇게만 처리해주자.
+                        // text는 String값이기 때문에 문자열로 바꿔준다.
+                        binding.userTownPoint.setText(" "+response.toString()+" 포인트");
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("안옴", "안온다고");
+            }
+        }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> param = new HashMap<>();
+                param.put("userId", userId); // 스프링으로 현재 로그인한 id값 전송
+                return param;
+            }
+        };
+
+        requestQueue.add(request);
+    }
+
+
+    // 사용자 동네에 해당하는 포인트 점수를 가지고 오기 위해 선언
+    // 로그인 한 사용자 아이디를 가지고 오는 메소드
+    private String autoIdMethod(SharedPreferences preferences){
+        Log.d("autoIdCheck", "Asdasd");
+        preferences = TownRankActivity.this.getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        String autoId = preferences.getString("autoId", null);
+        // Log.d("casdas", autoId);
+        return autoId;
+    }
+
+
+
 }
