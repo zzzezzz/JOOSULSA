@@ -133,7 +133,7 @@ public class PersonRankActivity extends AppCompatActivity {
                 Log.d("asmntrbvx", scoreTextView.toString());
 
                 nickTextView.setText(userNick.toString());
-                scoreTextView.setText(stringPoints);
+                scoreTextView.setText(stringPoints + " pt");
 
                 // 원하는 로직 수행
                 Log.d("UserRankData", "User ID: " + userNick + ", Total Points: " + totalPoints);
