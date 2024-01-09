@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     // 서버에 요청 보내려면 필요함
     private RequestQueue queue;
 
-    private String springUrl = "http://192.168.219.42:8089/login";
+    private String springUrl = "http://192.168.219.62:8089/login";
 
     int postMethod = Request.Method.POST;
 
@@ -117,6 +117,8 @@ public class LoginActivity extends AppCompatActivity {
             String loginPw = jsonResponse.getString("userPw");
             String loginAddr = jsonResponse.getString("userAddr");
             String loginNick = jsonResponse.getString("userNick");
+            boolean checkBoolean = jsonResponse.getBoolean("attendance");
+            boolean quizBoolean = jsonResponse.getBoolean("quizParticipation");
             Log.d("LogInDataCheck", "닉네임: "+loginName + "Id: "+loginId + "Pw : "+ loginPw);
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             // intent에 값 집어넣음
@@ -134,6 +136,8 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("autoName", loginName);
             editor.putString("autoAddr", loginAddr);
             editor.putString("autoNick", loginNick);
+            editor.putBoolean("checkBoolean", checkBoolean);
+            editor.putBoolean("quizBoolean", quizBoolean);
             Log.d("checkAfterInput", loginPw);
             editor.apply();
 

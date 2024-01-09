@@ -57,7 +57,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -81,8 +83,10 @@ public class HomeFragment extends Fragment {
     // 스프링 url 관리 여기 몰아서 할거임
     private String quizUrl = "http://192.168.219.62:8089/quizRequest";
     private String checkUrl = "http://192.168.219.62:8089/dataCheck";
-
     private String cateUrl = "http://192.168.219.62:8089/category";
+    private String falseUrl = "http://192.168.219.62:8089/makeFalse";
+    private String trueUrl = "http://192.168.219.62:8089/makeTrue";
+
 
     int postMethod = Request.Method.POST;
 
@@ -109,27 +113,49 @@ public class HomeFragment extends Fragment {
         String autoName = autoNameMethod(preferences);
         String autoAddr = autoAddrMethod(preferences);
         String autoNick = autoNickMethod(preferences);
-        boolean checkBoolean = true;
-        boolean quizBoolean = true;
+        boolean checkBoolean;
+        boolean quizBoolean;
         int userPoint = 0;
-        if (autoId!=null){
-            quizCheckDataRequest(autoId);
-            checkBoolean = autoTodayAtt(preferences);
-            quizBoolean = autoQuiz(preferences);
-            userPoint = userPoint(preferences);
-        }
+        quizCheckDataRequest(autoId);
+        checkBoolean = autoTodayAtt(preferences);
+        quizBoolean = autoQuiz(preferences);
+        Log.d("daxczxzcqwe", Integer.toString(userPoint(preferences)));
+        userPoint = userPoint(preferences);
+        Log.d("대체 왜 초기화가 안되냐", String.valueOf(checkBoolean));
         Log.d("checkingchecking", "id:"+autoId + "닉네임:"+autoNick+"pw:"+autoPw + "이름" + autoName + "주소 : " + autoAddr);
         Log.d("booleanCheck", checkBoolean + " / " + quizBoolean);
+        int totalPoints = userPoint(preferences);
+        String checkTime;
+
+        long now =System.currentTimeMillis();
+        Date today =new Date(now);
+        SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
+        String nowTime = format.format(today);
+        Log.d("nowTime", nowTime);
 
         // 출석체크
-        if (checkBoolean == false){
+//        if (checkBoolean == false){
+//
+//            Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
+//
+//            long now1 =System.currentTimeMillis();
+//            Date today1 =new Date(now1);
+//            SimpleDateFormat format1 =new SimpleDateFormat("yyyy.MM.dd");
+//            checkTime = format1.format(today1);
+//            Log.d("checkTime", checkTime);
+//            if (checkTime.equals(nowTime)){
+//                makeTrue(autoId);
+//                quizCheckDataRequest(autoId);
+//            }else {
+//                makeFalse(autoId);
+//
+//            }
+//
+//            startActivity(intent);
+//        }else {
+//
+//        }
 
-            Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
-
-            startActivity(intent);
-        }else {
-
-        }
 
         // homeFragment에 있는 요소 순서대로 이벤트 작성바람
 
@@ -145,7 +171,7 @@ public class HomeFragment extends Fragment {
         // 회원정보창 이벤트
         if (autoId!=null && autoPw!=null) {
             binding.memberId.setText(autoNick);
-            binding.numPoint.setText(Integer.toString(userPoint));
+            binding.numPoint.setText(Integer.toString(totalPoints));
             binding.memberInfo.setOnClickListener(v -> {
                 // MyPageFragment로 이동하는 코드
                 requireActivity().getSupportFragmentManager().beginTransaction().replace(
@@ -155,7 +181,7 @@ public class HomeFragment extends Fragment {
             });
         } else if (checkUserInputNick!=null) {
             binding.memberId.setText(checkUserInputNick);
-            binding.numPoint.setText(Integer.toString(userPoint));
+            binding.numPoint.setText(Integer.toString(totalPoints));
             binding.memberInfo.setOnClickListener(v -> {
                 // MyPageFragment로 이동하는 코드
                 requireActivity().getSupportFragmentManager().beginTransaction().replace(
@@ -273,7 +299,7 @@ public class HomeFragment extends Fragment {
         // 퀴즈버튼 이벤트
         if (quizBoolean == false){
             binding.quizBtn.setOnClickListener(v -> {
-                int quizNumber = getRandomNumber(1, 100);
+                int quizNumber = getRandomNumber(1, 20);
                 quizRequest(quizNumber);
             });
         }else {
@@ -286,6 +312,60 @@ public class HomeFragment extends Fragment {
         // 오늘의 출석체크 버튼 이벤트
 
         return binding.getRoot();
+    }
+
+    private void makeTrue(String autoId){
+        StringRequest request = new StringRequest(
+                postMethod,
+                trueUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", autoId);
+                return params;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+    private void makeFalse(String autoId){
+        StringRequest request = new StringRequest(
+                postMethod,
+                falseUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", autoId);
+                return params;
+            }
+        };
+        requestQueue.add(request);
     }
 
     // 카테고리에 넣을 데이터 가져옴
@@ -364,13 +444,15 @@ public class HomeFragment extends Fragment {
             JSONObject jsonResponse = new JSONObject(response);
             Log.d("why", response);
             preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
-            boolean todayAtt = jsonResponse.getBoolean("attendance");
-            boolean quizAtt = jsonResponse.getBoolean("quizParticipation");
+            boolean todayAtt = jsonResponse.getBoolean("checkBoolean");
+            boolean quizAtt = jsonResponse.getBoolean("quizBoolean");
             int monthlyAttNum = Integer.parseInt(jsonResponse.getString("monthlyAttendance"));
+            int totalPoints = Integer.parseInt(jsonResponse.getString("totalPoints"));
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("quizBoolean", todayAtt);
             editor.putBoolean("checkBoolean", quizAtt);
             editor.putInt("monthlyAttendance", monthlyAttNum);
+            editor.putInt("totalPoints", totalPoints);
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -423,13 +505,9 @@ public class HomeFragment extends Fragment {
 
     private int userPoint(SharedPreferences preferences){
         preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
-        int userPoint = preferences.getInt("userPoint", 0);
+        int userPoint = preferences.getInt("totalPoints", 0);
+        Log.d("casdas", Integer.toString(userPoint));
         return userPoint;
-    }
-
-    // 출석 현황 가져오는 메소드(출석 팝업에 띄워줄 데이터 가져오는거)
-    private void userDateCheck(){
-
     }
 
     // 랜덤 숫자 생성 메소드(퀴즈 번호 호출할때 쓰는거)

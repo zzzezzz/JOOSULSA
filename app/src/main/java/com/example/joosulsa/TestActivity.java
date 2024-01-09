@@ -3,6 +3,9 @@ package com.example.joosulsa;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 
 import android.os.Bundle;
@@ -22,10 +25,13 @@ import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.databinding.ActivityTestBinding;
 
 import org.jetbrains.annotations.Nullable;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,6 +44,8 @@ public class TestActivity extends AppCompatActivity {
     private String photoUrl = "http://192.168.219.62:8089/photoData";
 
     int postMethod = Request.Method.POST;
+
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +61,8 @@ public class TestActivity extends AppCompatActivity {
         if (requestQueue == null){
             requestQueue = Volley.newRequestQueue(TestActivity.this);
         }
+
+
 
         uploadImageToServer(base64Image);
 
@@ -86,10 +96,11 @@ public class TestActivity extends AppCompatActivity {
                             // Toast.makeText(TestActivity.this, "서버응답" +, Toast.LENGTH_SHORT).show();
                             // result값을 사용해서 tb_recycling에서 데이터 조회해서 detail로 넘겨주기
                             // 추가적으로 if문을 사용해서 조건 처리하기
-                            if (result1.equals(3)) {
+                            if (result1.equals("3")) {
                                 // 6번부터 특수데이터
-                                int resultCast = Integer.parseInt(result2)+6;
-                                String specialRes = Integer.toString(resultCast);
+
+                                String specialRes ="9";
+                                Log.d("poiuytyt", specialRes);
                                 handlePhotoSearch(specialRes);
                             }else {
                                 handlePhotoSearch(result1);
@@ -108,7 +119,7 @@ public class TestActivity extends AppCompatActivity {
                 }
 
         ){
-            @androidx.annotation.Nullable
+            @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -128,23 +139,76 @@ public class TestActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d("sdasdasczxcz", response);
+                        photoDataSend(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.d("photoError", error.toString());
             }
         }
         ){
-            @androidx.annotation.Nullable
+            @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+                // 검색 방법
+                String searchMethod = "img";
+                preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+
+                String autoId = preferences.getString("autoId", "1");
                 params.put("photoNum", result);
+                params.put("method", searchMethod);
+                params.put("userId", autoId);
+                long now =System.currentTimeMillis();
+                Date today =new Date(now);
+                SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+                String time = format.format(today);
+                params.put("earnTime", time);
                 return params;
             }
         };
         requestQueue.add(request);
+    }
+
+    private void photoDataSend(String response){
+
+        try {
+            JSONObject jsonResponse = new JSONObject(response);
+            JSONObject photoCheckObject = jsonResponse.getJSONObject("recyData");
+
+            String recyNum = photoCheckObject.getString("recycleNum");
+            String trashNm = photoCheckObject.getString("trashName");
+            String sepaMethod = photoCheckObject.getString("sepaMethod");
+            String sepaCaution = photoCheckObject.getString("sepaCaution");
+            String sepaImg = photoCheckObject.getString("sepaImg");
+            String sepaVideo = photoCheckObject.getString("sepaVideo");
+            String recyViews = photoCheckObject.getString("recycleViews");
+            String recyVideo = photoCheckObject.getString("recycleVideo");
+            String recycleImg = photoCheckObject.getString("recycleImg");
+
+            // totalPoints 가져오기
+            int totalPoints = jsonResponse.getInt("totalPoints");
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("userPoint", totalPoints);
+            editor.apply();
+
+            Intent textSearchIntent = new Intent(TestActivity.this, RecycleDetailActivity.class);
+            textSearchIntent.putExtra("trashName", trashNm);
+            textSearchIntent.putExtra("sepaMethod",sepaMethod);
+            textSearchIntent.putExtra("sepaCaution",sepaCaution);
+            textSearchIntent.putExtra("sepaImg",sepaImg);
+            textSearchIntent.putExtra("sepaVideo",sepaVideo);
+            textSearchIntent.putExtra("recycleVideo",recyVideo);
+            textSearchIntent.putExtra("recycleImg",recycleImg);
+            textSearchIntent.putExtra("searchmethod", "text");
+            startActivity(textSearchIntent);
+            finish();
+
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }
