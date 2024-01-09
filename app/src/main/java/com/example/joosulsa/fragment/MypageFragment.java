@@ -5,31 +5,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.example.joosulsa.MyPageEditActivity;
 import com.example.joosulsa.R;
 import com.example.joosulsa.databinding.FragmentMypageBinding;
-import com.example.joosulsa.point.RePointHistroyActivity;
+import com.example.joosulsa.point.RePointHistoryActivity;
 import com.example.joosulsa.purchase_list.PurchaseListActivity;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class MypageFragment extends Fragment {
@@ -71,7 +59,7 @@ public class MypageFragment extends Fragment {
         });
         // 포인트내역 페이지 이동
         binding.pointInquiry.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), RePointHistroyActivity.class);
+            Intent intent = new Intent(getActivity(), RePointHistoryActivity.class);
             startActivity(intent);
         });
 

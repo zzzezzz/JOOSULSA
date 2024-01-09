@@ -6,12 +6,14 @@ public class PurchaseListVO {
     private int img;
     private String title;
     private String content;
+    private int date;
 
     // 생성자 생성
-    public PurchaseListVO(int img, String title, String content) {
+    public PurchaseListVO(int img, String title, String content, int date) {
         this.img = img;
         this.title = title;
         this.content = content;
+        this.date = date;
     }
 
     public int getImg() {
@@ -24,5 +26,9 @@ public class PurchaseListVO {
 
     public String getContent() {
         return content;
+    }
+
+    public int getDate() {
+        return date;
     }
 }
