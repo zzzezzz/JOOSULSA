@@ -43,7 +43,7 @@
         android:id="@+id/third"
         android:layout_width="100dp"
         android:layout_height="110dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         app:cardBackgroundColor="@color/main"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
@@ -61,7 +61,7 @@
                 android:id="@+id/cardView26"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="16dp"
                 android:visibility="visible"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="50dp"
@@ -101,32 +101,19 @@
                 android:id="@+id/personScore3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="#FFFFFF"
-                android:fontFamily="@font/pretendard_regular"
-                android:padding="2dp"
+                android:fontFamily="@font/pretendard_semibold"
+                android:paddingLeft="6dp"
+                android:paddingTop="3dp"
+                android:paddingRight="6dp"
+                android:paddingBottom="3dp"
                 android:text="55416516"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toStartOf="@+id/textView72"
-                app:layout_constraintHorizontal_bias="0.5"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/personNick3" />
-
-            <TextView
-                android:id="@+id/textView72"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:padding="2dp"
-                android:text="@string/units"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/personScore3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/personScore3"
-                app:layout_constraintTop_toTopOf="@+id/personScore3"
-                app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
                 android:id="@+id/imageView31"
@@ -158,7 +145,7 @@
         android:id="@+id/second"
         android:layout_width="100dp"
         android:layout_height="110dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         app:cardBackgroundColor="@color/main"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
@@ -176,7 +163,7 @@
                 android:id="@+id/cardView27"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="16dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="0dp"
@@ -199,41 +186,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="9dp"
                 android:fontFamily="@font/pretendard_bold"
                 android:text="TextView"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toTopOf="@+id/textView75"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView27" />
 
             <TextView
-                android:id="@+id/textView75"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:padding="2dp"
-                android:text="@string/units"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/personScore2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/personScore2"
-                app:layout_constraintTop_toTopOf="@+id/personScore2" />
-
-            <TextView
                 android:id="@+id/personScore2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="#FFFFFF"
-                android:fontFamily="@font/pretendard_regular"
-                android:padding="2dp"
+                android:fontFamily="@font/pretendard_semibold"
+                android:paddingLeft="6dp"
+                android:paddingTop="3dp"
+                android:paddingRight="6dp"
+                android:paddingBottom="3dp"
                 android:text="55416516"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toStartOf="@+id/textView75"
-                app:layout_constraintHorizontal_bias="0.5"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/personNick2" />
@@ -268,7 +241,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="21dp"
-        android:text="랭킹축하해용~"
+        android:fontFamily="@font/pretendard_bold"
+        android:text="이번 달 랭킹 달성을 축하드립니다!"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/first"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -293,9 +268,10 @@
             android:layout_height="match_parent">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardView23"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginBottom="5dp"
                 android:visibility="visible"
                 app:cardBackgroundColor="#FFFFFF"
@@ -304,9 +280,10 @@
                 app:cardMaxElevation="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/personNick1"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.486"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintVertical_bias="0.0">
 
                 <ImageView
                     android:id="@+id/firstImg"
@@ -320,42 +297,30 @@
                 android:id="@+id/personNick1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/pretendard_bold"
                 android:text="TextView"
-                app:layout_constraintBottom_toTopOf="@+id/textView60"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.48"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView25"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/cardView23" />
 
             <TextView
                 android:id="@+id/personScore1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:background="#FFFFFF"
-                android:fontFamily="@font/pretendard_regular"
-                android:padding="2dp"
+                android:fontFamily="@font/pretendard_semibold"
+                android:paddingLeft="6dp"
+                android:paddingTop="3dp"
+                android:paddingRight="6dp"
+                android:paddingBottom="3dp"
                 android:text="55416516"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView60"
-                app:layout_constraintEnd_toStartOf="@+id/textView60"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView60" />
-
-            <TextView
-                android:id="@+id/textView60"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:background="#FFFFFF"
-                android:padding="2dp"
-                android:text="@string/units"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/personScore1"
                 app:layout_constraintTop_toBottomOf="@+id/personNick1" />
 
             <ImageView
@@ -394,7 +359,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 app:cardBackgroundColor="@color/main"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="0dp"
@@ -414,7 +379,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 app:srcCompat="@drawable/user" />
 
             <TextView
@@ -432,16 +397,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:fontFamily="@font/pretendard_regular"
+                android:fontFamily="@font/pretendard_semibold"
                 android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView85"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:text="@string/units" />
 
         </LinearLayout>
 
@@ -469,7 +426,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 app:cardBackgroundColor="@color/main"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="0dp"
@@ -489,7 +446,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 app:srcCompat="@drawable/user" />
 
             <TextView
@@ -507,16 +464,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:fontFamily="@font/pretendard_regular"
+                android:fontFamily="@font/pretendard_semibold"
                 android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView90"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:text="@string/units" />
 
         </LinearLayout>
 
@@ -544,7 +493,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 app:cardBackgroundColor="@color/main"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="0dp"
@@ -565,7 +514,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 app:srcCompat="@drawable/user" />
 
             <TextView
@@ -583,16 +532,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:fontFamily="@font/pretendard_regular"
+                android:fontFamily="@font/pretendard_semibold"
                 android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView93"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:text="@string/units" />
 
         </LinearLayout>
 
@@ -620,7 +561,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 app:cardBackgroundColor="@color/main"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="0dp"
@@ -640,7 +581,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 app:srcCompat="@drawable/user" />
 
             <TextView
@@ -658,16 +599,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:fontFamily="@font/pretendard_regular"
+                android:fontFamily="@font/pretendard_semibold"
                 android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView96"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:text="@string/units" />
 
         </LinearLayout>
 
@@ -695,7 +628,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 app:cardBackgroundColor="@color/main"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="0dp"
@@ -715,7 +648,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 app:srcCompat="@drawable/user" />
 
             <TextView
@@ -733,16 +666,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:fontFamily="@font/pretendard_regular"
+                android:fontFamily="@font/pretendard_semibold"
                 android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView99"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:text="@string/units" />
 
         </LinearLayout>
 
@@ -770,7 +695,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 app:cardBackgroundColor="@color/main"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="0dp"
@@ -790,7 +715,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 app:srcCompat="@drawable/user" />
 
             <TextView
@@ -808,16 +733,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:fontFamily="@font/pretendard_regular"
+                android:fontFamily="@font/pretendard_semibold"
                 android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView102"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:text="@string/units" />
 
         </LinearLayout>
 
@@ -845,7 +762,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 app:cardBackgroundColor="@color/main"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="0dp"
@@ -865,7 +782,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 app:srcCompat="@drawable/user" />
 
             <TextView
@@ -883,16 +800,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:fontFamily="@font/pretendard_regular"
+                android:fontFamily="@font/pretendard_semibold"
                 android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView134"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:text="@string/units" />
 
         </LinearLayout>
 

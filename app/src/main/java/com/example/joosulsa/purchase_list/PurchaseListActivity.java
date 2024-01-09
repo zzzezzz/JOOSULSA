@@ -16,6 +16,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.R;
 import com.example.joosulsa.databinding.ActivityPurchaseListBinding;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,6 +65,7 @@ public class PurchaseListActivity extends AppCompatActivity {
                 response -> {
                     Log.d("구매내역 통신","성공");
 
+
                 },
                 error -> {
                     Log.d("구매내역 통신", "실패");
@@ -76,14 +80,5 @@ public class PurchaseListActivity extends AppCompatActivity {
         };
         requestQueue.add(request);
     }
-    // 데이터 가져기
-    private void shopHistory(String response){
-        try {
-            for (int i=0; i<response.length(); i++){
 
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 }

@@ -28,7 +28,5 @@ public class PurchaseListVO {
         return content;
     }
 
-    public int getDate() {
-        return date;
-    }
+    public int getDate() {return date;}
 }
