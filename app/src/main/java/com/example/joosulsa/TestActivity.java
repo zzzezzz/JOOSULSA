@@ -131,7 +131,7 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void handlePhotoSearch(String result){
-
+        Log.d("handleData", result);
         StringRequest request = new StringRequest(
                 postMethod,
                 photoUrl,
@@ -157,7 +157,8 @@ public class TestActivity extends AppCompatActivity {
                 preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
 
                 String autoId = preferences.getString("autoId", "1");
-                params.put("photoNum", result);
+                int sendNum = 8 + Integer.parseInt(result);
+                params.put("photoNum", Integer.toString(sendNum));
                 params.put("method", searchMethod);
                 params.put("userId", autoId);
                 long now =System.currentTimeMillis();
@@ -165,6 +166,7 @@ public class TestActivity extends AppCompatActivity {
                 SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
                 String time = format.format(today);
                 params.put("earnTime", time);
+                Log.d("handleSendData", sendNum + searchMethod + autoId + time);
                 return params;
             }
         };
