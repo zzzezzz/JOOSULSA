@@ -161,6 +161,7 @@ public class SearchActivity extends AppCompatActivity {
             JSONObject searchCheckObject = jsonResponse.getJSONObject("searchCheck");
 
             // searchCheck의 속성들 가져오기
+            String trashName = searchCheckObject.getString("trashName");
             String sepaMethod = searchCheckObject.getString("sepaMethod");
             String sepaCaution = searchCheckObject.getString("sepaCaution");
             String sepaImg = searchCheckObject.getString("sepaImg");
@@ -183,6 +184,7 @@ public class SearchActivity extends AppCompatActivity {
             editor.apply();
             // Intent에 값 넣어주기
             Intent textSearchIntent = new Intent(SearchActivity.this, RecycleDetailActivity.class);
+            textSearchIntent.putExtra("trashName", trashName);
             textSearchIntent.putExtra("sepaMethod",sepaMethod);
             textSearchIntent.putExtra("sepaCaution",sepaCaution);
             textSearchIntent.putExtra("sepaImg",sepaImg);
