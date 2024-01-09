@@ -13,7 +13,7 @@ public class PurchaseListViewHolder extends RecyclerView.ViewHolder {
 
     // item_view.xml의 id
     private ImageView productImg;
-    private TextView pchTitle, pchContent;
+    private TextView pchTitle, pchContent, purchaseDate;
 
 
     public PurchaseListViewHolder(@NonNull View itemView) {
@@ -22,6 +22,7 @@ public class PurchaseListViewHolder extends RecyclerView.ViewHolder {
         this.productImg = itemView.findViewById(R.id.productImg);
         this.pchTitle = itemView.findViewById(R.id.pchTitle);
         this.pchContent = itemView.findViewById(R.id.pchContent);
+        this.purchaseDate = itemView.findViewById(R.id.purchaseDate);
 
     }
 
@@ -40,6 +41,7 @@ public class PurchaseListViewHolder extends RecyclerView.ViewHolder {
         return pchContent;
     }
 
-
-
+    public TextView getPurchaseDate() {
+        return purchaseDate;
+    }
 }

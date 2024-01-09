@@ -170,11 +170,8 @@ public class ShopFragment extends Fragment {
 
     // Spring 서버통신 이미지 데이터 가져오기
     private void shopImg(String response) {
-        Log.d("?","가냐?");
         try {
-            Log.d("오니?",String.valueOf(response.length()));
             JSONArray jsonArray = new JSONArray(response);
-
             // 이미지를 저장할 리스트
             List<Bitmap> imageList = new ArrayList<>();
 
@@ -184,15 +181,12 @@ public class ShopFragment extends Fragment {
 
                 // 안드로이드 디코딩
                 // 올바른 키를 사용하고, 값이 비어있으면 빈 문자열("")을 반환
-                String base64Img = jsonObject.toString();
-                Log.d("오니?2",base64Img);
+                String base64Img = jsonObject.optString("prodImg", "");
 
                 // 값이 비어있지 않은 경우에만 처리
                 if (!base64Img.isEmpty()) {
-                    Log.d("오니3","ㅎㅇ");
                     try {
                         // Base64로 디코딩하여 Bitmap 생성
-                        Log.d("오니4","ㅎㅇ");
                         byte[] decodedBytes = Base64.decode(base64Img, Base64.DEFAULT);
                         Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
 

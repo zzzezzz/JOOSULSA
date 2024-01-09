@@ -8,16 +8,16 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.joosulsa.MainActivity;
-import com.example.joosulsa.R;
 import com.example.joosulsa.databinding.ActivityRePointHistroyBinding;
 
 import java.util.ArrayList;
 
-public class RePointHistroyActivity extends AppCompatActivity {
+public class RePointHistoryActivity extends AppCompatActivity {
 
     private ArrayList<RePointHistoryVO> dataset;
     private RePointHistoryAdapter adapter;
     private ActivityRePointHistroyBinding binding;
+    private String poUrl ="172.30.48.1/poHistroy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +43,10 @@ public class RePointHistroyActivity extends AppCompatActivity {
         adapter = new RePointHistoryAdapter(dataset);
         binding.rePointHistoryList.setAdapter(adapter);
 
-
-
-
-
         binding.homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RePointHistroyActivity.this, MainActivity.class);
+                Intent intent = new Intent(RePointHistoryActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

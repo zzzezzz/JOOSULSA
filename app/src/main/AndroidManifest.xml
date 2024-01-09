@@ -57,7 +57,7 @@
             android:name=".PointMarketActivity"
             android:exported="false" />
         <activity
-            android:name=".point.RePointHistroyActivity"
+            android:name=".point.RePointHistoryActivity"
             android:exported="false" />
         <activity
             android:name=".purchase_list.PurchaseListActivity"
