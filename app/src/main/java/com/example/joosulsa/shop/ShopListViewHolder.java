@@ -17,7 +17,7 @@ public class ShopListViewHolder extends RecyclerView.ViewHolder {
     private TextView proTitle, proInfo, proPrice;
 
     // 클릭 이벤트 사용하기 위해 객체 선언
-    // ItemClickListener listener;
+    ShopListListener listener;
 
     // 생성자 생성
     public ShopListViewHolder(@NonNull View itemView) {super(itemView);
@@ -44,6 +44,10 @@ public class ShopListViewHolder extends RecyclerView.ViewHolder {
 
     public TextView getProPrice() {
         return proPrice;
+    }
+
+    public void onClick(View v) {
+        this.listener.onItemClickListener(v,getLayoutPosition());
     }
 
 

@@ -163,10 +163,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/pretendard_medium"
-            android:text="개"
-            app:layout_constraintBottom_toBottomOf="@+id/textView45"
+            android:text="pt"
+            app:layout_constraintBottom_toBottomOf="@+id/textView15"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView45" />
+            app:layout_constraintTop_toTopOf="@+id/textView15" />
 
         <TextView
             android:id="@+id/buyCount2"
@@ -244,6 +244,17 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView55"
             app:layout_constraintEnd_toStartOf="@+id/textView56"
             app:layout_constraintTop_toTopOf="@+id/textView55" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/textView45"
+            app:layout_constraintEnd_toStartOf="@+id/textView50"
+            app:layout_constraintTop_toTopOf="@+id/textView45" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
