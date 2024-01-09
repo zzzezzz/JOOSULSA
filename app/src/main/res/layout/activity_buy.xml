@@ -164,9 +164,9 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/pretendard_medium"
             android:text="pt"
-            app:layout_constraintBottom_toBottomOf="@+id/textView15"
+            app:layout_constraintBottom_toBottomOf="@+id/buyTotal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView15" />
+            app:layout_constraintTop_toTopOf="@+id/buyTotal" />
 
         <TextView
             android:id="@+id/buyCount2"
@@ -230,12 +230,12 @@
             android:fontFamily="@font/pretendard_medium"
             android:text="pt"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/buySum"
+            app:layout_constraintBottom_toBottomOf="@+id/buyTotal2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/buySum" />
+            app:layout_constraintTop_toTopOf="@+id/buyTotal2" />
 
         <TextView
-            android:id="@+id/buySum"
+            android:id="@+id/buyTotal2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -246,7 +246,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView55" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/buyTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

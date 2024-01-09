@@ -55,7 +55,9 @@ public class ProductInfoActivity extends AppCompatActivity {
 
         Intent intent2 = new Intent();
         intent2.putExtra("title",title);
-        intent2.putExtra("price",String.valueOf(productCount*cntPrice));
+        intent2.putExtra("count",productCount);
+        intent2.putExtra("price",price);
+        intent2.putExtra("totalPrice",String.valueOf(productCount*cntPrice));
         startActivity(intent2);
 
     }
