@@ -10,7 +10,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView18"
         android:layout_width="370dp"
-        android:layout_height="275dp"
+        android:layout_height="wrap_content"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:text="플라스틱이외의 재질이 부착된 완구나 문구류, 옷걸이, 칫솔, 파일철, 전화기, 낚싯대, 유모차, 보행기, CD, DVD, 여행용 트렁크, 골프가방 등은 종량제 봉투, 특수규격마 대 또는 대형폐기물 처리 등 지자체 조례에 따라 배출한다."
                 android:textColor="#000000"
@@ -51,7 +51,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="30dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 

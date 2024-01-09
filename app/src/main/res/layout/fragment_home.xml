@@ -42,7 +42,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="10dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
                 app:cardMaxElevation="0dp"
@@ -63,7 +63,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:fontFamily="@font/pretendard_bold"
-                android:text="@string/titHash" />
+                android:text="@string/titHash"
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:id="@+id/hashtag"
@@ -141,10 +142,11 @@
 
                     <ImageView
                         android:id="@+id/imageView9"
-                        android:layout_width="70dp"
+                        android:layout_width="60dp"
                         android:layout_height="70dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="6dp"
                         app:srcCompat="@drawable/user" />
 
                     <LinearLayout
@@ -159,25 +161,26 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:fontFamily="@font/pretendard_bold"
-                            android:text="로그인이 필요합니다." />
+                            android:text="로그인이 필요합니다."
+                            android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/memberContent"
-                            android:layout_width="160dp"
+                            android:layout_width="170dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="20dp"
                             android:fontFamily="@font/pretendard_medium"
                             android:text="@string/tvLogintext"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/pointInfo"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
                     android:layout_gravity="right"
                     android:layout_marginTop="12dp"
                     android:layout_marginRight="20dp"
@@ -304,9 +307,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginBottom="6dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/pretendard_bold"
-                android:text="@string/titCategory" />
+                android:text="@string/titCategory"
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -375,7 +379,7 @@
                 android:layout_height="55dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="30dp"
                 app:cardBackgroundColor="@color/subBlue"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="0dp">

@@ -1,5 +1,6 @@
 package com.example.joosulsa;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
@@ -18,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.databinding.ActivityTownRankBinding;
+import com.example.joosulsa.fragment.RankFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,6 +56,23 @@ public class TownRankActivity extends AppCompatActivity {
 
         }
 
+        // 뒤로 가기
+        binding.btnTownRankBack.setOnClickListener(v -> {
+            Intent intent = new Intent(TownRankActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+
+        // 홈으로
+        binding.townHomeBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(TownRankActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+
+
         // 밑에 정의한 메소드
         townRankData();
 
@@ -79,7 +99,12 @@ public class TownRankActivity extends AppCompatActivity {
 //            finish();
 //        });
 
+        // 뒤로 가기 버튼
+
+
+
     }
+
 
 
     // 동네 랭킹에 사용할 데이터 가져올거

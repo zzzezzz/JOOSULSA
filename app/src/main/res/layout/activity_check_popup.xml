@@ -25,19 +25,32 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/commentary"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/pretendard_bold"
+                android:gravity="center"
+                android:text="오늘은 출석하셨네요!"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="25dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView152"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/pretendard_regular"
+                    android:fontFamily="@font/pretendard_medium"
                     android:gravity="right"
                     android:text="이번 달"
                     android:textColor="#000000" />
@@ -57,28 +70,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/pretendard_regular"
+                    android:fontFamily="@font/pretendard_medium"
                     android:text="번째 출석입니다!"
                     android:textColor="#000000" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/commentary"
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/pretendard_bold"
-                android:gravity="center"
-                android:text="오늘은 출석하셨네요!"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginBottom="28dp"
+                android:layout_marginBottom="30dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
