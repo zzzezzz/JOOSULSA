@@ -1,21 +1,30 @@
 package com.example.joosulsa.shop;
 
+import android.graphics.Bitmap;
+
 public class ShopListVO {
 
     // 필드 정의
-    private int img;
+    private Bitmap img;
     private String title;
     private String content;
     private int price;
 
-    public ShopListVO(int img, String title, String content, int price) {
-        this.img = img;
+    public ShopListVO(String title, String content, int price) {
         this.title = title;
         this.content = content;
         this.price = price;
     }
 
-    public int getImg() {
+    public ShopListVO(Bitmap img) {
+        this.img = img;
+    }
+
+    public void setImg(Bitmap img) {
+        this.img = img;
+    }
+
+    public Bitmap getImg() {
         return img;
     }
 

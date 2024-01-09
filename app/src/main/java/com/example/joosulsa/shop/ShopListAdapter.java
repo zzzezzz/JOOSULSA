@@ -1,6 +1,9 @@
 package com.example.joosulsa.shop;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.joosulsa.R;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +59,7 @@ public class ShopListAdapter extends BaseAdapter {
         ShopListVO item = dataList.get(position);
 
         // TODO: 이미지 로딩 및 기타 데이터를 뷰에 설정
-        viewHolder.getImg().setImageResource(item.getImg());
+        viewHolder.getImg().setImageBitmap(item.getImg());
         viewHolder.getProTitle().setText(item.getTitle());
         viewHolder.getProInfo().setText(item.getContent());
         viewHolder.getProPrice().setText(String.valueOf(item.getPrice()));
