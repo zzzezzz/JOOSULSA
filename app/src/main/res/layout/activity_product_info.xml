@@ -201,7 +201,7 @@
                 <TextView
                     android:id="@+id/textView39"
                     android:layout_width="300dp"
-                    android:layout_height="30dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="@font/pretendard_bold"
                     android:gravity="center|start"

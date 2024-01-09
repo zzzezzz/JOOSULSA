@@ -1,6 +1,7 @@
 package com.example.joosulsa.shop;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.widget.BaseAdapter;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.joosulsa.ProductInfoActivity;
 import com.example.joosulsa.R;
 
 import java.io.File;
@@ -64,7 +66,21 @@ public class ShopListAdapter extends BaseAdapter {
         viewHolder.getProInfo().setText(item.getContent());
         viewHolder.getProPrice().setText(String.valueOf(item.getPrice()));
 
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 상세 페이지 액티비티 호출
+                Intent intent = new Intent(context, ProductInfoActivity.class);
+                intent.putExtra("title", item.getTitle());
+                intent.putExtra("content", item.getContent());
+                intent.putExtra("price", String.valueOf(item.getPrice()));
+                context.startActivity(intent);
+            }
+        });
+
         return convertView;
 
     }
+
+
 }
