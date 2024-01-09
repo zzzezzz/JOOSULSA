@@ -458,6 +458,8 @@ public class HomeFragment extends Fragment {
             editor.putBoolean("checkBoolean", quizAtt);
             editor.putInt("monthlyAttendance", monthlyAttNum);
             editor.putInt("totalPoints", totalPoints);
+            Log.d("preferencePoints", String.valueOf(totalPoints));
+            editor.apply();
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
