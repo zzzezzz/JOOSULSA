@@ -54,6 +54,13 @@ public class BuyActivity extends AppCompatActivity {
             }
         });
 
+        binding.buyBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
     }
 
