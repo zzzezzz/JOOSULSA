@@ -22,5 +22,8 @@
     <color name="hintBack">#F8F8F8</color>
     <color name="hintText">#A9A9A9</color>
 
+    <color name="itemBack">#FFFFFF</color>
+
+
 
 </resources>

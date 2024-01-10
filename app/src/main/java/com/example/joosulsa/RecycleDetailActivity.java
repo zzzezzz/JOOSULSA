@@ -65,9 +65,11 @@ public class RecycleDetailActivity extends AppCompatActivity {
         YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
 
+
         // Intent에서 YouTube 비디오의 ID를 가져오기
         Intent intent = getIntent();
 
+        String trashName = getIntent().getStringExtra("trashName"); // 쓰레기 이름
         String youTub = getIntent().getStringExtra("sepaVideo"); // 유튜브 링크
         String recycledImg = getIntent().getStringExtra("sepaImg"); // 분리수거 이미지
         String way = getIntent().getStringExtra("sepaMethod"); // 분리수거 방법
@@ -79,13 +81,15 @@ public class RecycleDetailActivity extends AppCompatActivity {
         Log.d("데이터 확인","링크: "+youTub +"방법: "+ way + "분리수거 이미지: "+ recycledImg +
                 " 주의사항: "+ caution + " 업사이클 영상: "+ upcycleVideo + " 썸네일: "+UpcycleImg);
         
-        // 동적 유뷰트 비디오 만들기
+        // 동적 유튜브 비디오 만들기
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(YouTubePlayer youTubePlayer) {
-                youTubePlayer.loadVideo(youTub, 0);
+                youTubePlayer.cueVideo(youTub, 0);
             }
         });
+
+        binding.recycleTitle.setText(trashName);
 
         binding.sepaText.setText(way);
 
