@@ -58,9 +58,7 @@ public class RecycleDetailActivity extends AppCompatActivity {
             requestQueue = Volley.newRequestQueue(RecycleDetailActivity.this);
         }
 
-        // 검색 방법 받아오기
-        String searchMethod = getIntent().getStringExtra("searchmethod");
-        Log.d("searchMe", searchMethod);
+
 
         // 이걸로 다시 받아요
         // 유튜브 영상 띄우는 코드

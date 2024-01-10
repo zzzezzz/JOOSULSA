@@ -601,6 +601,7 @@ public class HomeFragment extends Fragment {
             intent.putExtra("quizPoint", quizPoint);
             intent.putExtra("quizNum", quizNum);
             startActivity(intent);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
