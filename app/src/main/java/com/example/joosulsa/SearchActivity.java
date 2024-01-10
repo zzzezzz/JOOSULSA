@@ -109,15 +109,14 @@ public class SearchActivity extends AppCompatActivity {
 
                     // 키워드에 따른 페이지 이동 이벤트
                     if(response.equals("")){
-                        // DB에 있는 키워드가 있을때.
+                        // DB에 없는 키워드 일때
                         Intent intent = new Intent(SearchActivity.this, SearchDetailActivity.class);
                         startActivity(intent);
                     }else {
-                        // DB에 없는 키워드 일때
+                        // DB에 있는 키워드가 있을때.
                         Intent intent = new Intent(SearchActivity.this, RecycleDetailActivity.class);
                         startActivity(intent);
                     }
-
                 },
                 error -> {
                     // 서버통신 실패시

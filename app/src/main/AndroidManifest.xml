@@ -92,7 +92,8 @@
             android:exported="false" />
         <activity
             android:name=".SearchDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible" />
         <activity
             android:name=".SearchActivity"
             android:exported="false"
