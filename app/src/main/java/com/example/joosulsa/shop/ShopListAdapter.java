@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,6 +88,8 @@ public class ShopListAdapter extends BaseAdapter {
                 intent.putExtra("title", item.getTitle());
                 intent.putExtra("content", item.getContent());
                 intent.putExtra("price", String.valueOf(item.getPrice()));
+                intent.putExtra("prodImg", item.getImg());
+                Log.d("sendProdInfoData", item.getContent() + item.getPrice() + item.getTitle());
                 context.startActivity(intent);
             }
         });
