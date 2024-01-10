@@ -179,21 +179,55 @@ public class HomeFragment extends Fragment {
         mainViews();
 
         // 가장 많이 찾고 있어요 클릭 이벤트
-        String trashName1 = binding.hashtag1.getText().toString();
+
         String trashName2 = binding.hashtag2.getText().toString();
         String trashName3 = binding.hashtag3.getText().toString();
         String trashName4 = binding.hashtag4.getText().toString();
 
 
+        // 해시태그 클릭 시
         binding.hashtag1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String trashName = binding.hashtag1.getText().toString();
-                Log.d("값 가지고 오니",trashName);
+                String trashName1 = binding.hashtag1.getText().toString();
+                Log.d("값 가지고 오니",trashName1);
+                hashtagRequest(trashName1);
+                // 하단에 정의해둔 메소드에 json방식으로 담기는데 여기 key, value 값으로 옴..
+                // 여기서 위에 정의해둔 trashName1이 캔이기 때문에 "캔" 이라는 값이 메소드로 넘어가서
+                // 알아서 value값 캔에 해당하는 데이터를 가지고 오는 것
+            }
+        });
 
+        binding.hashtag2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String trashName2 = binding.hashtag2.getText().toString();
+                Log.d("값 가지고 오니",trashName2);
+                hashtagRequest(trashName2);
 
             }
         });
+
+        binding.hashtag3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String trashName3 = binding.hashtag3.getText().toString();
+                Log.d("값 가지고 오니",trashName3);
+                hashtagRequest(trashName3);
+
+            }
+        });
+
+        binding.hashtag4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String trashName4 = binding.hashtag4.getText().toString();
+                Log.d("값 가지고 오니",trashName4);
+                hashtagRequest(trashName4);
+
+            }
+        });
+
 
 
         // 회원정보창 이벤트
@@ -676,34 +710,32 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    // 해시태크 클릭 시 서버 통신
-    private void searchRequest(String search, String searchMethod) {
+    // 해시태그 클릭 시 서버 통신
+    private void hashtagRequest(String data) {
+
+
         StringRequest request = new StringRequest(
                 postMethod,
                 hashtagUrl,
                 response -> {
                     // 서버통신 성공시
-                    Log.d("searchCheck", response); // 로그
-                    handSearch(response);
+                    Log.d("해시 태그 통신 성공", response); // 로그
+                    handHash(response);
 
                 },
                 error -> {
                     // 서버통신 실패시
-                    Log.d("통신 실패", "안와용");
+                    Log.d("해시 태그 통신 실패", "안와용");
                 }
         ) {
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("search",search);
-                params.put("method", searchMethod);
-                long now =System.currentTimeMillis();
-                Date today =new Date(now);
-                SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
-                String time = format.format(today);
-                params.put("earnTime", time);
-                Log.d("가냐..?",search);
+                Map<String, String> params = new HashMap<>(); // 안드로이드에서 스프링으로 요청보낼 때 스프링 매개변수로 뭐 보낼지 처리해줌
+                String method = "etc";
+                params.put("data", data);
+                params.put("method", method);
+                Log.d("popopopParams", data + method);
                 return params;
             }
         };
@@ -711,8 +743,8 @@ public class HomeFragment extends Fragment {
         requestQueue.add(request);
     }
 
-    // Spring 에서 받아온 재활용 데이터 처리 메소드
-    private void handSearch(String response) {
+    // Spring 에서 받아온 재활용 데이터 처리 메소드(해시태그)
+    private void handHash(String response) {
 //                sepaMethod = 분리수거 방법
 //                sepaCaution = 분리수거 주의사항
 //                sepaImg = 분리수거 이미지
@@ -720,50 +752,37 @@ public class HomeFragment extends Fragment {
 //                recycleVideo = 업사이클 비디오
 //                recycleImg = 업사이클 이미지
         try {
-            // 데이터 파싱 작업
-            // 데이터 파싱 작업
             JSONObject jsonResponse = new JSONObject(response);
 
-            // searchCheck JSON 객체 가져오기
-            JSONObject searchCheckObject = jsonResponse.getJSONObject("searchCheck");
 
-            // searchCheck의 속성들 가져오기
-            String trashName = searchCheckObject.getString("trashName");
-            String sepaMethod = searchCheckObject.getString("sepaMethod");
-            String sepaCaution = searchCheckObject.getString("sepaCaution");
-            String sepaImg = searchCheckObject.getString("sepaImg");
-            String sepaVideo = searchCheckObject.getString("sepaVideo");
-            String recycleVideo = searchCheckObject.getString("recycleVideo");
-            String recycleImg = searchCheckObject.getString("recycleImg");
-            String recycleNum = searchCheckObject.getString("recycleNum");
+            // jsonResponse의 속성들 가져오기
+            String trashName = jsonResponse.getString("trashName");
+            String sepaMethod = jsonResponse.getString("sepaMethod");
+            String sepaCaution = jsonResponse.getString("sepaCaution");
+            String sepaImg = jsonResponse.getString("sepaImg");
+            String sepaVideo = jsonResponse.getString("sepaVideo");
+            String recycleVideo = jsonResponse.getString("recycleVideo");
+            String recycleImg = jsonResponse.getString("recycleImg");
+            String recycleNum = jsonResponse.getString("recycleNum");
 
-            // totalPoints 가져오기
-            int totalPoints = jsonResponse.getInt("totalPoints");
-
-            // 확인
-            Log.d("데이터 처리", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
+            Log.d("popWhy", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
                     " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
                     " 업사이클 이미지 : " + recycleImg);
 
-            Log.d("데이터 처리", "Total Points: " + totalPoints);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("userPoint", totalPoints);
-            editor.apply();
-            // Intent에 값 넣어주기
-            Intent textSearchIntent = new Intent(getActivity(), RecycleDetailActivity.class);
-            textSearchIntent.putExtra("trashName", trashName);
-            textSearchIntent.putExtra("sepaMethod",sepaMethod);
-            textSearchIntent.putExtra("sepaCaution",sepaCaution);
-            textSearchIntent.putExtra("sepaImg",sepaImg);
-            textSearchIntent.putExtra("sepaVideo",sepaVideo);
-            textSearchIntent.putExtra("recycleVideo",recycleVideo);
-            textSearchIntent.putExtra("recycleImg",recycleImg);
-            textSearchIntent.putExtra("searchmethod", "text");
-            textSearchIntent.putExtra("recyNum", recycleNum);
-            Log.d("searchWhy", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
-                    " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
-                    " 업사이클 이미지 : " + recycleImg);
-            startActivity(textSearchIntent);
+            Intent hashtagIntent = new Intent(getActivity(), RecycleDetailActivity.class);
+            hashtagIntent.putExtra("trashName", trashName);
+            hashtagIntent.putExtra("trashName", trashName);
+            hashtagIntent.putExtra("sepaMethod",sepaMethod);
+            hashtagIntent.putExtra("sepaCaution",sepaCaution);
+            hashtagIntent.putExtra("sepaImg",sepaImg);
+            hashtagIntent.putExtra("sepaVideo",sepaVideo);
+            hashtagIntent.putExtra("recycleVideo",recycleVideo);
+            hashtagIntent.putExtra("recycleImg",recycleImg);
+            hashtagIntent.putExtra("searchmethod", "etc");
+            hashtagIntent.putExtra("recyNum", recycleNum);
+
+            startActivity(hashtagIntent);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

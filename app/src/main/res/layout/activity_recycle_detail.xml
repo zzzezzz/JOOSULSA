@@ -74,7 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:autoPlay="true"
-                    app:videoId="lWelo_8_EtY">
+                    app:videoId="null">
 
                 </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
 
@@ -101,10 +101,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/pretendard_bold"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/pretendard_regular"
                     android:text="분리수거방법text(DB)"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/cardView28"
                     app:layout_constraintEnd_toStartOf="@+id/guideline34"
                     app:layout_constraintStart_toStartOf="@+id/guideline35"
@@ -170,7 +170,7 @@
                     android:id="@+id/textView159"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/pretendard_bold"
                     android:text="추천 업사이클링"
@@ -179,7 +179,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/upcycleVideo"
                     android:layout_width="match_parent"
-                    android:layout_height="75dp"
+                    android:layout_height="85dp"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="0dp"
