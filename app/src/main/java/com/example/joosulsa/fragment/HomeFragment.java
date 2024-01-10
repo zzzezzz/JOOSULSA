@@ -749,7 +749,7 @@ public class HomeFragment extends Fragment {
             editor.putInt("userPoint", totalPoints);
             editor.apply();
             // Intent에 값 넣어주기
-            Intent textSearchIntent = new Intent(SearchActivity.this, RecycleDetailActivity.class);
+            Intent textSearchIntent = new Intent(getActivity(), RecycleDetailActivity.class);
             textSearchIntent.putExtra("trashName", trashName);
             textSearchIntent.putExtra("sepaMethod",sepaMethod);
             textSearchIntent.putExtra("sepaCaution",sepaCaution);
