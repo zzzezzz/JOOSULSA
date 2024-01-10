@@ -35,8 +35,6 @@ public class SearchActivity extends AppCompatActivity {
     // url 주소
     private String springUrl = "http://192.168.219.62:8089/search";
 
-    private String popSearchUrl = "http://192.168.219.62:8089/popData";
-
     // post
     int postMethod = Request.Method.POST;
 
@@ -53,9 +51,6 @@ public class SearchActivity extends AppCompatActivity {
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(SearchActivity.this);
         }
-
-        // 인기검색어 가져오기
-        popSearch();
 
 
         // 버튼 이벤트 처리
@@ -82,42 +77,6 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-    // 인기검색어 가져오기
-    private void popSearch(){
-
-        StringRequest request = new StringRequest(
-                postMethod,
-                popSearchUrl,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("popSearchData", response);
-                        handlePopData(response);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }
-        ){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                return params;
-            }
-        };
-        requestQueue.add(request);
-
-    }
-
-    // 인기검색어 추출해서 화면에 뿌려주기
-    private void handlePopData(String response){
-
-    }
-
     // 검색 기능 로직 처리
     private void performSearch() {
         // 여기에 실제 검색에 대한 로직을 추가하세요
@@ -128,15 +87,9 @@ public class SearchActivity extends AppCompatActivity {
         String searchMethod = "text";
         preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
 
-        String autoId = preferences.getString("autoId", "1");
-        if (autoId.equals("1")){
-            searchMethod = "etc";
-            Log.d("확인1", search + searchMethod);
-            searchRequest(search, searchMethod, autoId);
-        }else {
-            Log.d("확인1", search + searchMethod);
-            searchRequest(search, searchMethod, autoId);
-        }
+        String autoId = preferences.getString("autoId", null);
+        searchRequest(search, searchMethod, autoId);
+        Log.d("확인1", search);
 
 
         // 검색어를 이용한 추가 동작 수행
@@ -222,7 +175,7 @@ public class SearchActivity extends AppCompatActivity {
             // 확인
             Log.d("데이터 처리", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
                     " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
-                    " 업사이클 이미지 : " + recycleImg + recycleNum);
+                    " 업사이클 이미지 : " + recycleImg);
 
             Log.d("데이터 처리", "Total Points: " + totalPoints);
             SharedPreferences.Editor editor = preferences.edit();
