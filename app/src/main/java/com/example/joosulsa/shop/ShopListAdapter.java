@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.joosulsa.ProductInfoActivity;
 import com.example.joosulsa.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +87,10 @@ public class ShopListAdapter extends BaseAdapter {
 //            viewHolder.getProInfo().setText(item.getContent());
 //            viewHolder.getProPrice().setText(String.valueOf(item.getPrice()));
 //        }
+        // productInfo 액티비티로 넘기는 이미지 비트맵 전처리
+        Bitmap bitmap = item.getImg();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +100,7 @@ public class ShopListAdapter extends BaseAdapter {
                 intent.putExtra("title", item.getTitle());
                 intent.putExtra("content", item.getContent());
                 intent.putExtra("price", String.valueOf(item.getPrice()));
-                intent.putExtra("prodImg", item.getImg());
+                intent.putExtra("prodImg", stream.toByteArray());
                 Log.d("sendProdInfoData", item.getContent() + item.getPrice() + item.getTitle());
                 context.startActivity(intent);
             }

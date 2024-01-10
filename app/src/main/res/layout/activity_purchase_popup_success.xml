@@ -46,7 +46,7 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/checkPopupBtn"
+                    android:id="@+id/purchaseHomeBtn"
                     android:layout_width="290dp"
                     android:layout_height="40dp"
                     app:cardBackgroundColor="@color/main"
@@ -60,7 +60,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/pretendard_bold"
-                        android:text="홈으로"
+                        android:text="닫기"
                         android:textColor="#FFFFFF"
                         android:textSize="16sp" />
                 </androidx.cardview.widget.CardView>
