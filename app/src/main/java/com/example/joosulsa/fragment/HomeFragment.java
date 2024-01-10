@@ -30,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -41,13 +42,13 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.CheckActivity;
-import com.example.joosulsa.CheckPopupActivity;
 import com.example.joosulsa.LoginActivity;
 import com.example.joosulsa.QuizActivity;
 import com.example.joosulsa.QuizClosePopup;
 import com.example.joosulsa.R;
 import com.example.joosulsa.RecycleDetailActivity;
 import com.example.joosulsa.SearchActivity;
+import com.example.joosulsa.SearchDetailActivity;
 import com.example.joosulsa.TestActivity;
 import com.example.joosulsa.TownRankActivity;
 import com.example.joosulsa.category.MainCategoryAdapter;
@@ -62,6 +63,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -87,6 +89,10 @@ public class HomeFragment extends Fragment {
     private String cateUrl = "http://192.168.219.62:8089/category";
     private String falseUrl = "http://192.168.219.62:8089/makeFalse";
     private String trueUrl = "http://192.168.219.62:8089/makeTrue";
+    // 가장 많이 찾고 있어요에 조회수 순으로 데이터 넣어주는 주소
+    private String mainViewsUrl = "http://192.168.219.42:8089/mainViews";
+    // 해시태그에서 해당하는 재활용 페이지로 넘어갈때 요청 주소
+    private String hashtagUrl = "http://192.168.219.42:8089/hashtag";
 
 
     int postMethod = Request.Method.POST;
@@ -167,6 +173,28 @@ public class HomeFragment extends Fragment {
 
         Intent afterUserInputIntent = getActivity().getIntent();
         String checkUserInputNick = afterUserInputIntent.getStringExtra("userNick");
+
+
+        // 가장 많이 찾고 있어요 조회수 값 가져오는 메소드
+        mainViews();
+
+        // 가장 많이 찾고 있어요 클릭 이벤트
+        String trashName1 = binding.hashtag1.getText().toString();
+        String trashName2 = binding.hashtag2.getText().toString();
+        String trashName3 = binding.hashtag3.getText().toString();
+        String trashName4 = binding.hashtag4.getText().toString();
+
+
+        binding.hashtag1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String trashName = binding.hashtag1.getText().toString();
+                Log.d("값 가지고 오니",trashName);
+
+
+            }
+        });
+
 
         // 회원정보창 이벤트
         if (autoId!=null && autoPw!=null) {
@@ -578,14 +606,167 @@ public class HomeFragment extends Fragment {
             e.printStackTrace();
         }
 
-
-
-
-
-
     }
 
+    // 가장 많이 찾고 있어요 조회수별 요청 및 응답 처리
+    private void mainViews(){
+
+        StringRequest request = new StringRequest(
+                postMethod,
+                mainViewsUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("오시나요", response);
+                        mainViewsDataHandle(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("안옴", "안온다고");
+            }
+        }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> param = new HashMap<>();
+                return param;
+            }
+        };
+
+        requestQueue.add(request);
+    }
+
+    private void mainViewsDataHandle(String response) {
+
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+
+            // 각 trashName의 실제 값 리스트
+            List<String> trashNameValueList = new ArrayList<>();
+
+            // JSON 배열을 순회하며 데이터 추출
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject trashNameData = jsonArray.getJSONObject(i);
+                String trashNameValue = trashNameData.getString("trashName");
 
 
+                // Log.d("데이터 확인", trashNameValue.toString());
+
+                // 추출한 데이터를 리스트에 추가
+                trashNameValueList.add(trashNameValue);
+            }
+
+            Log.d("조회값", trashNameValueList.toString());
+            // 각 해시태그에 trashNameValueList에 담긴 값 넣어주기
+            TextView trashNameTextView1 = getView().findViewById(R.id.hashtag1);
+            TextView trashNameTextView2 = getView().findViewById(R.id.hashtag2);
+            TextView trashNameTextView3 = getView().findViewById(R.id.hashtag3);
+            TextView trashNameTextView4 = getView().findViewById(R.id.hashtag4);
+
+            trashNameTextView1.setText(trashNameValueList.get(0));
+            trashNameTextView2.setText(trashNameValueList.get(1));
+            trashNameTextView3.setText(trashNameValueList.get(2));
+            trashNameTextView4.setText(trashNameValueList.get(3));
+
+            // 나머지 로직 계속 작성
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // 해시태크 클릭 시 서버 통신
+    private void searchRequest(String search, String searchMethod) {
+        StringRequest request = new StringRequest(
+                postMethod,
+                hashtagUrl,
+                response -> {
+                    // 서버통신 성공시
+                    Log.d("searchCheck", response); // 로그
+                    handSearch(response);
+
+                },
+                error -> {
+                    // 서버통신 실패시
+                    Log.d("통신 실패", "안와용");
+                }
+        ) {
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("search",search);
+                params.put("method", searchMethod);
+                long now =System.currentTimeMillis();
+                Date today =new Date(now);
+                SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+                String time = format.format(today);
+                params.put("earnTime", time);
+                Log.d("가냐..?",search);
+                return params;
+            }
+        };
+        // Request를 RequestQueue에 추가
+        requestQueue.add(request);
+    }
+
+    // Spring 에서 받아온 재활용 데이터 처리 메소드
+    private void handSearch(String response) {
+//                sepaMethod = 분리수거 방법
+//                sepaCaution = 분리수거 주의사항
+//                sepaImg = 분리수거 이미지
+//                sepaVideo = 분리수거 영상
+//                recycleVideo = 업사이클 비디오
+//                recycleImg = 업사이클 이미지
+        try {
+            // 데이터 파싱 작업
+            // 데이터 파싱 작업
+            JSONObject jsonResponse = new JSONObject(response);
+
+            // searchCheck JSON 객체 가져오기
+            JSONObject searchCheckObject = jsonResponse.getJSONObject("searchCheck");
+
+            // searchCheck의 속성들 가져오기
+            String trashName = searchCheckObject.getString("trashName");
+            String sepaMethod = searchCheckObject.getString("sepaMethod");
+            String sepaCaution = searchCheckObject.getString("sepaCaution");
+            String sepaImg = searchCheckObject.getString("sepaImg");
+            String sepaVideo = searchCheckObject.getString("sepaVideo");
+            String recycleVideo = searchCheckObject.getString("recycleVideo");
+            String recycleImg = searchCheckObject.getString("recycleImg");
+            String recycleNum = searchCheckObject.getString("recycleNum");
+
+            // totalPoints 가져오기
+            int totalPoints = jsonResponse.getInt("totalPoints");
+
+            // 확인
+            Log.d("데이터 처리", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
+                    " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
+                    " 업사이클 이미지 : " + recycleImg);
+
+            Log.d("데이터 처리", "Total Points: " + totalPoints);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("userPoint", totalPoints);
+            editor.apply();
+            // Intent에 값 넣어주기
+            Intent textSearchIntent = new Intent(SearchActivity.this, RecycleDetailActivity.class);
+            textSearchIntent.putExtra("trashName", trashName);
+            textSearchIntent.putExtra("sepaMethod",sepaMethod);
+            textSearchIntent.putExtra("sepaCaution",sepaCaution);
+            textSearchIntent.putExtra("sepaImg",sepaImg);
+            textSearchIntent.putExtra("sepaVideo",sepaVideo);
+            textSearchIntent.putExtra("recycleVideo",recycleVideo);
+            textSearchIntent.putExtra("recycleImg",recycleImg);
+            textSearchIntent.putExtra("searchmethod", "text");
+            textSearchIntent.putExtra("recyNum", recycleNum);
+            Log.d("searchWhy", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
+                    " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
+                    " 업사이클 이미지 : " + recycleImg);
+            startActivity(textSearchIntent);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -76,47 +76,63 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/hashtag01"
+                    android:id="@+id/hashtag1"
                     android:layout_width="90dp"
                     android:layout_height="40dp"
                     android:layout_marginRight="8dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/main"
+                    android:backgroundTint="#FFFD82"
+                    android:fontFamily="@font/pretendard_bold"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
                     android:text="Button"
-                    android:textColor="@color/text"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
                     app:cornerRadius="5dp" />
 
                 <Button
-                    android:id="@+id/hashtag02"
+                    android:id="@+id/hashtag2"
                     android:layout_width="90dp"
                     android:layout_height="40dp"
                     android:layout_marginRight="8dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/main"
+                    android:backgroundTint="#FFFD82"
+                    android:fontFamily="@font/pretendard_bold"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
                     android:text="Button"
-                    android:textColor="@color/text"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
                     app:cornerRadius="5dp" />
 
                 <Button
-                    android:id="@+id/hashtag03"
+                    android:id="@+id/hashtag3"
                     android:layout_width="90dp"
                     android:layout_height="40dp"
                     android:layout_marginRight="8dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/main"
+                    android:backgroundTint="#FFFD82"
+                    android:fontFamily="@font/pretendard_bold"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
                     android:text="Button"
-                    android:textColor="@color/text"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
                     app:cornerRadius="5dp" />
 
                 <Button
-                    android:id="@+id/hashtag04"
+                    android:id="@+id/hashtag4"
                     android:layout_width="90dp"
                     android:layout_height="40dp"
                     android:layout_marginRight="8dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/main"
+                    android:backgroundTint="#FFFD82"
+                    android:fontFamily="@font/pretendard_bold"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
                     android:text="Button"
-                    android:textColor="@color/text"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
                     app:cornerRadius="5dp" />
 
             </LinearLayout>
