@@ -91,6 +91,7 @@ public class SearchActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.d("popSearchData", response);
                         handlePopData(response);
                     }
                 },
