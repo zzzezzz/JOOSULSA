@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,14 +59,17 @@ public class PurchaseListActivity extends AppCompatActivity {
         // 어댑터를 연결해주기
         adapter = new PurchaseListAdapter(dataset);
         binding.purchaseList.setAdapter(adapter);
+
+        preferences=getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+
+        String autoId = preferences.getString("autoId",null);
     }
-    private void PurchList(){
+    private void PurchList(String autoId){
         StringRequest request = new StringRequest(
                 postMethod,
                 producturl,
                 response -> {
                     Log.d("구매내역 통신","성공");
-
 
                 },
                 error -> {
@@ -76,6 +80,7 @@ public class PurchaseListActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+
                 return params;
             }
         };
