@@ -185,15 +185,49 @@ public class HomeFragment extends Fragment {
         String trashName4 = binding.hashtag4.getText().toString();
 
 
+        // 해시태그 클릭 시
         binding.hashtag1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String trashName1 = binding.hashtag1.getText().toString();
                 Log.d("값 가지고 오니",trashName1);
                 hashtagRequest(trashName1);
+                // 하단에 정의해둔 메소드에 json방식으로 담기는데 여기 key, value 값으로 옴..
+                // 여기서 위에 정의해둔 trashName1이 캔이기 때문에 "캔" 이라는 값이 메소드로 넘어가서
+                // 알아서 value값 캔에 해당하는 데이터를 가지고 오는 것
+            }
+        });
+
+        binding.hashtag2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String trashName2 = binding.hashtag2.getText().toString();
+                Log.d("값 가지고 오니",trashName2);
+                hashtagRequest(trashName2);
 
             }
         });
+
+        binding.hashtag3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String trashName3 = binding.hashtag3.getText().toString();
+                Log.d("값 가지고 오니",trashName3);
+                hashtagRequest(trashName3);
+
+            }
+        });
+
+        binding.hashtag4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String trashName4 = binding.hashtag4.getText().toString();
+                Log.d("값 가지고 오니",trashName4);
+                hashtagRequest(trashName4);
+
+            }
+        });
+
 
 
         // 회원정보창 이벤트
@@ -676,8 +710,8 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    // 해시태크 클릭 시 서버 통신
-    private void hashtagRequest(String trashName) {
+    // 해시태그 클릭 시 서버 통신
+    private void hashtagRequest(String data) {
 
 
         StringRequest request = new StringRequest(
@@ -698,7 +732,10 @@ public class HomeFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>(); // 안드로이드에서 스프링으로 요청보낼 때 스프링 매개변수로 뭐 보낼지 처리해줌
-                params.put("trashName", trashName);
+                String method = "etc";
+                params.put("data", data);
+                params.put("method", method);
+                Log.d("popopopParams", data + method);
                 return params;
             }
         };
@@ -715,34 +752,25 @@ public class HomeFragment extends Fragment {
 //                recycleVideo = 업사이클 비디오
 //                recycleImg = 업사이클 이미지
         try {
-            // 데이터 파싱 작업
-            // 데이터 파싱 작업
             JSONObject jsonResponse = new JSONObject(response);
 
-            // searchCheck JSON 객체 가져오기
-            JSONObject hashtagCheckObject = jsonResponse.getJSONObject("hashtagCheck");
 
-            Log.d("해시태그 확인",hashtagCheckObject.toString());
+            // jsonResponse의 속성들 가져오기
+            String trashName = jsonResponse.getString("trashName");
+            String sepaMethod = jsonResponse.getString("sepaMethod");
+            String sepaCaution = jsonResponse.getString("sepaCaution");
+            String sepaImg = jsonResponse.getString("sepaImg");
+            String sepaVideo = jsonResponse.getString("sepaVideo");
+            String recycleVideo = jsonResponse.getString("recycleVideo");
+            String recycleImg = jsonResponse.getString("recycleImg");
+            String recycleNum = jsonResponse.getString("recycleNum");
 
-
-            // searchCheck의 속성들 가져오기
-            String trashName = hashtagCheckObject.getString("trashName");
-            String sepaMethod = hashtagCheckObject.getString("sepaMethod");
-            String sepaCaution = hashtagCheckObject.getString("sepaCaution");
-            String sepaImg = hashtagCheckObject.getString("sepaImg");
-            String sepaVideo = hashtagCheckObject.getString("sepaVideo");
-            String recycleVideo = hashtagCheckObject.getString("recycleVideo");
-            String recycleImg = hashtagCheckObject.getString("recycleImg");
-            String recycleNum = hashtagCheckObject.getString("recycleNum");
-
-
-            // 확인
-            Log.d("데이터 처리", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
+            Log.d("popWhy", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
                     " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
                     " 업사이클 이미지 : " + recycleImg);
 
-            // Intent에 값 넣어주기
             Intent hashtagIntent = new Intent(getActivity(), RecycleDetailActivity.class);
+            hashtagIntent.putExtra("trashName", trashName);
             hashtagIntent.putExtra("trashName", trashName);
             hashtagIntent.putExtra("sepaMethod",sepaMethod);
             hashtagIntent.putExtra("sepaCaution",sepaCaution);
@@ -750,12 +778,11 @@ public class HomeFragment extends Fragment {
             hashtagIntent.putExtra("sepaVideo",sepaVideo);
             hashtagIntent.putExtra("recycleVideo",recycleVideo);
             hashtagIntent.putExtra("recycleImg",recycleImg);
-            hashtagIntent.putExtra("searchmethod", "text");
+            hashtagIntent.putExtra("searchmethod", "etc");
             hashtagIntent.putExtra("recyNum", recycleNum);
-            Log.d("searchWhy", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
-                    " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
-                    " 업사이클 이미지 : " + recycleImg);
+
             startActivity(hashtagIntent);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

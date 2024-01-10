@@ -11,4 +11,8 @@
         <item name="windowNoTitle">true</item>
 
     </style>
+    <!-- fragment 버튼 클릭 시 배경 -->
+    <style name="Theme.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/itemBack</item>
+    </style>
 </resources>
