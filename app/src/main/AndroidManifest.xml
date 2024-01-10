@@ -26,7 +26,10 @@
         android:windowSoftInputMode="adjustNothing"
         tools:ignore="CoarseFineLocation"
         tools:targetApi="31">
-
+        <activity
+            android:name=".PurchasePopupSuccessActivity"
+            android:theme="@style/TransparentTheme"
+            android:exported="false" />
         <activity
             android:name=".CheckPopupActivity"
             android:theme="@style/TransparentTheme" />
