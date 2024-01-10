@@ -61,7 +61,7 @@ public class ShopFragment extends Fragment {
         }
         // 서버통신 메서드 사용
         shopData();
-        ShopImg();
+//        ShopImg();
 
         // 뒤로가기
         binding.shopBack.setOnClickListener(v -> {
@@ -110,33 +110,33 @@ public class ShopFragment extends Fragment {
     }
 
     // 서버 통신(이미지 가져오기)
-    private void ShopImg() {
-        StringRequest request = new StringRequest(
-                postMethod,
-                productImgUrl,
-                response -> {
-                    Log.d("Img 통신 성공", response);
-                    shopImg(response);
-                },
-                error -> {
-                    Log.d("Img 통신 실패", "실패");
-                    if(error != null){
-                        error.printStackTrace();
-                    }
-
-                }
-        ) {
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                return params;
-            }
-        };
-        requestQueue.add(request);
-
-
-    }
+//    private void ShopImg() {
+//        StringRequest request = new StringRequest(
+//                postMethod,
+//                productImgUrl,
+//                response -> {
+//                    Log.d("Img 통신 성공", response);
+//                    shopImg(response);
+//                },
+//                error -> {
+//                    Log.d("Img 통신 실패", "실패");
+//                    if(error != null){
+//                        error.printStackTrace();
+//                    }
+//
+//                }
+//        ) {
+//            @Nullable
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<>();
+//                return params;
+//            }
+//        };
+//        requestQueue.add(request);
+//
+//
+//    }
 
     // Spring 에서 받아온 재활용 데이터 처리 메소드(이미지 제외)
     private void handleShop(String response) {
@@ -149,13 +149,15 @@ public class ShopFragment extends Fragment {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                // UTF-8 디코딩 추가
-                String prodName = new String(jsonObject.getString("prodName").getBytes("ISO-8859-1"), "UTF-8");
-                String prodInfo = new String(jsonObject.getString("prodInfo").getBytes("ISO-8859-1"), "UTF-8");
+                String prodName = jsonObject.getString("prodName");
+                String prodInfo = jsonObject.getString("prodInfo");
                 int prodPrice = jsonObject.getInt("prodPrice");
+                String prodImg = jsonObject.getString("prodImg");
+                byte[] decodedBytes1 = Base64.decode(prodImg, Base64.DEFAULT);
+                Bitmap bitmap1 = BitmapFactory.decodeByteArray(decodedBytes1, 0, decodedBytes1.length);
 
-                ShopListVO vo = new ShopListVO(prodName, prodInfo, prodPrice);
-
+                // ShopListVO 객체 생성
+                ShopListVO vo = new ShopListVO(prodName, prodInfo, prodPrice, bitmap1);
                 // 확인
                 dataset.add(vo);
                 Log.d("shop확인", "이름: " + prodName + "가격: " + prodPrice + "상세정보: " + prodInfo);
@@ -163,31 +165,27 @@ public class ShopFragment extends Fragment {
 
             adapter.notifyDataSetChanged();
 
-        } catch (JSONException | UnsupportedEncodingException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     // Spring 서버통신 이미지 데이터 가져오기
-    private void shopImg(String response) {
-        try {
-            JSONObject jsonResponse = new JSONObject(response);
-            for (int i =0; i<6; i++){
-
-                try {
-                    String prodImg = jsonResponse.getString("prodImg"+ i);
-                    byte[] decodedBytes1 = Base64.decode(prodImg, Base64.DEFAULT);
-                    Bitmap bitmap1 = BitmapFactory.decodeByteArray(decodedBytes1, 0, decodedBytes1.length);
-                    ShopListVO imgVo = new ShopListVO(bitmap1);
-                    dataset.add(imgVo);
-                }catch (Exception e){
-                    Log.d("acsxzx", e.toString());
-                }
-            }
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    private void shopImg(String response) {
+//        try {
+//            JSONObject jsonResponse = new JSONObject(response);
+//            for (int i =0; i<6; i++){
+//                String prodImg = jsonResponse.getString("prodImg"+ i);
+//                byte[] decodedBytes1 = Base64.decode(prodImg, Base64.DEFAULT);
+//                Bitmap bitmap1 = BitmapFactory.decodeByteArray(decodedBytes1, 0, decodedBytes1.length);
+//                ShopListVO imgVo = new ShopListVO(bitmap1);
+//                dataset.add(imgVo);
+//
+//            }
+//        } catch (JSONException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
 
 

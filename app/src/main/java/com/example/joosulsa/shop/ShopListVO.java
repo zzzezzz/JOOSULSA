@@ -10,16 +10,13 @@ public class ShopListVO {
     private String content;
     private int price;
 
-    public ShopListVO(String title, String content, int price) {
+    public ShopListVO(String title, String content, int price, Bitmap bitmap) {
         this.title = title;
         this.content = content;
         this.price = price;
+        this.img = bitmap;
     }
 
-
-    public ShopListVO(Bitmap img) {
-        this.img = img;
-    }
 
     public void setImg(Bitmap img) {
         this.img = img;
