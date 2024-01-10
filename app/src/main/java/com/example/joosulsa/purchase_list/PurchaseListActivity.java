@@ -28,6 +28,7 @@ public class PurchaseListActivity extends AppCompatActivity {
     private PurchaseListAdapter adapter;
     int postMethod = Request.Method.POST;
     private RequestQueue requestQueue;
+    private SharedPreferences preferences;
     private String producturl = "http://172.30.48.1:8089/purchList";
 
     private SharedPreferences spf;

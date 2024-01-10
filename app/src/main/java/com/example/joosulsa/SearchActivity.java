@@ -89,7 +89,7 @@ public class SearchActivity extends AppCompatActivity {
 
         String autoId = preferences.getString("autoId", null);
         searchRequest(search, searchMethod, autoId);
-        Log.d("확인1", search);
+        Log.d("검색 기능 확인", search);
 
 
         // 검색어를 이용한 추가 동작 수행

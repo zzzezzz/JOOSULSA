@@ -47,14 +47,12 @@ public class SearchDetailActivity extends AppCompatActivity {
             Intent intent = new Intent(SearchDetailActivity.this, SearchActivity.class);
             startActivity(intent);
         });
-
-        // 엔터 이벤트
-        binding.textSearchDetail.setOnEditorActionListener((textView, actionId, keyEvent) -> {
-
-            if (actionId == EditorInfo.IME_ACTION_SEARCH || (keyEvent != null && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
-                // 검색 이벤트 처리
-                Log.d("엔터", "된다");
-                performSearch();
+        // 엔터 이벤트 설정
+        binding.textSearchDetail.setOnEditorActionListener((v, actionId, enter) -> {
+            if(actionId==EditorInfo.IME_ACTION_SEARCH || (enter !=null && enter.getKeyCode() == KeyEvent.KEYCODE_ENTER)){
+                // IME_ACTION_SEARCH: 사용자가 키보드에서 "검색" 액션을 수행했을 때 또는 Enter 키를 눌렀을 때
+                Log.d("엔터 확인", "된다");
+                searchDetail();
                 return true; // 이벤트 처리 완료
             }
             return false; // 이벤트 처리하지 않음
@@ -62,125 +60,40 @@ public class SearchDetailActivity extends AppCompatActivity {
     }
 
     // 검색 기능 로직 처리
-    private void performSearch() {
-        // 여기에 실제 검색에 대한 로직을 추가하세요
-        // 예를 들어, 검색어를 가져와서 검색 결과 화면으로 이동하는 등의 동작을 수행합니다.
-
+    private void searchDetail(){
         String search = binding.textSearchDetail.getText().toString();
         // 검색 방법
         String searchMethod = "text";
         preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
 
         String autoId = preferences.getString("autoId", null);
-        searchRequest(search, searchMethod, autoId);
-        Log.d("확인1", search);
-
-
-        // 검색어를 이용한 추가 동작 수행
-
+        searchRequest(search);
+        Log.d("확인123", search);
     }
-
-    // 검색 서버통신.
-    private void searchRequest(String search, String searchMethod, String autoId) {
+    // 서버통신
+    private void searchRequest(String search){
         StringRequest request = new StringRequest(
                 postMethod,
                 springUrl,
                 response -> {
-                    // 서버통신 성공시
-                    Log.d("searchDetailCheck", response); // 로그
-
-                    handSearch(response);
-
-                    // 키워드에 따른 페이지 이동 이벤트
-                    if(response.equals("")){
-                        // DB에 없는 키워드 일때
-                        Intent intent = new Intent(SearchDetailActivity.this, SearchDetailActivity.class);
-                        startActivity(intent);
-                    }else {
-                        // DB에 있는 키워드가 있을때.
-                        Intent intent = new Intent(SearchDetailActivity.this, RecycleDetailActivity.class);
-                        startActivity(intent);
-                    }
+                    Log.d("검색 통신 성공",response);
                 },
                 error -> {
-                    // 서버통신 실패시
-                    Log.d("검색실패 통신", "????");
+                    Log.d("검색 통신 실패","??");
                 }
-        ) {
+        ){
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("search",search);
-                params.put("method", searchMethod);
-                params.put("user", autoId);
-                long now =System.currentTimeMillis();
-                Date today =new Date(now);
-                SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
-                String time = format.format(today);
-                params.put("earnTime", time);
-                Log.d("가냐..?",search);
+                Log.d("갔니?",search);
                 return params;
             }
         };
-        // Request를 RequestQueue에 추가
         requestQueue.add(request);
     }
-    // Spring 에서 받아온 재활용 데이터 처리 메소드
-    private void handSearch(String response) {
-//                sepaMethod = 분리수거 방법
-//                sepaCaution = 분리수거 주의사항
-//                sepaImg = 분리수거 이미지
-//                sepaVideo = 분리수거 영상
-//                recycleVideo = 업사이클 비디오
-//                recycleImg = 업사이클 이미지
-        try {
-            // 데이터 파싱 작업
-            // 데이터 파싱 작업
-            JSONObject jsonResponse = new JSONObject(response);
 
-            // searchCheck JSON 객체 가져오기
-            JSONObject searchCheckObject = jsonResponse.getJSONObject("searchCheck");
 
-            // searchCheck의 속성들 가져오기
-            String trashName = searchCheckObject.getString("trashName");
-            String sepaMethod = searchCheckObject.getString("sepaMethod");
-            String sepaCaution = searchCheckObject.getString("sepaCaution");
-            String sepaImg = searchCheckObject.getString("sepaImg");
-            String sepaVideo = searchCheckObject.getString("sepaVideo");
-            String recycleVideo = searchCheckObject.getString("recycleVideo");
-            String recycleImg = searchCheckObject.getString("recycleImg");
-            String recycleNum = searchCheckObject.getString("recycleNum");
 
-            // totalPoints 가져오기
-            int totalPoints = jsonResponse.getInt("totalPoints");
-
-            // 확인
-            Log.d("데이터 처리", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
-                    " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
-                    " 업사이클 이미지 : " + recycleImg);
-
-            Log.d("데이터 처리", "Total Points: " + totalPoints);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("userPoint", totalPoints);
-            editor.apply();
-            // Intent에 값 넣어주기
-            Intent textSearchIntent = new Intent(SearchDetailActivity.this, RecycleDetailActivity.class);
-            textSearchIntent.putExtra("trashName", trashName);
-            textSearchIntent.putExtra("sepaMethod",sepaMethod);
-            textSearchIntent.putExtra("sepaCaution",sepaCaution);
-            textSearchIntent.putExtra("sepaImg",sepaImg);
-            textSearchIntent.putExtra("sepaVideo",sepaVideo);
-            textSearchIntent.putExtra("recycleVideo",recycleVideo);
-            textSearchIntent.putExtra("recycleImg",recycleImg);
-            textSearchIntent.putExtra("searchmethod", "text");
-            textSearchIntent.putExtra("recyNum", recycleNum);
-            Log.d("searchWhy", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
-                    " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
-                    " 업사이클 이미지 : " + recycleImg);
-            startActivity(textSearchIntent);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 }
