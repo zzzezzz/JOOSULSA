@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView14" />
 
     <TextView
-        android:id="@+id/buyName"
+        android:id="@+id/popSearch1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -90,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view4" />
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/popSearch2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -102,7 +102,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view7" />
 
     <TextView
-        android:id="@+id/textView28"
+        android:id="@+id/popSearch3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -114,7 +114,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view10" />
 
     <TextView
-        android:id="@+id/textView30"
+        android:id="@+id/popSearch4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -126,7 +126,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view11" />
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/popSearch5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -138,7 +138,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view12" />
 
     <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/popSearch6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -184,7 +184,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="15dp"
         android:background="@color/lightGray"
-        app:layout_constraintBottom_toTopOf="@+id/textView26"
+        app:layout_constraintBottom_toTopOf="@+id/popSearch2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -203,7 +203,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+        app:layout_constraintTop_toBottomOf="@+id/popSearch2" />
 
     <View
         android:id="@+id/view9"
@@ -214,7 +214,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="15dp"
         android:background="@color/lightGray"
-        app:layout_constraintBottom_toTopOf="@+id/textView29"
+        app:layout_constraintBottom_toTopOf="@+id/popSearch6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -229,11 +229,11 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="15dp"
         android:background="@color/lightGray"
-        app:layout_constraintBottom_toTopOf="@+id/textView28"
+        app:layout_constraintBottom_toTopOf="@+id/popSearch3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        app:layout_constraintTop_toBottomOf="@+id/popSearch6" />
 
     <View
         android:id="@+id/view11"
@@ -244,11 +244,11 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="15dp"
         android:background="@color/lightGray"
-        app:layout_constraintBottom_toTopOf="@+id/textView30"
+        app:layout_constraintBottom_toTopOf="@+id/popSearch4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+        app:layout_constraintTop_toBottomOf="@+id/popSearch3" />
 
     <View
         android:id="@+id/view12"
@@ -259,10 +259,10 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="15dp"
         android:background="@color/lightGray"
-        app:layout_constraintBottom_toTopOf="@+id/textView31"
+        app:layout_constraintBottom_toTopOf="@+id/popSearch5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+        app:layout_constraintTop_toBottomOf="@+id/popSearch4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

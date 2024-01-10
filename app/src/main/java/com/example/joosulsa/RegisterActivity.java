@@ -172,7 +172,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     // 아이디 중복 체크 요청 메소드
     private void checkUserIdAvailability(String userId) {
-        String checkUrl = "http://192.168.219.44:8089/check/" + userId;
+        String checkUrl = "http://192.168.219.62:8089/check/" + userId;
 
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -184,10 +184,13 @@ public class RegisterActivity extends AppCompatActivity {
                             // 이미 존재하는 아이디인 경우
                             // 사용자에게 메시지 표시 또는 다른 작업 수행
                             binding.checkDuplication.setText("이미 사용 중인 아이디입니다.");
+                            binding.btnJoin.setEnabled(false);
+                            binding.btnJoin.setText("아이디를 변경해주세요.");
                         } else if ("AVAILABLE".equals(response)) {
                             // 존재하지 않는 아이디인 경우
                             // 사용자에게 메시지 표시 또는 다른 작업 수행
                             binding.checkDuplication.setText("사용 가능한 아이디입니다.");
+                            binding.btnJoin.setEnabled(true);
                         }
                     }
                 },

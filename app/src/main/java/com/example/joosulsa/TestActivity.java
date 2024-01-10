@@ -160,9 +160,17 @@ public class TestActivity extends AppCompatActivity {
                 preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
 
                 String autoId = preferences.getString("autoId", "1");
-                int sendNum = 9 + Integer.parseInt(result);
-                params.put("sendNum", Integer.toString(sendNum));
-                params.put("method", searchMethod);
+                int sendNum;
+                if (autoId.equals("1")){
+                    searchMethod = "etc";
+                    params.put("method", searchMethod);
+                    sendNum = 17 + Integer.parseInt(result);
+                    params.put("sendNum", Integer.toString(sendNum));
+                }else {
+                    params.put("method", searchMethod);
+                    sendNum = 9 + Integer.parseInt(result);
+                    params.put("sendNum", Integer.toString(sendNum));
+                }
                 params.put("userId", autoId);
                 long now =System.currentTimeMillis();
                 Date today =new Date(now);

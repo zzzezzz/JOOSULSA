@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view5" />
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/popSearch2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -77,12 +77,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="n"
-        app:layout_constraintBottom_toBottomOf="@+id/textView26"
-        app:layout_constraintStart_toEndOf="@+id/textView26"
-        app:layout_constraintTop_toTopOf="@+id/textView26" />
+        app:layout_constraintBottom_toBottomOf="@+id/popSearch2"
+        app:layout_constraintStart_toEndOf="@+id/popSearch2"
+        app:layout_constraintTop_toTopOf="@+id/popSearch2" />
 
     <TextView
-        android:id="@+id/textView28"
+        android:id="@+id/popSearch3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -100,7 +100,7 @@
         android:background="@drawable/buy_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView28">
+        app:layout_constraintTop_toBottomOf="@+id/popSearch3">
 
         <TextView
             android:id="@+id/textView45"

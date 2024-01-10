@@ -87,9 +87,15 @@ public class SearchActivity extends AppCompatActivity {
         String searchMethod = "text";
         preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
 
-        String autoId = preferences.getString("autoId", null);
-        searchRequest(search, searchMethod, autoId);
-        Log.d("확인1", search);
+        String autoId = preferences.getString("autoId", "1");
+        if (autoId.equals("1")){
+            searchMethod = "etc";
+            Log.d("확인1", search + searchMethod);
+            searchRequest(search, searchMethod, autoId);
+        }else {
+            Log.d("확인1", search + searchMethod);
+            searchRequest(search, searchMethod, autoId);
+        }
 
 
         // 검색어를 이용한 추가 동작 수행
@@ -175,7 +181,7 @@ public class SearchActivity extends AppCompatActivity {
             // 확인
             Log.d("데이터 처리", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
                     " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
-                    " 업사이클 이미지 : " + recycleImg);
+                    " 업사이클 이미지 : " + recycleImg + recycleNum);
 
             Log.d("데이터 처리", "Total Points: " + totalPoints);
             SharedPreferences.Editor editor = preferences.edit();
