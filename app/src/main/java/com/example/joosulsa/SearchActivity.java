@@ -35,6 +35,8 @@ public class SearchActivity extends AppCompatActivity {
     // url 주소
     private String springUrl = "http://192.168.219.62:8089/search";
 
+    private String popSearchUrl = "http://192.168.219.62:8089/popData";
+
     // post
     int postMethod = Request.Method.POST;
 
@@ -51,6 +53,9 @@ public class SearchActivity extends AppCompatActivity {
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(SearchActivity.this);
         }
+
+        // 인기검색어 가져오기
+        popSearch();
 
 
         // 버튼 이벤트 처리
@@ -74,6 +79,41 @@ public class SearchActivity extends AppCompatActivity {
             }
             return false; // 이벤트 처리하지 않음
         });
+
+    }
+
+    // 인기검색어 가져오기
+    private void popSearch(){
+
+        StringRequest request = new StringRequest(
+                postMethod,
+                popSearchUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        handlePopData(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                return params;
+            }
+        };
+        requestQueue.add(request);
+
+    }
+
+    // 인기검색어 추출해서 화면에 뿌려주기
+    private void handlePopData(String response){
 
     }
 
