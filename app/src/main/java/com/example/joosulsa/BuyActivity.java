@@ -9,12 +9,30 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
 import com.example.joosulsa.databinding.ActivityBuyBinding;
+
+import org.jetbrains.annotations.Nullable;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BuyActivity extends AppCompatActivity {
 
     private ActivityBuyBinding binding;
     SharedPreferences preferences;
+
+    private String springUrl = "http://192.168.219.62:8089/purchaseProduct";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ";
+
+    // post
+    int postMethod = Request.Method.POST;
+
+    private RequestQueue requestQueue;
 
 
 
@@ -28,6 +46,7 @@ public class BuyActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences("autoLogin",Context.MODE_PRIVATE);
         int point = preferences.getInt("totalPoints",0);
+        String autoId = preferences.getString("autoId", null);
         Log.d("포인트내놔",String.valueOf(point));
 
         String title = intent.getStringExtra("title");
@@ -48,8 +67,40 @@ public class BuyActivity extends AppCompatActivity {
         binding.buyPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(point>intPrice*intcount){
-                    
+                if(point>=intcount*intPrice){
+                    StringRequest request = new StringRequest(
+                            postMethod,
+                            springUrl,
+                            response -> {
+                                Log.d("serverCheck",response);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putInt("totalPoints",Integer.parseInt(response));
+                                Intent intent = new Intent(BuyActivity.this, PurchasePopupSuccessActivity.class);
+                                startActivity(intent);
+                            },
+                            error -> {
+                                // 서버통신 실패
+                                Log.d("asldfjal","!!");
+                            }
+
+                    ) {
+                        @Nullable
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError{
+                            Map<String, String> params = new HashMap<>();
+                            params.put("use_point",totalPrice);
+                            long now =System.currentTimeMillis();
+                            Date today =new Date(now);
+                            SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+                            String time = format.format(today);
+                            params.put("used_at",time);
+                            params.put("user_id_user_id",autoId);
+                            params.put("prod_name",title);
+                            return params;
+                        }
+
+                    };
+                    requestQueue.add(request);
                 }
             }
         });
