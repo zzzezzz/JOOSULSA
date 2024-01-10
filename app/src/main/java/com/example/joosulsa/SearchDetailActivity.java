@@ -71,9 +71,15 @@ public class SearchDetailActivity extends AppCompatActivity {
         String searchMethod = "text";
         preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
 
-        String autoId = preferences.getString("autoId", null);
-        searchRequest(search, searchMethod, autoId);
-        Log.d("확인1", search);
+        String autoId = preferences.getString("autoId", "1");
+        if (autoId.equals("1")){
+            searchMethod = "etc";
+            Log.d("확인2", search + searchMethod);
+            searchRequest(search, searchMethod, autoId);
+        }else {
+            Log.d("확인2", search + searchMethod);
+            searchRequest(search, searchMethod, autoId);
+        }
 
 
         // 검색어를 이용한 추가 동작 수행
