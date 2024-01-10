@@ -194,7 +194,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/pretendard_medium"
-            android:text="0"
+            android:text="100"
             app:layout_constraintBottom_toBottomOf="@+id/textView52"
             app:layout_constraintEnd_toStartOf="@+id/textView54"
             app:layout_constraintTop_toTopOf="@+id/textView52" />
