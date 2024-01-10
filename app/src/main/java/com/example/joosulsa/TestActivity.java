@@ -86,7 +86,7 @@ public class TestActivity extends AppCompatActivity {
                         try {
                             Log.d("확인11", response.toString());
                             JSONObject jsonResponse = new JSONObject(response);
-
+                            String specialRes = "";
                             // JSON 객체에서 원하는 값을 추출
                             String result1 = jsonResponse.getString("result1");
                             String result2 = jsonResponse.getString("result2");
@@ -98,10 +98,13 @@ public class TestActivity extends AppCompatActivity {
                             // 추가적으로 if문을 사용해서 조건 처리하기
                             if (result1.equals("3")) {
                                 // 6번부터 특수데이터
-
-                                String specialRes ="9";
-                                Log.d("poiuytyt", specialRes);
-                                handlePhotoSearch(result1);
+                                if (result2.equals(0) || result2.equals(1)){
+                                    specialRes ="6";
+                                    handlePhotoSearch(specialRes);
+                                }else{
+                                    specialRes = "7";
+                                    handlePhotoSearch(specialRes);
+                                }
                             }else {
                                 handlePhotoSearch(result1);
                             }
@@ -157,7 +160,7 @@ public class TestActivity extends AppCompatActivity {
                 preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
 
                 String autoId = preferences.getString("autoId", "1");
-                int sendNum = 8 + Integer.parseInt(result);
+                int sendNum = 9 + Integer.parseInt(result);
                 params.put("sendNum", Integer.toString(sendNum));
                 params.put("method", searchMethod);
                 params.put("userId", autoId);

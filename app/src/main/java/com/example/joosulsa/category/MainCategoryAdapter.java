@@ -1,5 +1,6 @@
 package com.example.joosulsa.category;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.joosulsa.R; // 이 부분은 프로젝트에 맞게 수정해주세요.
+import com.example.joosulsa.RecycleDetailActivity;
 
 import java.util.List;
 
-public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryAdapter.MainCategoryViewHolder> {
+public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryViewHolder> {
 
     private List<MainCategoryVO> dataset;
 
@@ -30,35 +32,37 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MainCategoryViewHolder holder, int position) {
-        MainCategoryVO item = dataset.get(position);
-        holder.bind(item);
+        String title = dataset.get(position).getTitle();
+        int img = dataset.get(position).getImg();
+
+        holder.getTitCategory().setText(title);
+        holder.getIconCategory().setImageResource(img);
+
+        holder.listener = new MainCategoryClickListener() {
+            @Override
+            public void onMainCategoryClickListener(View v, int position) {
+                Intent intent = new Intent(v.getContext(), RecycleDetailActivity.class);
+
+                MainCategoryVO clickedItem = dataset.get(position);
+                String clickedTitle = clickedItem.getTitle();
+
+                categoryRecySend(clickedTitle);
+
+                v.getContext().startActivity(intent);
+            }
+        };
     }
+
 
     @Override
     public int getItemCount() {
         return dataset.size();
     }
 
-    public static class MainCategoryViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView imageView;
-        private TextView titleTextView;
+    // 클릭한 카테고리 이름 받아와서 스프링에 조회하고 데이터 전달
+    private void categoryRecySend(String clickedTitle){
 
-        public MainCategoryViewHolder(@NonNull View itemView) {
-            super(itemView);
-            // View에서 ImageView와 TextView를 찾음
-            imageView = itemView.findViewById(R.id.iconCategory);
-            titleTextView = itemView.findViewById(R.id.titCategory);
-        }
-
-        public void bind(MainCategoryVO item) {
-            // Null 체크를 추가하여 안전하게 사용
-            if (imageView != null) {
-                imageView.setImageResource(item.getImg());
-            }
-            if (titleTextView != null) {
-                titleTextView.setText(item.getTitle());
-            }
-        }
     }
+
 }
