@@ -3,10 +3,12 @@ package com.example.joosulsa;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 
 import com.example.joosulsa.databinding.ActivityProductInfoBinding;
+import com.example.joosulsa.fragment.ShopFragment;
 
 public class ProductInfoActivity extends AppCompatActivity {
     private ActivityProductInfoBinding binding;
@@ -21,6 +23,7 @@ public class ProductInfoActivity extends AppCompatActivity {
         String title = intent.getStringExtra("title");
         String content = intent.getStringExtra("content");
         String price = intent.getStringExtra("price");
+        Bitmap img = intent.getExtra("prodImg");
 
         int cntPrice = Integer.parseInt(price);
         int productCount = Integer.parseInt(binding.productCount.getText().toString());
@@ -65,6 +68,21 @@ public class ProductInfoActivity extends AppCompatActivity {
                 intent2.putExtra("count",binding.productCount.getText().toString());
                 intent2.putExtra("price",price);
                 startActivity(intent2);
+            }
+        });
+
+        binding.productBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        binding.productHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductInfoActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
