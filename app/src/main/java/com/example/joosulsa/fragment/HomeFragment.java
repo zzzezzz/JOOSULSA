@@ -125,7 +125,6 @@ public class HomeFragment extends Fragment {
         Log.d("대체 왜 초기화가 안되냐", String.valueOf(checkBoolean));
         Log.d("checkingchecking", "id:"+autoId + "닉네임:"+autoNick+"pw:"+autoPw + "이름" + autoName + "주소 : " + autoAddr);
         Log.d("booleanCheck", checkBoolean + " / " + quizBoolean);
-        int totalPoints = userPoint(preferences);
         String checkTime;
 
         long now =System.currentTimeMillis();
@@ -172,7 +171,7 @@ public class HomeFragment extends Fragment {
         // 회원정보창 이벤트
         if (autoId!=null && autoPw!=null) {
             binding.memberId.setText(autoNick);
-            binding.numPoint.setText(Integer.toString(totalPoints));
+            binding.numPoint.setText(Integer.toString(userPoint));
             binding.memberInfo.setOnClickListener(v -> {
                 // MyPageFragment로 이동하는 코드
                 requireActivity().getSupportFragmentManager().beginTransaction().replace(
@@ -182,7 +181,7 @@ public class HomeFragment extends Fragment {
             });
         } else if (checkUserInputNick!=null) {
             binding.memberId.setText(checkUserInputNick);
-            binding.numPoint.setText(Integer.toString(totalPoints));
+            binding.numPoint.setText(Integer.toString(userPoint));
             binding.memberInfo.setOnClickListener(v -> {
                 // MyPageFragment로 이동하는 코드
                 requireActivity().getSupportFragmentManager().beginTransaction().replace(
@@ -459,6 +458,8 @@ public class HomeFragment extends Fragment {
             editor.putBoolean("checkBoolean", quizAtt);
             editor.putInt("monthlyAttendance", monthlyAttNum);
             editor.putInt("totalPoints", totalPoints);
+            Log.d("preferencePoints", String.valueOf(totalPoints));
+            editor.apply();
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
