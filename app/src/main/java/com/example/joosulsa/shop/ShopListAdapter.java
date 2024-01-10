@@ -61,24 +61,31 @@ public class ShopListAdapter extends BaseAdapter {
 
         ShopListVO item = dataList.get(position);
 
-        if (item.getImg() != null) {
-            // 이미지 데이터가 있는 경우
-            viewHolder.getImg().setVisibility(View.VISIBLE);
-            viewHolder.getImg().setImageBitmap(item.getImg());
-            viewHolder.getProTitle().setVisibility(View.GONE);
-            viewHolder.getProInfo().setVisibility(View.GONE);
-            viewHolder.getProPrice().setVisibility(View.GONE);
-        } else {
-            // 텍스트 데이터만 있는 경우
-            viewHolder.getImg().setVisibility(View.GONE);
-            viewHolder.getProTitle().setVisibility(View.VISIBLE);
-            viewHolder.getProInfo().setVisibility(View.VISIBLE);
-            viewHolder.getProPrice().setVisibility(View.VISIBLE);
+        // 데이터 넣어주기
+        viewHolder.getImg().setImageBitmap(item.getImg());
+        viewHolder.getProTitle().setText(item.getTitle());
+        viewHolder.getProPrice().setText(String.valueOf(item.getPrice())+" Point");
+        viewHolder.getProInfo().setText(item.getContent());
 
-            viewHolder.getProTitle().setText(item.getTitle());
-            viewHolder.getProInfo().setText(item.getContent());
-            viewHolder.getProPrice().setText(String.valueOf(item.getPrice()));
-        }
+
+//        if (item.getImg() != null) {
+//            // 이미지 데이터가 있는 경우
+//            viewHolder.getImg().setVisibility(View.VISIBLE);
+//            viewHolder.getImg().setImageBitmap(item.getImg());
+//            viewHolder.getProTitle().setVisibility(View.GONE);
+//            viewHolder.getProInfo().setVisibility(View.GONE);
+//            viewHolder.getProPrice().setVisibility(View.GONE);
+//        } else {
+//            // 텍스트 데이터만 있는 경우
+//            viewHolder.getImg().setVisibility(View.GONE);
+//            viewHolder.getProTitle().setVisibility(View.VISIBLE);
+//            viewHolder.getProInfo().setVisibility(View.VISIBLE);
+//            viewHolder.getProPrice().setVisibility(View.VISIBLE);
+//
+//            viewHolder.getProTitle().setText(item.getTitle());
+//            viewHolder.getProInfo().setText(item.getContent());
+//            viewHolder.getProPrice().setText(String.valueOf(item.getPrice()));
+//        }
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
