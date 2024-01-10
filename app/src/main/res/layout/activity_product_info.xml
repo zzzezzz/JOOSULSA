@@ -81,7 +81,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView23"
+                android:id="@+id/prodctImg"
                 android:layout_width="310dp"
                 android:layout_height="310dp"
                 android:layout_gravity="center"
