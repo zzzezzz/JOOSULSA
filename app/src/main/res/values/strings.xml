@@ -31,6 +31,7 @@
 
     <string name="titCountPoint">누적 포인트</string>
     <string name="CountPointUnit">POINT</string>
+    <string name="idIcon"> ID |</string>
 
     <string name="innerTitlePoint">포인트 전체 내역</string>
 

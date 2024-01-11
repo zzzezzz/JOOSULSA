@@ -63,17 +63,6 @@ public class ShopFragment extends Fragment {
         shopData();
 //        ShopImg();
 
-        // 뒤로가기
-        binding.shopBack.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            startActivity(intent);
-        });
-        // 홈으로
-        binding.shopHome.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            startActivity(intent);
-        });
-
 
         // 초기화
         dataset = new ArrayList<>();
