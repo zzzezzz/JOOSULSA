@@ -27,8 +27,7 @@ public class BuyActivity extends AppCompatActivity {
     private ActivityBuyBinding binding;
     SharedPreferences preferences;
 
-    private String springUrl = "http://192.168.219.62:8089/purchaseProduct";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ";
-
+    private final String springUrl = "http://192.168.219.62:8089/purchaseProduct";
     // post
     int postMethod = Request.Method.POST;
 
