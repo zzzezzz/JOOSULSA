@@ -90,9 +90,11 @@ public class HomeFragment extends Fragment {
     private String falseUrl = "http://192.168.219.62:8089/makeFalse";
     private String trueUrl = "http://192.168.219.62:8089/makeTrue";
     // 가장 많이 찾고 있어요에 조회수 순으로 데이터 넣어주는 주소
-    private String mainViewsUrl = "http://192.168.219.42:8089/mainViews";
+    private String mainViewsUrl = "http://192.168.219.62:8089/mainViews";
     // 해시태그에서 해당하는 재활용 페이지로 넘어갈때 요청 주소
-    private String hashtagUrl = "http://192.168.219.42:8089/hashtag";
+    private String hashtagUrl = "http://192.168.219.62:8089/hashtag";
+
+    private String userRankPrintUrl = "http://192.168.219.62:8089/userRankPrint";
 
 
     int postMethod = Request.Method.POST;
@@ -234,6 +236,7 @@ public class HomeFragment extends Fragment {
         if (autoId!=null && autoPw!=null) {
             binding.memberId.setText(autoNick);
             binding.numPoint.setText(Integer.toString(userPoint));
+            userRankPrint(autoId);
             binding.memberInfo.setOnClickListener(v -> {
                 // MyPageFragment로 이동하는 코드
                 requireActivity().getSupportFragmentManager().beginTransaction().replace(
@@ -244,6 +247,7 @@ public class HomeFragment extends Fragment {
         } else if (checkUserInputNick!=null) {
             binding.memberId.setText(checkUserInputNick);
             binding.numPoint.setText(Integer.toString(userPoint));
+            userRankPrint(autoId);
             binding.memberInfo.setOnClickListener(v -> {
                 // MyPageFragment로 이동하는 코드
                 requireActivity().getSupportFragmentManager().beginTransaction().replace(
@@ -253,6 +257,7 @@ public class HomeFragment extends Fragment {
             });
         } else{
             binding.numPoint.setText(Integer.toString(userPoint));
+            userRankPrint(autoId);
             binding.memberInfo.setOnClickListener(v -> {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
@@ -433,6 +438,60 @@ public class HomeFragment extends Fragment {
             }
         };
         requestQueue.add(request);
+    }
+
+    // 유저 랭킹 출력
+    private void userRankPrint(String autoId){
+        if (autoId != null){
+
+            StringRequest request = new StringRequest(
+                    postMethod,
+                    userRankPrintUrl,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("receiveRankData", response);
+                            String rankText = printRank(response, autoId);
+                            Log.d("rankText", rankText);
+                            TextView textView = getView().findViewById(R.id.memberContent);
+                            textView.setText(rankText);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }
+            ){
+                @Nullable
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("userId", autoId);
+                    return params;
+                }
+            };
+            requestQueue.add(request);
+
+        }else {
+            String text = "로그인을 하시려면 이곳을 클릭해주세요.";
+            TextView textView = getView().findViewById(R.id.memberContent);
+            textView.setText(text);
+        }
+    }
+
+    private String printRank(String response, String autoId){
+
+        try {
+            JSONObject jsonResponse = new JSONObject(response);
+            String rank = jsonResponse.getString("rank");
+
+            String rankNum = autoId + "님은 " + rank +"등입니다!";
+            return rankNum;
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     // 카테고리에 넣을 데이터 가져옴

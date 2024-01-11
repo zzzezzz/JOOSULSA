@@ -6,28 +6,40 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ImageView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.databinding.ActivitySearchDetailBinding;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class SearchDetailActivity extends AppCompatActivity {
     private ActivitySearchDetailBinding binding;
     private String springUrl = "http://192.168.219.62:8089/search";
+    private String upPopUrl = "http://192.168.219.62:8089/upPop";
 
     // post
     int postMethod = Request.Method.POST;
@@ -41,6 +53,13 @@ public class SearchDetailActivity extends AppCompatActivity {
         binding=ActivitySearchDetailBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
+
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(SearchDetailActivity.this);
+        }
+        Log.d("downdowndown", "down?");
+        upPopImg();
+        Log.d("upupupupupupupupupup", "up?");
 
         // 뒤로가기
         binding.backSearchDetail.setOnClickListener(v -> {
@@ -59,6 +78,8 @@ public class SearchDetailActivity extends AppCompatActivity {
             }
             return false; // 이벤트 처리하지 않음
         });
+
+
     }
 
     // 검색 기능 로직 처리
@@ -189,4 +210,74 @@ public class SearchDetailActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    private void upPopImg(){
+        Log.d("zxcbweferqfr4", "여긴오나?");
+        StringRequest request = new StringRequest(
+
+                postMethod,
+                upPopUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("vczxczb ftgs", response);
+                        upPopImgOut(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("cvbrtehwrbvsw", error.toString());
+                    }
+                }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                String method = "etc";
+                params.put("method", method);
+                Log.d("seachDetailMethod", method);
+                return params;
+            }
+        };
+        requestQueue.add(request);
+
+    }
+
+    private void upPopImgOut(String response){
+
+        List<Bitmap> bitmapList = new ArrayList<>();
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            for (int i = 0; i <8; i++) {
+                Log.d("0start?", jsonObject.getString("image0"));
+                // 가정: "img" + i라는 키에 Base64로 인코딩된 이미지 데이터가 들어 있다고 가정
+                String upPopEncode = jsonObject.getString("image" + i);
+                Log.d("lengthCheck", Integer.toString(upPopEncode.length()));
+                byte[] decodedBytes1 = Base64.decode(upPopEncode, Base64.DEFAULT);
+                Bitmap bitmap1 = BitmapFactory.decodeByteArray(decodedBytes1, 0, decodedBytes1.length);
+                Log.d("ascdbgwrfv", "dvsadc");
+                bitmapList.add(bitmap1);
+            }
+
+
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        Random rd = new Random();
+        List<Integer> rdNumList = new ArrayList<>();
+        for (int j = 0; j<3; j++){
+            int rdNum = rd.nextInt(7);
+            Log.d("rdNumCheck", Integer.toString(rdNum));
+            rdNumList.add(rdNum);
+            String imgV = "popUpcy" + (j+1);
+            Log.d("imgV", imgV);
+            int imageViewId = getResources().getIdentifier(imgV, "id", getPackageName());
+            ImageView imageView = findViewById(imageViewId);
+            imageView.setImageBitmap(bitmapList.get(rdNumList.get(j)));
+        }
+
+    }
+
 }

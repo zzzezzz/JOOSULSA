@@ -55,25 +55,22 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryViewHo
         String title = dataset.get(position).getTitle();
         int img = dataset.get(position).getImg();
         Log.d("qwcxnyfgev", title);
-        holder.getTitCategory().setText(title);
         holder.getIconCategory().setImageResource(img);
+        holder.getTitCategory().setText(title);
 
-        holder.listener = new MainCategoryClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onMainCategoryClickListener(View v, int position) {
-                Intent textSearchIntent = new Intent(v.getContext(), RecycleDetailActivity.class);
-
-                String clickedTitle = title;
+            public void onClick(View v) {
+                String clickedTitle = dataset.get(position).getTitle();
                 Log.d("aboutHere", clickedTitle);
                 if (requestQueue == null) {
                     requestQueue = Volley.newRequestQueue(v.getContext());
                 }
-
-                categoryRecySend(clickedTitle, textSearchIntent);
-
-                v.getContext().startActivity(textSearchIntent);
+                categoryRecySend(clickedTitle, v);
             }
-        };
+        });
+
+
     }
 
 
@@ -84,7 +81,7 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryViewHo
 
 
     // 클릭한 카테고리 이름 받아와서 스프링에 조회하고 데이터 전달
-    private void categoryRecySend(String clickedTitle, Intent textSearchIntent){
+    private void categoryRecySend(String clickedTitle, View v){
         String cateRecySendUrl = "http://192.168.219.62:8089/cateRecySend";
         int postMethod = Request.Method.POST;
         String method = "etc";
@@ -96,7 +93,7 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryViewHo
                     @Override
                     public void onResponse(String response) {
                         Log.d("cateRecySend", response);
-                        handleCateData(response, textSearchIntent);
+                        handleCateData(response, v);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -111,13 +108,14 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryViewHo
                 Map<String, String> params = new HashMap<>();
                 params.put("clickedTitle", clickedTitle);
                 params.put("method", method);
+                Log.d("SendDataChecking", clickedTitle + method);
                 return params;
             }
         };
         requestQueue.add(request);
     }
 
-    private void handleCateData(String response, Intent textSearchIntent){
+    private void handleCateData(String response, View v){
         try {
             // 데이터 파싱 작업
             // 데이터 파싱 작업
@@ -142,7 +140,7 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryViewHo
                     " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
                     " 업사이클 이미지 : " + recycleImg);
             // Intent에 값 넣어주기
-
+            Intent textSearchIntent = new Intent(v.getContext(), RecycleDetailActivity.class);
             textSearchIntent.putExtra("trashName", trashName);
             textSearchIntent.putExtra("sepaMethod",sepaMethod);
             textSearchIntent.putExtra("sepaCaution",sepaCaution);
@@ -155,6 +153,7 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryViewHo
             Log.d("searchWhy", "방법: " + sepaMethod + " 주의사항: " + sepaCaution +
                     " 이미지: " + sepaImg + " 분리수거 영상: " + sepaVideo + " 업사이클 영상: " + recycleVideo +
                     " 업사이클 이미지 : " + recycleImg);
+            v.getContext().startActivity(textSearchIntent);
         } catch (JSONException e) {
             e.printStackTrace();
         }

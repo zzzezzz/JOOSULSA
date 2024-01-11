@@ -28,7 +28,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView22"
+                android:id="@+id/popUpcy3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -57,7 +57,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView21"
+                android:id="@+id/popUpcy2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -136,7 +136,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView20"
+                android:id="@+id/popUpcy1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
