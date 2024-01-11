@@ -90,9 +90,12 @@ public class TestActivity extends AppCompatActivity {
                             // JSON 객체에서 원하는 값을 추출
                             String result1 = jsonResponse.getString("result1");
                             String result2 = jsonResponse.getString("result2");
+                            String accuracy = jsonResponse.getString("accuracy");
+                            double acc = Double.valueOf(accuracy);
+                            int mathAcc = (int)Math.floor(acc);
 
                             // 추출한 값들을 사용하거나 출력
-                            Log.d("Result1", result1 + result2);
+                            Log.d("Result1369", result1 + result2 + "/" + accuracy + "//" + mathAcc);
                             // Toast.makeText(TestActivity.this, "서버응답" +, Toast.LENGTH_SHORT).show();
                             // result값을 사용해서 tb_recycling에서 데이터 조회해서 detail로 넘겨주기
                             // 추가적으로 if문을 사용해서 조건 처리하기

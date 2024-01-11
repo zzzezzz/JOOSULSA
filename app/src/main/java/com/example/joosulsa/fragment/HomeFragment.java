@@ -42,6 +42,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.CheckActivity;
+import com.example.joosulsa.CheckPopupActivity;
 import com.example.joosulsa.LoginActivity;
 import com.example.joosulsa.QuizActivity;
 import com.example.joosulsa.QuizClosePopup;
@@ -151,6 +152,7 @@ public class HomeFragment extends Fragment {
 //            SimpleDateFormat format1 =new SimpleDateFormat("yyyy.MM.dd");
 //            checkTime = format1.format(today1);
 //            Log.d("checkTime", checkTime);
+//            makeTrue(autoId);
 //            if (checkTime.equals(nowTime)){
 //                makeTrue(autoId);
 //                quizCheckDataRequest(autoId);
@@ -434,6 +436,7 @@ public class HomeFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("userId", autoId);
+                Log.d("rankIdCheck", autoId);
                 return params;
             }
         };
@@ -475,8 +478,14 @@ public class HomeFragment extends Fragment {
 
         }else {
             String text = "로그인을 하시려면 이곳을 클릭해주세요.";
-            TextView textView = getView().findViewById(R.id.memberContent);
-            textView.setText(text);
+            View view = getView();
+            if (view != null) {
+                TextView textView = view.findViewById(R.id.memberContent);
+                if (textView != null) {
+                    // TextView 사용
+                    textView.setText(text);
+                }
+            }
         }
     }
 
