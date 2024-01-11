@@ -28,6 +28,7 @@ public class BuyActivity extends AppCompatActivity {
     SharedPreferences preferences;
 
     private final String springUrl = "http://192.168.219.62:8089/purchaseProduct";
+    private final String springUrl2 = "http://192.168.219.51:8089/purchaseProduct";
     // post
     int postMethod = Request.Method.POST;
 
@@ -69,7 +70,7 @@ public class BuyActivity extends AppCompatActivity {
                 if(point>=intcount*intPrice){
                     StringRequest request = new StringRequest(
                             postMethod,
-                            springUrl,
+                            springUrl2,
                             response -> {
                                 Log.d("serverCheck",response);
                                 SharedPreferences.Editor editor = preferences.edit();
