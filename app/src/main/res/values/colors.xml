@@ -11,6 +11,7 @@
     <color name="heavyBlue">#1C66D6</color>
     <color name="pointYellow">#FFFEB6</color>
     <color name="pointRed">#FF4646</color>
+    <color name="pointGreen">#00AB11</color>
 
     <!-- fragment_home 컬러-->
     <color name="checkColor">#489BFC</color>

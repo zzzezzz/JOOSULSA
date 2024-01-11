@@ -40,7 +40,7 @@ public class MypageFragment extends Fragment {
         preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
         String autoId = preferences.getString("autoId", "유저 닉네임");
         String autoNick = preferences.getString("autoNick", "유저 아이디");
-        int totalPoint = preferences.getInt("userPoint", 0);
+        int totalPoint = preferences.getInt("totalPoints", 0);
 
         binding.myInfoId.setText(autoId);
         binding.myInfoNick.setText(autoNick);
@@ -52,11 +52,12 @@ public class MypageFragment extends Fragment {
             startActivity(intent);
         });
 
-        // 구매내역 페이지 이동
-        binding.purchaseHistoryInquiry.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), PurchaseListActivity.class);
-            startActivity(intent);
-        });
+//        // 구매내역 페이지 이동
+//        binding.purchaseHistoryInquiry.setOnClickListener(v -> {
+//            Intent intent = new Intent(getActivity(), PurchaseListActivity.class);
+//            startActivity(intent);
+//        });
+
         // 포인트내역 페이지 이동
         binding.pointInquiry.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), RePointHistoryActivity.class);
