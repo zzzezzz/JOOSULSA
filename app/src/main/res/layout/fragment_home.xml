@@ -34,27 +34,37 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="16dp"
                 app:srcCompat="@drawable/logo" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/search"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="40dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="#ECECEC"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
                 app:cardMaxElevation="0dp"
                 app:cardPreventCornerOverlap="false">
 
-                <SearchView
-                    android:id="@+id/search"
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12dp"
+                    app:srcCompat="@drawable/search_icon" />
+
+                <TextView
+                    android:id="@+id/textView17"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#ECECEC">
+                    android:gravity="center_vertical"
+                    android:hint="검색어를 입력해주세요."
+                    android:paddingLeft="48dp" />
 
-                </SearchView>
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -160,9 +170,9 @@
                         android:id="@+id/imageView9"
                         android:layout_width="60dp"
                         android:layout_height="70dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginRight="6dp"
+                        android:layout_marginRight="10dp"
                         app:srcCompat="@drawable/user" />
 
                     <LinearLayout
@@ -175,7 +185,7 @@
                             android:id="@+id/memberId"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="20dp"
                             android:fontFamily="@font/pretendard_bold"
                             android:text="로그인이 필요합니다."
                             android:textSize="14sp" />
@@ -188,6 +198,7 @@
                             android:layout_marginBottom="20dp"
                             android:fontFamily="@font/pretendard_medium"
                             android:text="@string/tvLogintext"
+                            android:textColor="#248709"
                             android:textSize="12sp" />
                     </LinearLayout>
 
@@ -199,7 +210,8 @@
                     android:layout_height="68dp"
                     android:layout_gravity="right"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="200dp"

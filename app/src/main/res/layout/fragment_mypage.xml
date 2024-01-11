@@ -73,7 +73,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="15dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -81,25 +81,41 @@
                 android:id="@+id/myInfoNick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="35dp"
                 android:fontFamily="@font/pretendard_bold"
                 android:text="유저닉네임"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/myInfoId"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:fontFamily="@font/pretendard_regular"
-                android:text="유저 아이디"
-                android:textColor="@color/heavyGray" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView64"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/idIcon"
+                    android:textColor="#B5B5B5" />
+
+                <TextView
+                    android:id="@+id/myInfoId"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:gravity="center_vertical"
+                    android:text="유저 아이디"
+                    android:textColor="#B5B5B5" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="4dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -107,16 +123,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_medium"
-                    android:text="포인트"
+                    android:text="포인트 |"
                     android:textColor="@color/hintText" />
-
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="3px"
-                    android:layout_height="45px"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/hintText" />
 
                 <TextView
                     android:id="@+id/myInfoPoint"
@@ -196,52 +204,6 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/purchaseHistoryInquiry"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        app:cardBackgroundColor="@color/subYellow"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:cardMaxElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline30"
-        app:layout_constraintHorizontal_bias="0.471"
-        app:layout_constraintStart_toStartOf="@+id/guideline29"
-        app:layout_constraintTop_toBottomOf="@+id/userInfoChange">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView147"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/pretendard_bold"
-                android:text="구매내역 조회"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView30"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="166dp"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/right"
-                app:layout_constraintBottom_toBottomOf="@+id/textView147"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView147"
-                app:layout_constraintTop_toTopOf="@+id/textView147" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
         android:id="@+id/pointInquiry"
         android:layout_width="300dp"
         android:layout_height="50dp"
@@ -252,7 +214,7 @@
         app:cardMaxElevation="0dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline30"
         app:layout_constraintStart_toStartOf="@+id/guideline29"
-        app:layout_constraintTop_toBottomOf="@+id/purchaseHistoryInquiry">
+        app:layout_constraintTop_toBottomOf="@+id/userInfoChange">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
