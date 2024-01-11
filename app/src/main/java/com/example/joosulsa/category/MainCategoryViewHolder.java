@@ -32,7 +32,7 @@ public class MainCategoryViewHolder extends RecyclerView.ViewHolder implements V
         this.titCategory = itemView.findViewById(R.id.titCategory);
 
         // 버튼 눌렀을 때 동작
-        categoryBtn.setOnClickListener(this); // this 사용하기 위해서 인터페이스에서 설정해줄 것
+        itemView.setOnClickListener(this); // this 사용하기 위해서 인터페이스에서 설정해줄 것
         
     }
 
