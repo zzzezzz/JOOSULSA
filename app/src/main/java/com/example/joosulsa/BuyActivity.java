@@ -13,6 +13,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.databinding.ActivityBuyBinding;
 
 import org.jetbrains.annotations.Nullable;
@@ -41,6 +42,10 @@ public class BuyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityBuyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(BuyActivity.this);
+        }
 
         Intent intent = getIntent();
 
@@ -77,6 +82,7 @@ public class BuyActivity extends AppCompatActivity {
                                 editor.putInt("totalPoints",Integer.parseInt(response));
                                 Intent intent = new Intent(BuyActivity.this, PurchasePopupSuccessActivity.class);
                                 startActivity(intent);
+                                finish();
                             },
                             error -> {
                                 // 서버통신 실패
