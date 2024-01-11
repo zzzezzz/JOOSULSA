@@ -475,8 +475,14 @@ public class HomeFragment extends Fragment {
 
         }else {
             String text = "로그인을 하시려면 이곳을 클릭해주세요.";
-            TextView textView = getView().findViewById(R.id.memberContent);
-            textView.setText(text);
+            View view = getView();
+            if (view != null) {
+                TextView textView = view.findViewById(R.id.memberContent);
+                if (textView != null) {
+                    // TextView 사용
+                    textView.setText(text);
+                }
+            }
         }
     }
 
