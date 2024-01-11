@@ -46,13 +46,13 @@ public class TownRankActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
     
     // 상위 동네 랭킹 데이터 뽑아주기 위한 링크
-    private String townRankUrl = "http://192.168.219.42:8089/townList";
+    private String townRankUrl = "http://192.168.219.62:8089/townList";
     
     // 로그인 한 사용자가 속한 동네의 포인트를 뽑아주기 위한 링크
-    private String userTownPointUrl = "http://192.168.219.42:8089/userTownPoint";
+    private String userTownPointUrl = "http://192.168.219.62:8089/userTownPoint";
 
     // 로그인 한 사용자가 속한 동네의 좌표값을 뽑아주기 위한 링크
-    private String userTownGpsUrl = "http://192.168.219.42:8089/map";
+    private String userTownGpsUrl = "http://192.168.219.62:8089/map";
 
 
     int postMethod = Request.Method.POST;
@@ -219,7 +219,7 @@ public class TownRankActivity extends AppCompatActivity {
             }
 
             // townNameList와 totalPointsList를 원하는 방식으로 활용
-            for (int i = 0; i < townNameList.size(); i++) {
+            for (int i = 0; i < townNameList.size()-1; i++) {
                 String townName = townNameList.get(i);
                 Long totalPoints = totalPointsList.get(i);
                 String stringPoints = String.valueOf(totalPoints);
@@ -234,12 +234,22 @@ public class TownRankActivity extends AppCompatActivity {
                 int scoreResourceId = getResources().getIdentifier(tvScoreId, "id", getPackageName());
 
                 TextView townNameTextView = findViewById(tvTownNameId);
-                Log.d("asmntrbfg", townNameTextView.toString());
+                if (townNameTextView != null) {
+                    // townNameTextView가 정상적으로 초기화되었을 때의 로직
+                    townNameTextView.setText(townName.toString());
+                } else {
+                    Log.e("TownRankActivity", "townNameTextView is null");
+                }
+                // Log.d("asmntrbfg", townNameTextView.toString());
                 TextView scoreTextView = findViewById(scoreResourceId);
-                Log.d("asmntrbvx", scoreTextView.toString());
+                // Log.d("asmntrbvx", scoreTextView.toString());
 
-                townNameTextView.setText(townName.toString());
-                scoreTextView.setText(stringPoints+" pt");
+                if (scoreTextView != null) {
+                    // scoreTextView가 정상적으로 초기화되었을 때의 로직
+                    scoreTextView.setText(stringPoints + " pt");
+                } else {
+                    Log.e("TownRankActivity", "scoreTextView is null");
+                }
 
                 // 원하는 로직 수행
                 Log.d("townRankData", "townName: " + townName + ", Total Points: " + totalPoints);

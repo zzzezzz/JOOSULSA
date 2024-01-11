@@ -52,12 +52,6 @@ public class MypageFragment extends Fragment {
             startActivity(intent);
         });
 
-//        // 구매내역 페이지 이동
-//        binding.purchaseHistoryInquiry.setOnClickListener(v -> {
-//            Intent intent = new Intent(getActivity(), PurchaseListActivity.class);
-//            startActivity(intent);
-//        });
-
         // 포인트내역 페이지 이동
         binding.pointInquiry.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), RePointHistoryActivity.class);

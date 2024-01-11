@@ -118,6 +118,8 @@ public class HomeFragment extends Fragment {
 
         // 자동 로그인 부분
         // 데이터 가져오기
+        preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
         String autoId = autoIdMethod(preferences);
         String autoPw = autoPwMethod(preferences);
         String autoName = autoNameMethod(preferences);
@@ -141,30 +143,30 @@ public class HomeFragment extends Fragment {
         SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
         String nowTime = format.format(today);
         Log.d("nowTime", nowTime);
+        editor.putString("nowTime", nowTime);
 
         // 출석체크
-//        if (checkBoolean == false){
-//
-//            Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
-//
-//            long now1 =System.currentTimeMillis();
-//            Date today1 =new Date(now1);
-//            SimpleDateFormat format1 =new SimpleDateFormat("yyyy.MM.dd");
-//            checkTime = format1.format(today1);
-//            Log.d("checkTime", checkTime);
-//            makeTrue(autoId);
-//            if (checkTime.equals(nowTime)){
-//                makeTrue(autoId);
-//                quizCheckDataRequest(autoId);
-//            }else {
-//                makeFalse(autoId);
-//
-//            }
-//
-//            startActivity(intent);
-//        }else {
-//
-//        }
+        if (checkBoolean == false){
+
+            Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
+
+            long now1 =System.currentTimeMillis();
+            Date today1 =new Date(now1);
+            SimpleDateFormat format1 =new SimpleDateFormat("yyyy.MM.dd");
+            checkTime = format1.format(today1);
+            Log.d("checkTime", checkTime);
+            editor.putString("checkTime", checkTime);
+            if (checkTime.equals(nowTime)){
+                makeTrue(autoId);
+            }else {
+                makeFalse(autoId);
+
+            }
+
+            startActivity(intent);
+        }else {
+
+        }
 
 
         // homeFragment에 있는 요소 순서대로 이벤트 작성바람
@@ -181,13 +183,6 @@ public class HomeFragment extends Fragment {
 
         // 가장 많이 찾고 있어요 조회수 값 가져오는 메소드
         mainViews();
-
-        // 가장 많이 찾고 있어요 클릭 이벤트
-
-        String trashName2 = binding.hashtag2.getText().toString();
-        String trashName3 = binding.hashtag3.getText().toString();
-        String trashName4 = binding.hashtag4.getText().toString();
-
 
         // 해시태그 클릭 시
         binding.hashtag1.setOnClickListener(new View.OnClickListener() {
@@ -231,8 +226,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
-
 
         // 회원정보창 이벤트
         if (autoId!=null && autoPw!=null) {
@@ -278,14 +271,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
         // 우리동네 랭킹 버튼 이벤트
         binding.rankBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), TownRankActivity.class);
             startActivity(intent);
             getActivity().finish();
         });
-
 
         // ActivityResultCallback 정의
         ActivityResultCallback<ActivityResult> resultCallback = result -> {
@@ -584,8 +575,8 @@ public class HomeFragment extends Fragment {
             int monthlyAttNum = Integer.parseInt(jsonResponse.getString("monthlyAttendance"));
             int totalPoints = Integer.parseInt(jsonResponse.getString("totalPoints"));
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("quizBoolean", todayAtt);
-            editor.putBoolean("checkBoolean", quizAtt);
+            editor.putBoolean("quizBoolean", quizAtt);
+            editor.putBoolean("checkBoolean", todayAtt);
             editor.putInt("monthlyAttendance", monthlyAttNum);
             editor.putInt("totalPoints", totalPoints);
             Log.d("preferencePoints", String.valueOf(totalPoints));
