@@ -634,13 +634,13 @@ public class HomeFragment extends Fragment {
 
     private boolean autoTodayAtt(SharedPreferences preferences){
         preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
-        boolean checkBoolean = preferences.getBoolean("checkBoolean", false);
+        boolean checkBoolean = preferences.getBoolean("checkBoolean", true);
         return checkBoolean;
     }
 
     private boolean autoQuiz(SharedPreferences preferences){
         preferences = requireActivity().getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
-        boolean quizBoolean = preferences.getBoolean("quizBoolean", false);
+        boolean quizBoolean = preferences.getBoolean("quizBoolean", true);
         return quizBoolean;
     }
 
