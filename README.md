@@ -80,7 +80,7 @@
 <br>
 
 ## 📌 SW유스케이스
-![SW유스케이스](https://github.com/2023-SMHRD-KDT-AI-3/ChickenGGRepo/assets/140151776/7e8ff517-3967-422e-be67-e4e01e2203f9)
+![실전-유스케이스](https://github.com/2023-SMHRD-KDT-AI-3/JOOSULSA/assets/140151834/75351903-bfde-4d58-999b-a1a794a5dcd3)
 <br>
 
 ## 📌 서비스 흐름도
@@ -89,7 +89,7 @@
 <br>
 
 ## 📌 ER다이어그램
-![ER 다이어그램](https://github.com/2023-SMHRD-KDT-AI-3/ChickenGGRepo/assets/140151776/3d053943-414e-480d-bac5-3e4d5b4c731b)
+![ERDiagram](https://github.com/2023-SMHRD-KDT-AI-3/JOOSULSA/assets/140151834/78e11c32-89f0-4376-b6c4-0218a2d18fc1)
 <br>
 
 ## 🖥 화면 구성
