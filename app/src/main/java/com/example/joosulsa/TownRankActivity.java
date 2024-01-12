@@ -76,12 +76,7 @@ public class TownRankActivity extends AppCompatActivity {
 
         }
 
-        // 뒤로 가기
-        binding.btnTownRankBack.setOnClickListener(v -> {
-            Intent intent = new Intent(TownRankActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        });
+
 
 
         // 홈으로
@@ -121,8 +116,7 @@ public class TownRankActivity extends AppCompatActivity {
         binding.WebView.loadUrl(url);
 
         binding.btnTownRankBack.setOnClickListener(v -> {
-            Intent intent = new Intent(TownRankActivity.this, MainActivity.class);
-            startActivity(intent);
+
             finish();
         });
         

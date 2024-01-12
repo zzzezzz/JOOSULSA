@@ -107,6 +107,8 @@ public class RecycleDetailActivity extends AppCompatActivity {
         });
 
 
+
+
     }
 
     private void imgRequest(String recyNum1){

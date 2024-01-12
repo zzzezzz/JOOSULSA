@@ -53,8 +53,6 @@ public class PersonRankActivity extends AppCompatActivity {
         personRankData();
 
         binding.btnPersonRankBack.setOnClickListener(v -> {
-            Intent intent = new Intent(PersonRankActivity.this, MainActivity.class);
-            startActivity(intent);
             finish();
         });
 

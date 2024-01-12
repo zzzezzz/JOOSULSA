@@ -25,13 +25,13 @@ public class RankFragment extends Fragment {
         binding.personRankBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), PersonRankActivity.class);
             startActivity(intent);
-            getActivity().finish();
+
         });
 
         binding.townRankBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), TownRankActivity.class);
             startActivity(intent);
-            getActivity().finish();
+
         });
 
         return binding.getRoot();
