@@ -35,7 +35,7 @@ public class MyPageEditActivity extends AppCompatActivity {
     private RequestQueue queue;
 
     // url 주소
-    private String springUrl = "http://172.30.48.1:8089/myChange";
+    private String springUrl = "http://192.168.219.62:8089/myChange";
 
 
     // post

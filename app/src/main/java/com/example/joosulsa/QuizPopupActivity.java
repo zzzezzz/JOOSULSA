@@ -35,7 +35,7 @@ public class QuizPopupActivity extends AppCompatActivity {
     int postMethod = Request.Method.POST;
 
     // 우리 스프링 주소 넣어둘 변수
-    private String springUrl = "http://192.168.219.44:8089/quizPoint";
+    private String springUrl = "http://192.168.219.62:8089/quizPoint";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

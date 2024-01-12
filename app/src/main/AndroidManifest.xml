@@ -27,9 +27,12 @@
         tools:ignore="CoarseFineLocation"
         tools:targetApi="31">
         <activity
+            android:name=".NonLogInQuizPopUpActivity"
+            android:theme="@style/TransparentTheme" />
+        <activity
             android:name=".PurchasePopupSuccessActivity"
-            android:theme="@style/TransparentTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/TransparentTheme" />
         <activity
             android:name=".CheckPopupActivity"
             android:theme="@style/TransparentTheme" />

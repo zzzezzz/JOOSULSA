@@ -3,6 +3,7 @@ package com.example.joosulsa;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -50,6 +51,13 @@ public class PersonRankActivity extends AppCompatActivity {
             requestQueue = Volley.newRequestQueue(PersonRankActivity.this);
         }
 
+        preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+
+        String autoId = preferences.getString("autoId", null);
+
+        if (autoId!=null){
+
+        }
         personRankData();
 
         binding.btnPersonRankBack.setOnClickListener(v -> {
@@ -126,12 +134,15 @@ public class PersonRankActivity extends AppCompatActivity {
                 int scoreResourceId = getResources().getIdentifier(tvScoreId, "id", getPackageName());
 
                 TextView nickTextView = findViewById(nickResourceId);
-                Log.d("asmntrbfg", nickTextView.toString());
                 TextView scoreTextView = findViewById(scoreResourceId);
-                Log.d("asmntrbvx", scoreTextView.toString());
 
-                nickTextView.setText(userNick.toString());
-                scoreTextView.setText(stringPoints + " pt");
+                // Null 체크 추가
+                if (nickTextView != null && scoreTextView != null) {
+                    nickTextView.setText(userNick.toString());
+                    scoreTextView.setText(stringPoints + " pt");
+                } else {
+                    Log.e("TextViewNullCheck", "TextView is null");
+                }
 
                 // 원하는 로직 수행
                 Log.d("UserRankData", "User ID: " + userNick + ", Total Points: " + totalPoints);

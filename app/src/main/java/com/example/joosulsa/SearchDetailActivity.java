@@ -79,6 +79,25 @@ public class SearchDetailActivity extends AppCompatActivity {
             return false; // 이벤트 처리하지 않음
         });
 
+        binding.popUpcy1.setOnClickListener(v -> {
+
+
+
+        });
+
+        binding.popUpcy2.setOnClickListener(v -> {
+
+
+
+        });
+
+        binding.popUpcy3.setOnClickListener(v -> {
+
+
+
+        });
+
+
 
     }
 

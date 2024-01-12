@@ -44,6 +44,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.joosulsa.CheckActivity;
 import com.example.joosulsa.CheckPopupActivity;
 import com.example.joosulsa.LoginActivity;
+import com.example.joosulsa.NonLogInQuizPopUpActivity;
 import com.example.joosulsa.QuizActivity;
 import com.example.joosulsa.QuizClosePopup;
 import com.example.joosulsa.R;
@@ -265,10 +266,12 @@ public class HomeFragment extends Fragment {
             });
         } else{
             binding.numPoint.setText(Integer.toString(userPoint));
+            binding.memberId.setText("로그인이 필요합니다.");
             userRankPrint(autoId);
             binding.memberInfo.setOnClickListener(v -> {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             });
         }
 
@@ -370,17 +373,25 @@ public class HomeFragment extends Fragment {
         });
 
         // 퀴즈버튼 이벤트
-        if (quizBoolean == false){
-            binding.quizBtn.setOnClickListener(v -> {
-                int quizNumber = getRandomNumber(1, 20);
-                quizRequest(quizNumber);
-            });
+        if (autoId != null){
+            if (quizBoolean == false){
+                binding.quizBtn.setOnClickListener(v -> {
+                    int quizNumber = getRandomNumber(1, 20);
+                    quizRequest(quizNumber);
+                });
+            }else {
+                binding.quizBtn.setOnClickListener(v -> {
+                    Intent intent = new Intent(getActivity(), QuizClosePopup.class);
+                    startActivity(intent);
+                });
+            }
         }else {
             binding.quizBtn.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), QuizClosePopup.class);
+                Intent intent = new Intent(getActivity(), NonLogInQuizPopUpActivity.class);
                 startActivity(intent);
             });
         }
+
 
         // 오늘의 출석체크 버튼 이벤트
         binding.calBtn.setOnClickListener(v -> {
