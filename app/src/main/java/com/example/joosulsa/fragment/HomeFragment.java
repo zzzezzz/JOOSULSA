@@ -55,6 +55,8 @@ import com.example.joosulsa.TownRankActivity;
 import com.example.joosulsa.category.MainCategoryAdapter;
 import com.example.joosulsa.category.MainCategoryVO;
 import com.example.joosulsa.databinding.FragmentHomeBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -102,6 +104,10 @@ public class HomeFragment extends Fragment {
 
     // recyclerview
     private RecyclerView categoryView;
+
+    // bvn 설정
+    private BottomNavigationView bnv;
+
 
 
     @Override
@@ -227,6 +233,9 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        // bnv 설정 초기화
+        bnv = getActivity().findViewById(R.id.bnv);
+
         // 회원정보창 이벤트
         if (autoId!=null && autoPw!=null) {
             binding.memberId.setText(autoNick);
@@ -238,6 +247,8 @@ public class HomeFragment extends Fragment {
                         R.id.fl,
                         new MypageFragment()
                 ).commit();
+                // 화면 전환 시 자동으로 myPage로 가는 bnv 버튼 클릭한 것처럼 처리해주는 메소드
+                bnv.setSelectedItemId(R.id.tab4);
             });
         } else if (checkUserInputNick!=null) {
             binding.memberId.setText(checkUserInputNick);
@@ -249,6 +260,8 @@ public class HomeFragment extends Fragment {
                         R.id.fl,
                         new MypageFragment()
                 ).commit();
+                // 화면 전환 시 자동으로 myPage로 가는 bnv 버튼 클릭한 것처럼 처리해주는 메소드
+                bnv.setSelectedItemId(R.id.tab4);
             });
         } else{
             binding.numPoint.setText(Integer.toString(userPoint));
@@ -261,7 +274,7 @@ public class HomeFragment extends Fragment {
 
         // 카메라 이벤트
         binding.checkBtn.setOnClickListener(v -> {
-            if (ContextCompat.checkSelfPermission(requireActivity(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 // 카메라 권한이 없을 경우 권한 요청
                 ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
             } else {
