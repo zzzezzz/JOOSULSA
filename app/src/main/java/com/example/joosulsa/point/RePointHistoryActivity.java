@@ -3,7 +3,9 @@ package com.example.joosulsa.point;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,7 +19,10 @@ public class RePointHistoryActivity extends AppCompatActivity {
     private ArrayList<RePointHistoryVO> dataset;
     private RePointHistoryAdapter adapter;
     private ActivityRePointHistroyBinding binding;
-    private String poUrl ="172.30.48.1/poHistroy";
+
+    private SharedPreferences preferences;
+
+    private String poUrl ="http://192.168.219.62:8089/poHistroy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,14 @@ public class RePointHistoryActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         dataset = new ArrayList<>();
+
+        preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        String autoNick = preferences.getString("autoNick", "000");
+        int totalPoint = preferences.getInt("totalPoints", 0);
+        String totalP = String.valueOf(totalPoint);
+
+        binding.pointUserNick.setText(autoNick + "님의 포인트 지갑");
+        binding.pointTotalP.setText(totalP);
 
         dataset.add(new RePointHistoryVO("test","test"));
         dataset.add(new RePointHistoryVO("test","test"));
