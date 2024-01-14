@@ -34,11 +34,12 @@
     <tr>
         <td>라이브러리</td>
         <td>
-            <img src="https://img.shields.io/badge/BootStrap-7952B3?style=for-the-badge&logo=BootStrap&logoColor=white"/>
             <img src="https://img.shields.io/badge/KakaoMap-FFCD00?style=for-the-badge&logo=Kakao&logoColor=white"/>
             <img src="https://img.shields.io/badge/TensorFlow-BFCE99?style=for-the-badge&logo=Tensorflow&logoColor=white"/>
             <img src="https://img.shields.io/badge/OpenCV-F8AD40?style=for-the-badge&logo=OpenCV&logoColor=white"/>
-            <img src="https://img.shields.io/badge/Pillow-C8EC82?style=for-the-badge&logo=Pillow&logoColor=white"/>
+            <img src="https://img.shields.io/badge/numpy-A4DE82?style=for-the-badge&logo=numpy&logoColor=white"/>
+            <img src="https://img.shields.io/badge/sklearn-C8B3C4?style=for-the-badge&logo=scikit-learn&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Pillow-C8EC82?style=for-the-badge&logo=pil&logoColor=white"/>
         </td>
     </tr>
     <tr>
@@ -81,7 +82,7 @@
 <br>
 
 ## 📌 SW유스케이스
-![SW유스케이스](https://github.com/2023-SMHRD-KDT-AI-3/ChickenGGRepo/assets/140151776/7e8ff517-3967-422e-be67-e4e01e2203f9)
+![실전-유스케이스](https://github.com/2023-SMHRD-KDT-AI-3/JOOSULSA/assets/140151834/75351903-bfde-4d58-999b-a1a794a5dcd3)
 <br>
 
 ## 📌 서비스 흐름도
@@ -90,7 +91,7 @@
 <br>
 
 ## 📌 ER다이어그램
-![ER 다이어그램](https://github.com/2023-SMHRD-KDT-AI-3/ChickenGGRepo/assets/140151776/3d053943-414e-480d-bac5-3e4d5b4c731b)
+![ERDiagram](https://github.com/2023-SMHRD-KDT-AI-3/JOOSULSA/assets/140151834/78e11c32-89f0-4376-b6c4-0218a2d18fc1)
 <br>
 
 ## 🖥 화면 구성
@@ -141,9 +142,22 @@
 ## 🤾‍♂️ 트러블슈팅
 
 * 문제1<br>
- 사용자의 위치를 받아오는 지도와 위치정보를 받아 차트를 출력하는 함수의 충돌이 있었습니다.
 
- 이는 차트를 만드는 함수는 JSTL로 구성되어 있고 그 함수와 지도를 연결하는 것은 ajax로 구성하였는데, 서버에서 코드를 읽고 구현하는 순서는
- JSTL, HTML, JS/Ajax여서 Ajax -> JSTL의 순서로 짜둔 알고리즘이 코드를 인식하는 순서상의 문제로 인해 작동하지 않았습니다.
+문제 상황:
+프로젝트에서 유저가 퀴즈를 풀면 포인트를 지급하는 메소드에서 failed to lazily initialize a collection of role 오류가 발생했습니다. 오류 메시지를 확인하여 LazyInitializationException 키워드를 확인했고, 기본 전략으로 설정된 지연 로딩 방식으로 인해 세션이 종료된 후에 지연 로딩된 테이블에 접근하려고 했기 때문에 발생한 문제임을 파악했습니다.
 
- 이를 해결하기 위해 차트를 만드는 함수를 기존의 JSTL을 사용한 구조에서 일반적인 변수데이터를 선언해서 구성하는 것으로 구조를 변경하였습니다.
+해결 방법:
+트랜잭션 확장:
+트랜잭션을 클래스 전체로 확장하여 해당 문제를 해결했습니다. 트랜잭션 범위를 클래스 전체로 확장하면 영속성 컨텍스트가 유지되어 세션이 종료되더라도 데이터를 지연 로딩할 수 있게 됩니다.
+
+스프링 컨테이너의 트랜잭션 범위 이해:
+트랜잭션 범위를 클래스 전체로 확장함으로써 스프링의 트랜잭션 관리 방식을 이해했습니다. 클래스 전체에 걸친 트랜잭션은 세션이 종료되더라도 영속성 컨텍스트가 살아있어 데이터를 로딩할 수 있게 됩니다.
+
+영속성 컨텍스트의 생존 범위 이해:
+세션이 종료되면서 영속성 컨텍스트가 소멸되는데, 지연 로딩된 엔티티에 접근하려고 하면 LazyInitializationException이 발생하는 것을 이해했습니다.
+
+AOP(Aspect-Oriented Programming)의 개념 이해:
+스프링의 트랜잭션 관리는 AOP를 사용하여 구현되는데, 이를 통해 핵심 비즈니스 로직과 트랜잭션 관리 로직을 분리할 수 있음을 이해했습니다.
+이를 통해 스프링의 핵심 개념에 대한 이해를 높일 수 있었고, 향후 유사한 문제에 대한 빠른 대응이 가능해졌습니다.
+
+실제로 나중에 포인트 내역을 조회하면서 동일한 문제가 발생하였고 이번에는 빠르게 dto를 작성하여 다른 방식으로 해결하였습니다
