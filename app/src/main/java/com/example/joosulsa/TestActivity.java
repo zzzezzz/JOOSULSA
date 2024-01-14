@@ -101,13 +101,18 @@ public class TestActivity extends AppCompatActivity {
                             // 추가적으로 if문을 사용해서 조건 처리하기
                             if (result1.equals("3")) {
                                 // 6번부터 특수데이터
-                                if (result2.equals(0) || result2.equals(1)){
-                                    specialRes ="6";
-                                    handlePhotoSearch(specialRes);
+                                if (mathAcc>30){
+                                    if (result2.equals(0) || result2.equals(1)){
+                                        specialRes ="6";
+                                        handlePhotoSearch(specialRes);
+                                    }else{
+                                        specialRes = "7";
+                                        handlePhotoSearch(specialRes);
+                                    }
                                 }else{
-                                    specialRes = "7";
-                                    handlePhotoSearch(specialRes);
+                                    handlePhotoSearch(result1);
                                 }
+
                             }else {
                                 handlePhotoSearch(result1);
                             }
