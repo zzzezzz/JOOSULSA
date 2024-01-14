@@ -37,7 +37,9 @@
             <img src="https://img.shields.io/badge/KakaoMap-FFCD00?style=for-the-badge&logo=Kakao&logoColor=white"/>
             <img src="https://img.shields.io/badge/TensorFlow-BFCE99?style=for-the-badge&logo=Tensorflow&logoColor=white"/>
             <img src="https://img.shields.io/badge/OpenCV-F8AD40?style=for-the-badge&logo=OpenCV&logoColor=white"/>
-            <img src="https://img.shields.io/badge/Pillow-C8EC82?style=for-the-badge&logo=Pillow&logoColor=white"/>
+            <img src="https://img.shields.io/badge/numpy-A4DE82?style=for-the-badge&logo=numpy&logoColor=white"/>
+            <img src="https://img.shields.io/badge/sklearn-C8B3C4?style=for-the-badge&logo=scikit-learn&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Pillow-C8EC82?style=for-the-badge&logo=pil&logoColor=white"/>
         </td>
     </tr>
     <tr>
