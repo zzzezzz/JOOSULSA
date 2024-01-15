@@ -86,8 +86,7 @@
 <br>
 
 ## 📌 서비스 흐름도
-![서비스흐름도](https://github.com/2023-SMHRD-KDT-AI-3/ChickenGGRepo/assets/140151776/ae6587ec-89a5-4ea2-aa6e-67f8f1a6d4be)
-![구조 설명표](https://github.com/2023-SMHRD-KDT-AI-3/ChickenGGRepo/assets/140151776/503fce5e-b0a5-4b4c-a8f1-1ab0189ea12e)
+![서비스 흐름도](https://github.com/2023-SMHRD-KDT-AI-3/JOOSULSA/assets/140151834/2a6fb30c-2811-4e56-bcd6-b9849f6f255c)
 <br>
 
 ## 📌 ER다이어그램
