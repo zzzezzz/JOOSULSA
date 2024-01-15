@@ -119,13 +119,17 @@ public class RecycleDetailActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("qevqaiwnscdoaq", response);
-                        handleImgData(response);
+                        if (response != null) {
+                            Log.d("qevqaiwnscdoaq", response);
+                            handleImgData(response);
+                        } else {
+                            Log.e("VolleyError", "Response is null");
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.e("VolleyError", "Error in imgRequest: " + error.getMessage());
             }
         }
         ){
