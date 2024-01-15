@@ -142,6 +142,7 @@ public class LoginActivity extends AppCompatActivity {
             editor.apply();
 
             startActivity(intent);
+            finish();
         } catch (JSONException e) {
             e.printStackTrace();
         }
