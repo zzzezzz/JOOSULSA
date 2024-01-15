@@ -48,6 +48,7 @@ public class CheckPopupActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
         int monthlyAtt = monthlyAtt(preferences);
         String autoId = preferences.getString("autoId", null);
         binding.checkNum.setText(Integer.toString(monthlyAtt));
@@ -62,9 +63,13 @@ public class CheckPopupActivity extends AppCompatActivity {
             if (monthlyAtt<=28){
                 checkPointRequest(autoId, monthlyAtt);
                 plusMonthlyAtt(monthlyAtt);
+                editor.putBoolean("checkBoolean", true);
+                editor.apply();
                 finish();
             } else if (monthlyAtt>28) {
                 plusMonthlyAtt(monthlyAtt);
+                editor.putBoolean("checkBoolean", true);
+                editor.apply();
                 finish();
             }
         });
