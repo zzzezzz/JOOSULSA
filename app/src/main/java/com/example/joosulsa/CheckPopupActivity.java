@@ -46,7 +46,7 @@ public class CheckPopupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCheckPopupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        // push용
         preferences = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         int monthlyAtt = monthlyAtt(preferences);
@@ -143,7 +143,7 @@ public class CheckPopupActivity extends AppCompatActivity {
 
             int userPoint = jsonResponse.getInt("totalPoints");
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("userPoint", userPoint);
+            editor.putInt("totalPoints", userPoint);
             editor.apply();
             Intent intent = new Intent(CheckPopupActivity.this, MainActivity.class);
             startActivity(intent);
