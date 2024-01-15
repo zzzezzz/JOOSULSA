@@ -153,30 +153,30 @@ public class HomeFragment extends Fragment {
         editor.putString("nowTime", nowTime);
 
         // 출석체크
-//        if (checkBoolean == false) {
-//            Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
-//
-//            long now1 = System.currentTimeMillis();
-//            Date today1 = new Date(now1);
-//            SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
-//            checkTime = format1.format(today1);
-//            Log.d("checkTime", checkTime);
-//            editor.putString("checkTime", checkTime);
-//            editor.putBoolean("checkBoolean", true);
-//            editor.apply();
-//            quizCheckDataRequest(autoId);
-//            checkBoolean = autoTodayAtt(preferences);
-//            Log.d("afterlogCheck", String.valueOf(checkBoolean));
-//            if (checkTime.equals(nowTime)) {
-//                makeTrue(autoId);
-//            } else {
-//                makeFalse(autoId);
-//            }
-//
-//            startActivity(intent);
-//        } else {
-//            // 출석체크가 이미 되어있을 경우에 대한 처리
-//        }
+        if (checkBoolean == false) {
+            Intent intent = new Intent(getActivity(), CheckPopupActivity.class);
+
+            long now1 = System.currentTimeMillis();
+            Date today1 = new Date(now1);
+            SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
+            checkTime = format1.format(today1);
+            Log.d("checkTime", checkTime);
+            editor.putString("checkTime", checkTime);
+            editor.putBoolean("checkBoolean", true);
+            editor.apply();
+            quizCheckDataRequest(autoId);
+            checkBoolean = autoTodayAtt(preferences);
+            Log.d("afterlogCheck", String.valueOf(checkBoolean));
+            if (checkTime.equals(nowTime)) {
+                makeTrue(autoId);
+            } else {
+                makeFalse(autoId);
+            }
+
+            startActivity(intent);
+        } else {
+            // 출석체크가 이미 되어있을 경우에 대한 처리
+        }
 
 
 
