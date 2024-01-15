@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -22,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.joosulsa.databinding.ActivityTestBinding;
 
 import org.jetbrains.annotations.Nullable;
@@ -53,6 +55,12 @@ public class TestActivity extends AppCompatActivity {
         binding = ActivityTestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // gif 파일 처리
+        Glide.with(this)
+                .asGif()
+                .load(R.raw.loading)
+                .into(binding.lordingImg);
+
         Bitmap bitmap = getIntent().getParcelableExtra("TestImg");
         Log.d("확인",bitmap.toString());
         String base64Image = encodeToBase64(bitmap, Bitmap.CompressFormat.PNG,100);
@@ -65,6 +73,7 @@ public class TestActivity extends AppCompatActivity {
 
 
         uploadImageToServer(base64Image);
+
 
     }
 

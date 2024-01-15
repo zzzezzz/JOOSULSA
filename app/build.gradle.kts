@@ -45,5 +45,7 @@ dependencies {
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0") // 유튜브 화면 뷰
     // Kakao maps sdk(형식이 바뀜...웹에 있는 방식으로는 안됨.)
     implementation (files("libs/libDaumMapAndroid.jar"))
+    // gif 파일 처리를 위한 의존성 추가
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
 
 }
