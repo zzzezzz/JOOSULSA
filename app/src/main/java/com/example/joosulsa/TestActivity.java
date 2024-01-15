@@ -59,7 +59,7 @@ public class TestActivity extends AppCompatActivity {
         Glide.with(this)
                 .asGif()
                 .load(R.raw.loading)
-                .into(binding.lordingImg);
+                .into(binding.loadingImg);
 
         Bitmap bitmap = getIntent().getParcelableExtra("TestImg");
         Log.d("확인",bitmap.toString());

@@ -105,7 +105,7 @@
                     android:layout_marginBottom="20dp"
                     android:fontFamily="@font/pretendard_regular"
                     android:text="분리수거방법text(DB)"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toTopOf="@+id/cardView28"
                     app:layout_constraintEnd_toStartOf="@+id/guideline34"
                     app:layout_constraintStart_toStartOf="@+id/guideline35"
@@ -180,7 +180,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/upcycleVideo"
                     android:layout_width="match_parent"
-                    android:layout_height="85dp"
+                    android:layout_height="78dp"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="0dp"
