@@ -78,7 +78,7 @@
 <br>
 
 ## ⚙ 시스템 아키텍처(구조) 예시 
-![서비스 아키텍처](https://github.com/2023-SMHRD-KDT-AI-3/ChickenGGRepo/assets/140151776/f5634b6c-d714-41b0-b19e-dfca34834ae3)
+![시스템 아키텍쳐](https://github.com/2023-SMHRD-KDT-AI-3/JOOSULSA/assets/140151834/042f1329-0945-4939-a182-724bd83624a1)
 <br>
 
 ## 📌 SW유스케이스
