@@ -1,4 +1,4 @@
-![image](https://github.com/zzzezzz/JOOSULSA/assets/140151816/a43c74a1-1cdc-4f69-8845-0abb5f44ba8d)# 📎 모아니면개팀의 프로젝트 입니다
+📎 모아니면개팀의 프로젝트 입니다
 
 ## 👀 서비스 소개
 * 서비스명:  JOOSULSA
