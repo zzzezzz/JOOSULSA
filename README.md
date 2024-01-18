@@ -104,6 +104,12 @@
 
 <br>
 
+### 이미지 검색 페이지
+![image](https://github.com/zzzezzz/JOOSULSA/assets/140151816/d6415d94-abb8-4bd4-ac74-08879532e62a)
+
+<br>
+
+
 ### 브랜드페이지
 ![브랜드 페이지](https://github.com/2023-SMHRD-KDT-AI-3/ChickenGGRepo/assets/140151776/3ef98214-afb6-475f-9f6b-01c81bfc9055)
 <br>
