@@ -110,12 +110,30 @@
 <br>
 
 
-### 브랜드페이지
-![브랜드 페이지](https://github.com/2023-SMHRD-KDT-AI-3/ChickenGGRepo/assets/140151776/3ef98214-afb6-475f-9f6b-01c81bfc9055)
+### 퀴즈 페이지
+![image](https://github.com/zzzezzz/JOOSULSA/assets/140151816/341dd67f-88ab-4687-9fab-e5214a102da0)
+
 <br>
 
-### 메뉴페이지
-![메뉴](https://github.com/2023-SMHRD-KDT-AI-3/ChickenGGRepo/assets/140151776/282ccf02-0688-4dd0-b7ad-17b3eaa0f9af)
+### 렝킹 페이지
+![image](https://github.com/zzzezzz/JOOSULSA/assets/140151816/8238254f-e3df-41db-a420-7be652221a13)
+
+<br>
+
+### 상품 페이지
+![image](https://github.com/zzzezzz/JOOSULSA/assets/140151816/ddfe6167-06aa-465c-93f8-2344e821f0f3)
+
+
+<br>
+
+### 출석체크 페이지
+![image](https://github.com/zzzezzz/JOOSULSA/assets/140151816/21aea41b-633c-4098-9828-d84fa6c31d43)
+
+<br>
+
+### 마이페이지
+![image](https://github.com/zzzezzz/JOOSULSA/assets/140151816/ac8acd35-ffa9-4224-81a2-c071b2036e71)
+
 <br>
 
 ## 👨‍👩‍👦‍👦 팀원 역할
