@@ -95,9 +95,7 @@
 
 ## 🖥 화면 구성
 ### 메인페이지(지도/지도연동차트/검색)
-![메인화면]![image](https://github.com/zzzezzz/JOOSULSA/assets/140151816/e654427c-b35a-4d9f-b217-9cd779c2df44)
-
-)
+![메인화면]!([image](https://github.com/zzzezzz/JOOSULSA/assets/140151816/e654427c-b35a-4d9f-b217-9cd779c2df44))
 <br>
 
 ### 로그인/회원가입/마이페이지
